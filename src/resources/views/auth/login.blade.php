@@ -1,73 +1,100 @@
 @extends('layouts.app')
-
+@section('title', 'ログイン | SoundHub')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
+    <div class="py-4">
+        <div class="container"
+            style="max-width: 540px">
+            <h3 class="text-center">ログイン</h3>
+            <div class="card shadow-sm mb-4">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+
+                    @include('error_card_list')
+
+                    <form method="POST"
+                        action="{{ route('login') }}" novalidate>
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input id="email"
+                                type="email"
+                                class="form-control"
+                                name="email"
+                                value="{{ old('email') }}"
+                                required
+                                placeholder="メールアドレスを入力">
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="form-group mt-3">
+                            <label for="password">パスワード</label>
+                            <input id="password"
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                required
+                                placeholder="パスワードを入力">
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input type="hidden"
+                            name="remember"
+                            id="remember"
+                            value="on">
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit"
+                                class="btn btn-block text-white mt-2"
+                                style="background-color: #644BFF;">
+                                <b>ログイン</b>
+                            </button>
                         </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                        <div class="card-text text-center mt-3">
+                            <div class="text-center">
+                                <a href="{{ route('password.request') }}"
+                                    class="small">
+                                    パスワード忘れた方
+                                </a>
                             </div>
                         </div>
                     </form>
+
+                    <h4 class="text-center mt-3">お手持ちのアカウントでログイン</h4>
+
+                    <div class="d-grid gap-2 mt-3">
+                        <a href="#"
+                            class="btn btn-block text-white"
+                            style="background-color: #FF4B4B; text-transform: none;">
+                            <i class="fa-brands fa-google me-2"></i><b>Googleでログイン</b>
+                        </a>
+                    </div>
+                    <div class="d-grid gap-2 mt-3">
+                        <a href="#"
+                            class="btn btn-block text-white"
+                            style="background-color: #4BBEFF; text-transform: none;">
+                            <i class="fa-brands fa-twitter me-2"></i><b>Twitterでログイン</b>
+                        </a>
+                    </div>
+
+                    <h4 class="text-center mt-3">とりあえず機能を試してみたい方はこちら</h4>
+
+                    <div class="d-grid gap-2 mt-3">
+                        <a href="#"
+                            class="btn btn-block text-white"
+                            style="background-color: #805C00;">
+                            <b>ゲストユーザーログイン</b>
+                        </a>
+                    </div>
+
+                    <div class="card-text text-center mt-3">
+                        <div class="text-center">
+                            <a href="{{ route('register') }}"
+                                class="small">
+                                会員登録はこちら
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
