@@ -16,7 +16,7 @@ class ArticlePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $use)
     {
         return true;
     }
@@ -28,7 +28,7 @@ class ArticlePolicy
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Article $article)
+    public function view(?User $user, Article $article)
     {
         return true;
     }
@@ -65,7 +65,7 @@ class ArticlePolicy
      */
     public function delete(User $user, Article $article)
     {
-        return $user->id === $article->user_id; 
+        return $user->id === $article->user_id;
     }
 
     /**
