@@ -21,4 +21,4 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index']);
 
 // 記事一覧ページ
-Route::resource('/articles', ArticleController::class)->except('show')->middleware('auth');
+Route::resource('/articles', ArticleController::class)->middleware('auth');
