@@ -1,45 +1,42 @@
 @extends('layouts.app')
-
+@section('title', 'パスワード再設定 | SoundHub')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<div class="py-4">
+    <div class="container"
+        style="max-width: 540px">
+        <h3 class="text-center">パスワード再設定</h3>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                @include('error_card_list')
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+                <form method="POST" action="{{ route('password.email') }}" novalidate>
+                    @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                    <div class="form-group">
+                        <label for="email">メールアドレス</label>
+                        <input id="email"
+                            type="email"
+                            class="form-control"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            placeholder="メールアドレスを入力">
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit"
+                            class="btn btn-block text-white"
+                            style="background-color: #644BFF">
+                            <b>送信する</b>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

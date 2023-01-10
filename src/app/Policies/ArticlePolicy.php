@@ -16,7 +16,7 @@ class ArticlePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(?User $use)
+    public function viewAny(?User $user)
     {
         return true;
     }
