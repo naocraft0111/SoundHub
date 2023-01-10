@@ -17,7 +17,7 @@ use App\Http\Controllers\ArticleController;
 
 Auth::routes();
 
+// トップページ
+Route::get('/', [HomeController::class, 'index']);
 // 記事投稿関連(CRUD)
-Route::get('/', [ArticleController::class,'index'])->name('articles.index');
-Route::resource('/articles', ArticleController::class)->except(['index', 'show'])->middleware('auth');
-Route::resource('/articles', ArticleController::class)->only(['show']);
+Route::resource('/articles', ArticleController::class)->middleware('auth');
