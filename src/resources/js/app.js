@@ -8,6 +8,7 @@ import './bootstrap'
 import Vue from 'vue';
 import ExampleComponent from './components/ExampleComponent.vue';
 import ArticleLike from './components/ArticleLike.vue';
+import ArticleTagsInput from './components/ArticleTagsInput.vue';
 
 window.Vue = require('vue').default;
 
@@ -26,6 +27,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('ArticleLike', require('./components/ArticleLike.vue').default);
 
+Vue.component('ArticleTagsInput', require('./components/ArticleTagsInput.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -36,6 +39,7 @@ const app = new Vue({
     el: '#app',
     component:{
         ExampleComponent,
-        ArticleLike
+        ArticleLike,
+        ArticleTagsInput
     }
 });

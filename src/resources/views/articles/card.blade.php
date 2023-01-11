@@ -72,5 +72,18 @@
             </article-like>
         </div>
     </div>
+    @foreach ($article->tags as $tag)
+        @if ($loop->first)
+            <div class="card-body pt-0 pb-4 ps-3">
+                <div class="card-text line-height">
+        @endif
+                    <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 me-1 mt-1 text-muted text-decoration-none">
+                        {{ $tag->hashtag }}
+                    </a>
+        @if($loop->last)
+                </div>
+            </div>
+        @endif
+    @endforeach
 </div>
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::prefix('articles')->name('articles.')->group(function () {
     Route::put('/{article}/like', [ArticleController::class, 'like'])->name('like')->middleware('auth');
     Route::delete('/{article}/like', [ArticleController::class, 'unlike'])->name('unlike')->middleware('auth');
 });
+// タグ別一覧画面
+Route::get('/tags/{name}', [TagController::class, 'show'])->name('tags.show')->middleware('auth');
