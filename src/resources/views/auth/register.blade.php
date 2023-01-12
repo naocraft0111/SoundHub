@@ -56,7 +56,7 @@
                     <h4 class="text-center mt-3">お手持ちのアカウントで登録</h4>
 
                     <div class="d-grid gap-2 mt-3">
-                        <a href="#"
+                        <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
                             class="btn btn-block text-white"
                             style="background-color: #FF4B4B; text-transform: none;">
                             <i class="fa-brands fa-google me-2"></i><b>Googleで登録</b>
