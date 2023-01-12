@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,17 @@ Auth::routes();
 
 // トップページ
 Route::get('/', [HomeController::class, 'index']);
+
+// ソーシャルログイン(すでにメールアドレスが登録済の場合)
+Route::prefix('login')->name('login.')->group(function () {
+    Route::get('/{provider}', [LoginController::class, 'redirectToProvider'])->name('{provider}');
+    Route::get('/{provider}/callback', [LoginController::class, 'handleProviderCallback'])->name('{provider}.callback');
+});
+// ソーシャルログイン(未登録)
+Route::prefix('register')->name('register.')->group(function () {
+    Route::get('/{provider}', [RegisterController::class,'showProviderUserRegistrationForm'])->name('{provider}');
+    Route::post('/{provider}', [RegisterController::class,'registerProviderUser'])->name('{provider}');
+});
 
 // ログイン状態でアクセス可能
 Route::middleware('auth')->group(function () {
