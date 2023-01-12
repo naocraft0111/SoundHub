@@ -1,9 +1,14 @@
 <div class="card mt-3">
     <div class="card-body d-flex flex-row">
-        <i class="fas fa-user-circle fa-3x me-1"></i>
+        <a href="{{ route('users.show', ['name' => $article->user->name]) }}"
+            class="text-dark">
+            <i class="fas fa-user-circle fa-3x me-1"></i>
+        </a>
         <div>
             <div class="font-weight-bold">
-                {{ $article->user->name }}
+                <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
+                    {{ $article->user->name }}
+                </a>
             </div>
             <div class="font-weight-lighter">
                 {{ $article->created_at->format('Y/m/d H:i') }}
@@ -53,7 +58,7 @@
 
     <div class="card-body pt-0 pb-2">
         <h4 class="card-title">
-            <a class="text-decoration-none" href="{{ route('articles.show', ['article' => $article]) }}">
+            <a href="{{ route('articles.show', ['article' => $article]) }}">
                 {{ $article->title }}
             </a>
         </h4>
@@ -77,7 +82,7 @@
             <div class="card-body pt-0 pb-4 ps-3">
                 <div class="card-text line-height">
         @endif
-                    <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 me-1 mt-1 text-muted text-decoration-none">
+                    <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 me-1 mt-1 text-muted">
                         {{ $tag->hashtag }}
                     </a>
         @if($loop->last)

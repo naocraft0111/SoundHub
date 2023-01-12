@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand"
-            href="#">SoundHub</a>
+            href="{{ route('articles.index') }}">SoundHub</a>
         {{-- ハンバーガーメニュー --}}
         <button class="navbar-toggler"
             type="button"
@@ -51,8 +51,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end"
                             aria-labelledby="navbarDropdown">
-                            <button class="dropdown-item" type="button" onclick="">
-                                プロフィール
+                            <button class="dropdown-item" type="button" onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
+                                マイページ
                             </button>
                             <hr class="dropdown-divider" />
                             <button form="logout-button" class="dropdown-item" type="submit" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -68,7 +68,7 @@
 
                 {{-- sp --}}
                 <div class="d-block d-lg-none">
-                    <li class="nav-item mt-2"><a href="#" class="nav-link"><i class="fas fa-user mr-1"></i>マイページ</a></li>
+                    <li class="nav-item mt-2"><a class="nav-link" href="{{ route("users.show", ["name" => Auth::user()->name])}}"><i class="fas fa-user mr-1"></i>マイページ</a></li>
                     <li class="nav-item mt-2">
                         <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-1"></i>ログアウト</a>
