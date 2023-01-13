@@ -24,6 +24,9 @@ Auth::routes();
 // トップページ
 Route::get('/', [HomeController::class, 'index']);
 
+// ゲストユーザーログイン
+Route::get('guest', [LoginController::class, 'guestLogin'])->name('login.guest');
+
 // ソーシャルログイン(すでにメールアドレスが登録済の場合)
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', [LoginController::class, 'redirectToProvider'])->name('{provider}');

@@ -73,7 +73,7 @@
                     <h4 class="text-center mt-3">とりあえず機能を試してみたい方はこちら</h4>
 
                     <div class="d-grid gap-2 mt-3">
-                        <a href="#"
+                        <a href="{{route('login.guest')}}"
                             class="btn btn-block text-white"
                             style="background-color: #805C00;">
                             <b>ゲストユーザーログイン</b>
