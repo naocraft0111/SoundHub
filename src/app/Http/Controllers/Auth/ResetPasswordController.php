@@ -21,6 +21,15 @@ class ResetPasswordController extends Controller
 
     use ResetsPasswords;
 
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => ['required', 'string', 'regex:/\A([a-zA-Z0-9]{8,})+\z/u', 'min:8', 'confirmed'],
+        ];
+    }
+
     /**
      * Where to redirect users after resetting their password.
      *
