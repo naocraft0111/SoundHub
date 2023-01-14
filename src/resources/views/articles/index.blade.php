@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+        @include('error_card_list')
         @foreach($articles as $article)
             @include('articles.card')
         @endforeach

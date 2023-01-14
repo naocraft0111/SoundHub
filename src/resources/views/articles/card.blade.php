@@ -19,7 +19,7 @@
             <div class="ms-auto card-text">
                 <div class="dropdown">
                     <a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <button type="button" class="btn btn-link text-muted m-0 p-2" id="dropdownMenuButton"  >
+                        <button type="button" class="btn btn-link text-muted m-0 p-2" id="dropdownMenuButton">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                     </a>
@@ -67,16 +67,27 @@
         </div>
     </div>
     <div class="card-body pt-0 pb-2 ps-3">
-        <div class="card-text">
-            <article-like
-                :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
-                :initial-count-likes='@json($article->count_likes)'
-                :authorized='@json(Auth::check())'
-                endpoint="{{ route('articles.like', ['article' => $article]) }}"
-            >
-            </article-like>
+        <div class="card-text d-flex align-items-center">
+            <div class="d-flex align-items-center">
+                <a class="pe-1" data-bs-toggle="modal" data-bs-target="#commentModal">
+                    <i class="far fa-comment text-secondary"></i>
+                </a>
+                <p class="mb-0 pe-1 ps-1 text-secondary" style="padding-bottom: 2.0px;">
+                    {{ count($article->comments) }}
+                </p>
+                <article-like
+                    :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
+                    :initial-count-likes='@json($article->count_likes)'
+                    :authorized='@json(Auth::check())'
+                    endpoint="{{ route('articles.like', ['article' => $article]) }}"
+                >
+                </article-like>
+            </div>
         </div>
     </div>
+
+    @include('comments.form')
+
     @foreach ($article->tags as $tag)
         @if ($loop->first)
             <div class="card-body pt-0 pb-4 ps-3">
@@ -91,4 +102,3 @@
         @endif
     @endforeach
 </div>
-

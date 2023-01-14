@@ -1,12 +1,16 @@
 <template>
     <div>
         <button type="button" class="btn m-0 p-1 shadow-none border-0">
-            <i class="fas fa-heart"
-                :class="{'text-danger':this.isLikedBy, 'Heart1':this.gotToLike}"
-                @click="clickLike"
-            />
+            <span class="text-secondary">
+                <i class="fas fa-heart"
+                    :class="{'text-danger':this.isLikedBy, 'Heart1':this.gotToLike}"
+                    @click="clickLike"
+                />
+            </span>
         </button>
-        {{ countLikes }}
+        <span class="text-secondary">
+            {{ countLikes }}
+        </span>
     </div>
 </template>
 

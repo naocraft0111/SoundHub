@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -42,6 +43,9 @@ Route::prefix('register')->name('register.')->group(function () {
 Route::middleware('auth')->group(function () {
     // 記事投稿関連(CRUD)
     Route::resource('/articles', ArticleController::class);
+
+    // コメント投稿関連(store, destroy)
+    Route::resource('/comments', CommentController::class)->only(['store', 'destroy']);
 
     // タグ別一覧画面
     Route::get('/tags/{name}', [TagController::class, 'show'])->name('tags.show');
