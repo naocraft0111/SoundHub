@@ -4,6 +4,8 @@
 
 @section('content')
     <div class="container">
+        @include('error_card_list')
         @include('articles.card')
+        @include('comments.card')
     </div>
 @endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Tag;
+use App\Models\Comment;
 use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
@@ -69,7 +70,12 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('articles.show', compact('article'));
+        $comments = $article->comments()
+            ->with('user')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('articles.show', compact('article', 'comments'));
     }
 
     /**
