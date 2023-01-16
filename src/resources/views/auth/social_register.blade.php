@@ -24,6 +24,16 @@
                             <input id="name" type="text" class="form-control" name="name" required placeholder="15文字以内で入力してください。">
                         </div>
 
+                        <div class="form-group mt-3">
+                            <label for="password">パスワード<span class="text-danger">【必須】</span></label>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="8文字以上の半角英数で入力してください。" required>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="password-confirm">パスワード（確認）<span class="text-danger">【必須】</span></label>
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="確認のために再度ご入力ください。" required>
+                        </div>
+
                         <div class="card-text text-center mt-3">
                             <p class="text-center small">
                                 <span>会員登録には、</span>
