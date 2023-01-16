@@ -1,6 +1,6 @@
 <div class="card mt-3">
     <div class="card-body">
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row align-items-center">
             <a href="{{ route('users.show', ['name' => $user->name])}}" class="text-dark">
                 <i class="fas fa-user-circle fa-3x me-1"></i>
             </a>
@@ -11,7 +11,7 @@
                     endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
                 </follow-button>
             @else
-                <button href="#" type="button" class="btn btn-outline-primary btn-rounded ms-auto" data-mdb-ripple-color="dark">プロフィール編集</button>
+                <a href="{{ route('users.edit', ['name' => $user->name]) }}" class="btn btn-light border text-dark fw-bold ms-auto text-center text-decoraiton-none a_btn" role="button">プロフィール編集</a>
             @endif
         </div>
         <h2 class="card-title m-0">

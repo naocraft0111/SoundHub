@@ -7,6 +7,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// 共通レイアウト
 a {
     text-decoration: none;
     cursor: pointer;
@@ -14,4 +15,8 @@ a {
 
 a:hover{
     text-decoration: underline;
+}
+
+.a_btn:hover {
+    text-decoration: none;
 }
