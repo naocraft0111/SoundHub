@@ -17,7 +17,7 @@
         @if (Auth::id() == config('user.guest_user.id'))
         <div class="card-body text-center">
             <p class="text-danger">
-                <b>※ゲストユーザーは、ユーザー名とメールアドレスを編集できません。</b>
+                <b>※ゲストユーザーは、プロフィール編集できません。</b>
             </p>
         </div>
         @endif
@@ -25,16 +25,16 @@
             <div class="card-body">
                 @include('error_card_list')
                 {{-- ユーザー更新 --}}
-                <form method="POST" action="{{ route('users.update', ['name' => $user->name]) }}" novalidate>
+                <form method="POST" action="{{ route('users.update', ['name' => $user->name]) }}" enctype="multipart/form-data" novalidate>
                 @method('PATCH')
                 @csrf
                 @include('users.form')
+                @unless(Auth::id() == config('user.guest_user.id'))
                 <div class="d-grid gap-2 mt-3">
                     <button type="submit" class="btn btn-primary">更新する</button>
                 </div>
                 </form>
                 {{-- パスワード変更 --}}
-                @unless(Auth::id() == config('user.guest_user.id'))
                 <div class="d-grid gap-2 mt-3">
                     <a href="{{ route('users.password.edit', ['name' => $user->name]) }}" class="btn btn-light border text-dark text-center text-decoraiton-none a_btn" role="button">パスワード変更</a>
                 </div>

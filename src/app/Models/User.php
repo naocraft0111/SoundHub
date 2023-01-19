@@ -26,6 +26,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
+        'age',
+        'self_introduction',
+        'gender',
+        'pref_id',
+        'instrument_years_id',
+        'music_style_id',
+        'prof_video_path',
         'password',
     ];
 
@@ -47,6 +55,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 都道府県名を返す
+    public function getPrefNameAttribute()
+    {
+        return config('pref.' .$this->pref_id);
+    }
+
+    public function getGenderNameAttribute()
+    {
+        return config('gender.' .$this->gender_id);
+    }
+
+    public function getInstrumentYearsNameAttribute()
+    {
+        return config('instrumentYear.' .$this->instrument_years_id);
+    }
 
     public function sendPasswordResetNotification($token)
     {

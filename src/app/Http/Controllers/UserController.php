@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -21,15 +22,29 @@ class UserController extends Controller
         return view('users.show', compact('user', 'articles'));
     }
 
+    public function detail(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        $prefs = config('pref');
+        $genders = config('gender');
+        $instrument_years = config('instrumentYear');
+
+        return view('users.detail', compact('user', 'prefs', 'genders', 'instrument_years'));
+    }
+
     // プロフィール編集画面
-    public function edit(string $name)
+    public function edit(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
 
         // UserPolicyのupdateメソッドでアクセス制限
         $this->authorize('update', $user);
 
-        return view('users.edit', compact('user'));
+        $prefs = config('pref');
+        $instrument_years = config('instrumentYear');
+
+        return view('users.edit', compact('user', 'prefs', 'instrument_years'));
     }
 
     // プロフィール更新処理
@@ -40,7 +55,26 @@ class UserController extends Controller
         // UserPolicyのupdateメソッドでアクセス制限
         $this->authorize('update', $user);
 
-        $user->fill($request->validated())->save();
+        // 画像upload
+        if(request('avatar')) {
+            // 画像の名前を受け取る
+            $file_name = $request->file('avatar')->getClientOriginalName();
+            // 画像の名前と保存するフォルダ名を指定してアップロード
+            Storage::disk('public')->putFileAs('avatar', $request->file('avatar'), $file_name);
+            // 画像のパスを保存
+            $fullFilePath = '/storage/avatar/'. $file_name;
+            $user->avatar = $fullFilePath;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->age = $request->age;
+        $user->gender_id = $request->gender;
+        $user->pref_id = $request->pref_id;
+        $user->instrument_years_id = $request->instrument_years_id;
+        $user->self_introduction = $request->self_introduction;
+        $user->prof_video_path = $request->prof_video_path;
+        $user->save();
 
         return to_route('users.show', ['name' => $user->name]);
     }

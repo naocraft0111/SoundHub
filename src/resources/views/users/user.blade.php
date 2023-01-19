@@ -1,8 +1,12 @@
 <div class="card mt-3">
     <div class="card-body">
         <div class="d-flex flex-row align-items-center">
-            <a href="{{ route('users.show', ['name' => $user->name])}}" class="text-dark">
-                <i class="fas fa-user-circle fa-3x me-1"></i>
+            <a href="{{ route('users.detail', ['name' => $user->name])}}" class="text-dark">
+                @if (empty($user->avatar))
+                <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                @else
+                <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                @endif
             </a>
             @if (Auth::id() !== $user->id)
                 <follow-button class="ms-auto"
@@ -15,7 +19,7 @@
             @endif
         </div>
         <h2 class="card-title m-0">
-            <a href="{{ route('users.show', ['name' => $user->name])}}" class="text-dark">
+            <a href="{{ route('users.detail', ['name' => $user->name])}}" class="text-dark">
             {{ $user->name }}
             </a>
         </h2>

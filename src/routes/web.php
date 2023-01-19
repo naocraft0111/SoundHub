@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
         // ユーザー詳細
         Route::get('/{name}', [UserController::class, 'show'])->name('show');
 
+        // プロフィール詳細
+        Route::get('/{name}/detail', [UserController::class, 'detail'])->name('detail');
+
         // プロフィール編集画面
         Route::get('/{name}/edit', [UserController::class, 'edit'])->name('edit');
 
