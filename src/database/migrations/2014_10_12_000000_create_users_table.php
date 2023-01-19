@@ -17,8 +17,15 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('email')->unique();
+            $table->string('avatar')->nullable();
+            $table->integer('age')->nullable();
+            $table->text('self_introduction')->nullable();
+            $table->tinyInteger('gender_id')->nullable();
+            $table->integer('pref_id')->nullable();
+            $table->integer('instrument_years_id')->nullable();
+            $table->string('prof_video_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
