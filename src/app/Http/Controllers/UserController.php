@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\PrimaryCategory;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Models\SecondaryCategory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -44,7 +47,12 @@ class UserController extends Controller
         $prefs = config('pref');
         $instrument_years = config('instrumentYear');
 
-        return view('users.edit', compact('user', 'prefs', 'instrument_years'));
+        $primaryCategoryList = PrimaryCategory::pluck('name', 'id');
+        $secondaryCategoryList = SecondaryCategory::pluck('name', 'id');
+
+        $categories = Category::all();
+
+        return view('users.edit', compact('user', 'prefs', 'instrument_years', 'primaryCategoryList', 'secondaryCategoryList' ,'categories'));
     }
 
     // プロフィール更新処理
@@ -66,6 +74,9 @@ class UserController extends Controller
             $user->avatar = $fullFilePath;
         }
 
+        $user->secondary_category_id = $request->secondary_category_id;
+        $user->categories()->detach();
+        $user->categories()->attach($request->category);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->age = $request->age;
@@ -76,7 +87,7 @@ class UserController extends Controller
         $user->prof_video_path = $request->prof_video_path;
         $user->save();
 
-        return to_route('users.show', ['name' => $user->name]);
+        return to_route('users.detail', ['name' => $user->name]);
     }
 
     // パスワード変更画面
@@ -191,4 +202,10 @@ class UserController extends Controller
         return ['name' => $name];
     }
 
+    // ajaxリクエストを受け取り、サブカテゴリを返す
+    public function fetch(Request $request) {
+        $cateVal = $request['category_val'];
+        $secondary = SecondaryCategory::where('primary_category_id', $cateVal)->get();
+        return $secondary;
+    }
 }

@@ -17,7 +17,10 @@
         @if (Auth::id() == config('user.guest_user.id'))
         <div class="card-body text-center">
             <p class="text-danger">
-                <b>※ゲストユーザーは、プロフィール編集できません。</b>
+                <b>※ゲストユーザーは、以下の項目を変更できません。</b><br>
+                    ・プロフィール画像<br>
+                    ・ユーザー名<br>
+                    ・メールアドレス<br>
             </p>
         </div>
         @endif
@@ -29,12 +32,12 @@
                 @method('PATCH')
                 @csrf
                 @include('users.form')
-                @unless(Auth::id() == config('user.guest_user.id'))
                 <div class="d-grid gap-2 mt-3">
                     <button type="submit" class="btn btn-primary">更新する</button>
                 </div>
                 </form>
                 {{-- パスワード変更 --}}
+                @unless(Auth::id() == config('user.guest_user.id'))
                 <div class="d-grid gap-2 mt-3">
                     <a href="{{ route('users.password.edit', ['name' => $user->name]) }}" class="btn btn-light border text-dark text-center text-decoraiton-none a_btn" role="button">パスワード変更</a>
                 </div>
