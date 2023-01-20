@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('secondary_category_id')->nullable();
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
