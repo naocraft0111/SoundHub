@@ -26,6 +26,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'secondary_category_id',
         'avatar',
         'age',
         'self_introduction',
@@ -56,6 +57,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+    
     // 都道府県名を返す
     public function getPrefNameAttribute()
     {
