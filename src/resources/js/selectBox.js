@@ -1,6 +1,16 @@
 // セレクトボックスの連動
 // 親カテゴリのselect要素が変更になるとイベントが発生
 $(function() {
+
+    $('#secondary option').on('mousedown', function(e) {
+        if (!e.ctrlKey && !e.shiftKey) {
+            var selected = $(this).prop('selected');
+            $(this).prop('selected', (!selected) ? true : false);
+            $(this).parent().focus();
+
+            e.preventDefault();
+        }
+    });
     $("#primary").on('change', function () {
         var cate_val = $(this).val();
         $.ajax({
@@ -20,6 +30,15 @@ $(function() {
             $.each(data, function (key, value) {
                 $("#secondary").append(
                     $('<option>').val(value.id).text(value.name));
+            });
+            $('#secondary option').on('mousedown', function(e) {
+                if (!e.ctrlKey && !e.shiftKey) {
+                    var selected = $(this).prop('selected');
+                    $(this).prop('selected', (!selected) ? true : false);
+                    $(this).parent().focus();
+
+                    e.preventDefault();
+                }
             });
         })
         .fail(function () {

@@ -72,7 +72,7 @@
 <div class="form-group mt-3">
     <label for="category">楽器ジャンル</label>
     <select name="primary_category_id" id="primary" class="form-control">
-        <option value="" hidden>&#9660;楽器ジャンル</option>
+        <option value="0" hidden>&#9660;全て</option>
         @foreach ($primaryCategoryList as $index => $name)
         <option value="{{ $index }}">{{ $name }}</option>
         @endforeach

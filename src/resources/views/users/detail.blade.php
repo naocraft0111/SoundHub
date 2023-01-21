@@ -44,13 +44,15 @@
             </div>
             @endif
 
-
+            @if($user->category->isEmpty())
+            @else
             <div class="mt-3">
                 <label>楽器名</label>
                 @foreach ($user->category as $categoryName)
                         <p class="col-auto">{{ $categoryName->name }}</p>
                 @endforeach
             </div>
+            @endif
 
             @if(isset($user->prefName))
             <div class="mt-3">
