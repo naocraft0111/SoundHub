@@ -59,14 +59,14 @@ class User extends Authenticatable
 
     public function category()
     {
-        return $this->belongsTo(SecondaryCategory::class, 'secondary_category_id');
+        return $this->belongsToMany(SecondaryCategory::class);
     }
 
     public function categories()
     {
         return $this->belongsToMany(Category::class);
     }
-    
+
     // 都道府県名を返す
     public function getPrefNameAttribute()
     {

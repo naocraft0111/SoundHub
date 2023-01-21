@@ -74,7 +74,9 @@ class UserController extends Controller
             $user->avatar = $fullFilePath;
         }
 
-        $user->secondary_category_id = $request->secondary_category_id;
+        $user->category()->detach();
+        $user->category()->attach($request->secondary_category_id);
+        // $user->secondary_category_id = $request->secondary_category_id;
         $user->categories()->detach();
         $user->categories()->attach($request->category);
         $user->name = $request->name;

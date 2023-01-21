@@ -44,13 +44,14 @@
             </div>
             @endif
 
-            @if(isset($user->category->name))
+
             <div class="mt-3">
                 <label>楽器名</label>
-                <p>{{ $user->category->name }}</p>
+                @foreach ($user->category as $categoryName)
+                        <p class="col-auto">{{ $categoryName->name }}</p>
+                @endforeach
             </div>
-            @endif
-            
+
             @if(isset($user->prefName))
             <div class="mt-3">
                 <label>楽器経験</label>
