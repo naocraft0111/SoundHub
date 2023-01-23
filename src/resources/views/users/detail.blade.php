@@ -54,13 +54,6 @@
             </div>
             @endif
 
-            @if(isset($user->prefName))
-            <div class="mt-3">
-                <label>楽器経験</label>
-                <p>{{ $user->instrumentYearsName }}</p>
-            </div>
-            @endif
-
             @if($user->categories->isEmpty())
             @else
             <div class="mt-3">

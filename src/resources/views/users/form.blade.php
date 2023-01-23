@@ -89,16 +89,6 @@
     </select>
 </div>
 
-<div class="form-group mt-3">
-    <label for="instrument_years_id">楽器経験年数</label>
-    <select class="form-control" name="instrument_years_id" id="instrument_years_id">
-        @foreach ($instrument_years as $instrument_years_id => $name)
-        <option value="" hidden>&#9660;選択してください</option>
-        <option value="{{ $instrument_years_id }}" @selected(old('instrument_years_id', $user->instrument_years_id) == $instrument_years_id)>{{ $name }}</option>
-        @endforeach
-    </select>
-</div>
-
 <label class="mt-3">音楽性</label>
 <div>
     @foreach ($categories as $category)
