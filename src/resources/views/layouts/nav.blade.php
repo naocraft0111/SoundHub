@@ -50,11 +50,15 @@
                             role="button"
                             data-mdb-toggle="dropdown"
                             aria-expanded="false">
-                            <i class="fas fa-user"></i>
+                            @if (empty(Auth::user()->avatar))
+                            <img src="{{asset('images/user_default.png') }}" id="img" class="rounded-circle" style="object-fit: cover;" height="22" alt="Avatar" loading="lazy" />
+                            @else
+                            <img src="{{ Auth::user()->avatar }}" id="img" class="rounded-circle" style="object-fit: cover;" height="22" loading="lazy" />
+                            @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-end"
                             aria-labelledby="navbarDropdown">
-                            <button class="dropdown-item" type="button" onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
+                            <button class="dropdown-item" type="button" onclick="location.href='{{ route("users.detail", ["name" => Auth::user()->name]) }}'">
                                 マイページ
                             </button>
                             <hr class="dropdown-divider" />
@@ -71,7 +75,7 @@
 
                 {{-- sp --}}
                 <div class="d-block d-lg-none">
-                    <li class="nav-item mt-2"><a class="nav-link" href="{{ route("users.show", ["name" => Auth::user()->name])}}"><i class="fas fa-user mr-1"></i>マイページ</a></li>
+                    <li class="nav-item mt-2"><a class="nav-link" href="{{ route("users.detail", ["name" => Auth::user()->name])}}"><i class="fas fa-user mr-1"></i>マイページ</a></li>
                     <li class="nav-item mt-2">
                         <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-1"></i>ログアウト</a>

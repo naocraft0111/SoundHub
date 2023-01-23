@@ -1,12 +1,16 @@
 @foreach ($comments as $comment)
 <div class="card mt-3">
     <div class="card-body d-flex flex-row">
-        <a href="{{ route('users.show', ['name' => $comment->user->name]) }}" class="text-dark">
-            <i class="fas fa-user-circle fa-3x me-1"></i>
+        <a href="{{ route('users.detail', ['name' => $comment->user->name]) }}" class="text-dark">
+            @if (empty($comment->user->avatar))
+            <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            @else
+            <img src="{{ $comment->user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            @endif
         </a>
         <div>
             <div class="font-weight-bold">
-                <a href="{{ route('users.show', ['name' => $comment->user->name]) }}" class="text-dark">{{ $comment->user->name }}</a>
+                <a href="{{ route('users.detail', ['name' => $comment->user->name]) }}" class="text-dark">{{ $comment->user->name }}</a>
             </div>
             <div class="font-weight-lighter">{{ $comment->created_at->format('Y/m/d H:i') }}</div>
             <small>返信先: <a href="{{ route('users.show', ['name' => $article->user->name]) }}">{{ $article->user->name }}</a> さん</small>

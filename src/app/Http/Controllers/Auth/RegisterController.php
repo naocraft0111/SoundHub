@@ -91,6 +91,7 @@ class RegisterController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:15', 'unique:users'],
             'token' => ['required', 'string'],
+            'password' => ['required', 'string', 'regex:/\A([a-zA-Z0-9]{8,})+\z/u', 'min:8', 'confirmed'],
         ]);
 
         $token = $request->token;
@@ -100,7 +101,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $providerUser->getEmail(),
-            'password' => null,
+            'password' => Hash::make($request['password']),
         ]);
 
         $this->guard()->login($user, true);

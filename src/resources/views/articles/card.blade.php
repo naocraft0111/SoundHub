@@ -1,12 +1,16 @@
 <div class="card mt-3">
     <div class="card-body d-flex flex-row">
-        <a href="{{ route('users.show', ['name' => $article->user->name]) }}"
+        <a href="{{ route('users.detail', ['name' => $article->user->name]) }}"
             class="text-dark">
-            <i class="fas fa-user-circle fa-3x me-1"></i>
+            @if (empty($article->user->avatar))
+            <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            @else
+            <img src="{{ $article->user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            @endif
         </a>
         <div>
             <div class="font-weight-bold">
-                <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
+                <a href="{{ route('users.detail', ['name' => $article->user->name]) }}" class="text-dark">
                     {{ $article->user->name }}
                 </a>
             </div>

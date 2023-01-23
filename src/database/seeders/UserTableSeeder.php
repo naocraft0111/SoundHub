@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -17,10 +19,11 @@ class UserTableSeeder extends Seeder
     {
         {
             DB::table('users')->insert([
-                'id'         => 1,
-                'name' => 'ゲストユーザー',
-                'email' => 'guest@guest.com',
-                'password' => 'guest123',
+                'id' => config('user.guest_user.id'),
+                'name' => config('user.guest_user.name'),
+                'email' => config('user.guest_user.email'),
+                'password' => Hash::make(config('user.guest_user.password')),
+                'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

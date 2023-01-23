@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('sound_category_user', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('title');
-            $table->string('body');
-            $table->string('attached_file')->nullable();
+            $table->foreignId('sound_category_id')->constrained('sound_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('category_user');
     }
 };

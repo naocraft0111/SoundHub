@@ -56,10 +56,28 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{article}/like', [ArticleController::class, 'unlike'])->name('unlike');
     });
 
-    // ユーザーページ
+    // ユーザーページ関連
     Route::prefix('users')->name('users.')->group(function () {
         // ユーザー詳細
         Route::get('/{name}', [UserController::class, 'show'])->name('show');
+
+        // プロフィール詳細
+        Route::get('/{name}/detail', [UserController::class, 'detail'])->name('detail');
+
+        // プロフィール編集画面
+        Route::get('/{name}/edit', [UserController::class, 'edit'])->name('edit');
+
+        // プロフィール更新
+        Route::patch('/{name}/update', [UserController::class, 'update'])->name('update');
+
+        // プロフィール削除
+        Route::delete('/{name}/destroy', [UserController::class, 'destroy'])->name('destroy');
+
+        // パスワード編集画面
+        Route::get('/{name}/password/edit', [UserController::class, 'editPassword'])->name('password.edit');
+
+        // パスワード更新
+        Route::patch('/{name}/password/update', [UserController::class, 'updatePassword'])->name('password.update');
 
         // いいねタブ
         Route::get('/{name}/likes', [UserController::class, 'likes'])->name('likes');
@@ -72,4 +90,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/{name}/follow', [UserController::class, 'follow'])->name('follow');
         Route::delete('/{name}/follow', [UserController::class, 'unfollow'])->name('unfollow');
     });
+
+    // 動的プルダウン機能
+    Route::post('/fetch/category', [UserController::class, 'fetch'])->name('user.fetch');
 });

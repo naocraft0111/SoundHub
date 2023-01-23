@@ -1,5 +1,11 @@
 <ul class="nav nav-tabs nav-justified mt-3">
     <li class="nav-item">
+        <a class="nav-link text-muted {{ $hasDetails ? 'active' : ''}}"
+            href="{{ route('users.detail', ['name' => $user->name]) }}">
+            プロフィール詳細
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link text-muted {{ $hasArticles ? 'active' : '' }}"
             href="{{ route('users.show', ['name' => $user->name]) }}">
             記事

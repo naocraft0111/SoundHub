@@ -1,8 +1,12 @@
 <div class="card mt-3">
     <div class="card-body">
-        <div class="d-flex flex-row">
-            <a href="{{ route('users.show', ['name' => $user->name])}}" class="text-dark">
-                <i class="fas fa-user-circle fa-3x me-1"></i>
+        <div class="d-flex flex-row align-items-center">
+            <a href="{{ route('users.detail', ['name' => $user->name])}}" class="text-dark">
+                @if (empty($user->avatar))
+                <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                @else
+                <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                @endif
             </a>
             @if (Auth::id() !== $user->id)
                 <follow-button class="ms-auto"
@@ -11,11 +15,11 @@
                     endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
                 </follow-button>
             @else
-                <button href="#" type="button" class="btn btn-outline-primary btn-rounded ms-auto" data-mdb-ripple-color="dark">プロフィール編集</button>
+                <a href="{{ route('users.edit', ['name' => $user->name]) }}" class="btn btn-light border text-dark fw-bold ms-auto text-center text-decoraiton-none a_btn" role="button">プロフィール編集</a>
             @endif
         </div>
         <h2 class="card-title m-0">
-            <a href="{{ route('users.show', ['name' => $user->name])}}" class="text-dark">
+            <a href="{{ route('users.detail', ['name' => $user->name])}}" class="text-dark">
             {{ $user->name }}
             </a>
         </h2>

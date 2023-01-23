@@ -26,6 +26,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
+        'age',
+        'self_introduction',
+        'gender_id',
+        'pref_id',
+        'prof_video_path',
         'password',
     ];
 
@@ -47,6 +53,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //
+    public function user_secondaryCategories()
+    {
+        return $this->belongsToMany(SecondaryCategory::class);
+    }
+
+    public function user_soundCategories()
+    {
+        return $this->belongsToMany(SoundCategory::class);
+    }
+
+    // 都道府県名を返す
+    public function getPrefNameAttribute()
+    {
+        return config('pref.' .$this->pref_id);
+    }
+
+    public function getGenderNameAttribute()
+    {
+        return config('gender.' .$this->gender_id);
+    }
 
     public function sendPasswordResetNotification($token)
     {
