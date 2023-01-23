@@ -26,14 +26,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'secondary_category_id',
         'avatar',
         'age',
         'self_introduction',
-        'gender',
+        'gender_id',
         'pref_id',
-        'instrument_years_id',
-        'music_style_id',
         'prof_video_path',
         'password',
     ];
@@ -57,14 +54,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function category()
+    //
+    public function user_secondaryCategories()
     {
         return $this->belongsToMany(SecondaryCategory::class);
     }
 
-    public function categories()
+    public function user_soundCategories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(SoundCategory::class);
     }
 
     // 都道府県名を返す
@@ -76,11 +74,6 @@ class User extends Authenticatable
     public function getGenderNameAttribute()
     {
         return config('gender.' .$this->gender_id);
-    }
-
-    public function getInstrumentYearsNameAttribute()
-    {
-        return config('instrumentYear.' .$this->instrument_years_id);
     }
 
     public function sendPasswordResetNotification($token)

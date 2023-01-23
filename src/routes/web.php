@@ -91,5 +91,6 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{name}/follow', [UserController::class, 'unfollow'])->name('unfollow');
     });
 
+    // 動的プルダウン機能
     Route::post('/fetch/category', [UserController::class, 'fetch'])->name('user.fetch');
 });

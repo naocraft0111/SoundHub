@@ -81,7 +81,7 @@
 
 <div class="form-group mt-3">
     <label for="category">楽器名</label>
-    <select name="secondary_category_id[]" id="secondary" class="form-control" multiple>
+    <select name="secondary_category[]" id="secondary" class="form-control" multiple>
         <option value="" hidden>&#9660;全て</option>
         @foreach ($secondaryCategoryList as $index => $name)
         <option value="{{ $index }}">{{ $name }}</option>
@@ -91,10 +91,10 @@
 
 <label class="mt-3">音楽性</label>
 <div>
-    @foreach ($categories as $category)
+    @foreach ($sound_categories as $category)
     <div class="form-check-inline">
-        <input id="{{ $category->id }}"type="checkbox" name="category[]" value="{{ $category->id }}"
-        @checked(old('category', $user->categories->contains('id', $category->id) ?? ''))>
+        <input id="{{ $category->id }}"type="checkbox" name="sound_category[]" value="{{ $category->id }}"
+        @checked(old('sound_category', $user->user_soundCategories->contains('id', $category->id) ?? ''))>
         <label for="{{ $category->id }}">
             {{ $category->name }}
         </label>

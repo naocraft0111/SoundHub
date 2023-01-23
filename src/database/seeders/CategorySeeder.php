@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
+        DB::table('sound_categories')->insert([
             [
                 'name' => 'J-POP'
             ],

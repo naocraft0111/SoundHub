@@ -44,25 +44,26 @@
             </div>
             @endif
 
-            @if($user->category->isEmpty())
+            @if($user->user_secondaryCategories->isEmpty())
             @else
             <div class="mt-3">
                 <label>楽器名</label>
-                @foreach ($user->category as $categoryName)
-                        <p class="col-auto">{{ $categoryName->name }}</p>
-                @endforeach
+                <div class="row">
+                    @foreach ($user->user_secondaryCategories as $instrument_name)
+                        <p class="col-auto">{{ $instrument_name->name }}</p>
+                    @endforeach
+                </div>
             </div>
             @endif
 
-            @if($user->categories->isEmpty())
+            @if($user->user_soundCategories->isEmpty())
             @else
-            <div class="mt-3">
-
+                <div class="mt-3">
                     <label>音楽性</label>
                     <div class="row">
-                    @foreach ($user->categories as $category)
-                        <p class="col-auto">{{ $category->name }}</p>
-                    @endforeach
+                        @foreach ($user->user_soundCategories as $soundCategory)
+                            <p class="col-auto">{{ $soundCategory->name }}</p>
+                        @endforeach
                     </div>
                 </div>
             @endif

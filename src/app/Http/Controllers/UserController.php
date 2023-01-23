@@ -10,7 +10,7 @@ use App\Models\PrimaryCategory;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\SecondaryCategory;
-use App\Models\Category;
+use App\Models\SoundCategory;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -48,9 +48,9 @@ class UserController extends Controller
         $primaryCategoryList = PrimaryCategory::pluck('name', 'id');
         $secondaryCategoryList = SecondaryCategory::pluck('name', 'id');
 
-        $categories = Category::all();
+        $sound_categories = SoundCategory::all();
 
-        return view('users.edit', compact('user', 'prefs', 'primaryCategoryList', 'secondaryCategoryList' ,'categories'));
+        return view('users.edit', compact('user', 'prefs', 'primaryCategoryList', 'secondaryCategoryList' ,'sound_categories'));
     }
 
     // プロフィール更新処理
@@ -72,11 +72,10 @@ class UserController extends Controller
             $user->avatar = $fullFilePath;
         }
 
-        $user->category()->detach();
-        $user->category()->attach($request->secondary_category_id);
-        // $user->secondary_category_id = $request->secondary_category_id;
-        $user->categories()->detach();
-        $user->categories()->attach($request->category);
+        $user->user_secondaryCategories()->detach();
+        $user->user_secondaryCategories()->attach($request->secondary_category);
+        $user->user_soundCategories()->detach();
+        $user->user_soundCategories()->attach($request->sound_category);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->age = $request->age;
