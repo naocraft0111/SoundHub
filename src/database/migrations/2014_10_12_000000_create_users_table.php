@@ -22,7 +22,6 @@ return new class extends Migration
             $table->text('self_introduction')->nullable();
             $table->tinyInteger('gender_id')->nullable();
             $table->integer('pref_id')->nullable();
-            $table->integer('instrument_years_id')->nullable();
             $table->string('prof_video_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
