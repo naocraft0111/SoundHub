@@ -1,7 +1,5 @@
-// セレクトボックスの連動
-// 親カテゴリのselect要素が変更になるとイベントが発生
-$(function() {
-
+// ctrlとshiftキーを無効にして、mousedownによって複数選択可能にする
+function keyInvalid() {
     $('#secondary option').on('mousedown', function(e) {
         if (!e.ctrlKey && !e.shiftKey) {
             var selected = $(this).prop('selected');
@@ -11,6 +9,13 @@ $(function() {
             e.preventDefault();
         }
     });
+}
+// セレクトボックスの連動
+// 親カテゴリのselect要素が変更になるとイベントが発生
+$(function() {
+
+    keyInvalid();
+
     $("#primary").on('change', function () {
         var cate_val = $(this).val();
         $.ajax({
@@ -31,15 +36,8 @@ $(function() {
                 $("#secondary").append(
                     $('<option>').val(value.id).text(value.name));
             });
-            $('#secondary option').on('mousedown', function(e) {
-                if (!e.ctrlKey && !e.shiftKey) {
-                    var selected = $(this).prop('selected');
-                    $(this).prop('selected', (!selected) ? true : false);
-                    $(this).parent().focus();
-
-                    e.preventDefault();
-                }
-            });
+            
+            keyInvalid();
         })
         .fail(function () {
             console.log("失敗");
