@@ -25,6 +25,12 @@ class Article extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function images(): BelongsToMany
+    {
+        return $this->belongsToMany(Image::class, 'article_images')
+        ->using(ArticleImage::class);
+    }
+
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'likes')->withTimestamps();
