@@ -9,7 +9,7 @@
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 @include('error_card_list')
-                <form method="POST" action="{{route('articles.store')}}" novalidate>
+                <form method="POST" action="{{route('articles.store')}}" novalidate enctype="multipart/form-data">
                     @csrf
                     @include('articles.form')
                     <div class="d-grid gap-2 mt-3">

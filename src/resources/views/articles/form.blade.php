@@ -12,3 +12,7 @@
     <label for="body">本文<span class="text-danger">【必須】</span></label>
     <textarea name="body" class="form-control" rows="16" required placeholder="500字以内で入力してください">{{ $article->body ?? old('body') }}</textarea>
 </div>
+<div class="form-group mt-3">
+    <label for="images">画像</label>
+    <input type="file" id="images" name="images[]" accept="image/*" multiple>
+</div>

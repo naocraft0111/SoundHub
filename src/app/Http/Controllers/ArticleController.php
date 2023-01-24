@@ -7,7 +7,9 @@ use App\Models\Article;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Comment;
+use App\Models\Image;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -23,8 +25,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags']);
-
+        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'images']);
         return view('articles.index', compact('articles'));
     }
 
@@ -58,6 +59,17 @@ class ArticleController extends Controller
             $tag = Tag::firstOrCreate(['name' => $tagName]);
             $article->tags()->attach($tag);
         });
+
+        if(request('images')) {
+            $images = $request->file('images');
+            foreach($images as $image) {
+                Storage::putFile('public/images', $image);
+                $imageModal = new Image();
+                $imageModal->name = $image->hashName();
+                $imageModal->save();
+                $article->images()->attach($imageModal->id);
+            }
+        }
 
         return to_route('articles.index');
     }
@@ -125,6 +137,16 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        // 記事と紐づいている画像を削除
+        $article->images()->each(function ($image) use ($article) {
+            $filePath = 'public/images/' . $image->name;
+            if(Storage::exists($filePath)){
+                Storage::delete($filePath);
+            }
+            $article->images()->detach($image->id);
+            $image->delete();
+        });
+
         $article->delete();
         return to_route('articles.index');
     }
