@@ -6,6 +6,7 @@
 
 import './bootstrap'
 import './selectBox'
+import './modaal'
 import Vue from 'vue';
 import ExampleComponent from './components/ExampleComponent.vue';
 import ArticleLike from './components/ArticleLike.vue';
