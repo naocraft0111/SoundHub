@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Image;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 class ArticleController extends Controller
 {
@@ -63,9 +64,19 @@ class ArticleController extends Controller
         if(request('images')) {
             $images = $request->file('images');
             foreach($images as $image) {
-                Storage::putFile('public/images', $image);
+                if(is_array($image)) {
+                    $file = $image['image'];
+                } else {
+                    $file = $image;
+                }
+                $folderName = 'images';
+                $fileName = uniqid(rand().'_');
+                $extension = $file->extension();
+                $fileNameToStore = $fileName. '.' . $extension;
+                $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
+                Storage::put('public/'. $folderName . '/' . $fileNameToStore, $resizedImage);
                 $imageModal = new Image();
-                $imageModal->name = $image->hashName();
+                $imageModal->name = $fileNameToStore;
                 $imageModal->save();
                 $article->images()->attach($imageModal->id);
             }
@@ -140,9 +151,19 @@ class ArticleController extends Controller
         if(request('images')) {
             $images = $request->file('images');
             foreach($images as $image) {
-                Storage::putFile('public/images', $image);
+                if(is_array($image)) {
+                    $file = $image['image'];
+                } else {
+                    $file = $image;
+                }
+                $folderName = 'images';
+                $fileName = uniqid(rand().'_');
+                $extension = $file->extension();
+                $fileNameToStore = $fileName. '.' . $extension;
+                $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
+                Storage::put('public/'. $folderName . '/' . $fileNameToStore, $resizedImage);
                 $imageModal = new Image();
-                $imageModal->name = $image->hashName();
+                $imageModal->name = $fileNameToStore;
                 $imageModal->save();
                 $article->images()->attach($imageModal->id);
             }
