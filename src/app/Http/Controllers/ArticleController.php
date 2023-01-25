@@ -9,8 +9,8 @@ use App\Models\Tag;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Http\Requests\ArticleRequest;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Storage;
-use InterventionImage;
 
 class ArticleController extends Controller
 {
@@ -61,20 +61,10 @@ class ArticleController extends Controller
             $article->tags()->attach($tag);
         });
 
-        if(request('images')) {
-            $images = $request->file('images');
-            foreach($images as $image) {
-                if(is_array($image)) {
-                    $file = $image['image'];
-                } else {
-                    $file = $image;
-                }
-                $folderName = 'images';
-                $fileName = uniqid(rand().'_');
-                $extension = $file->extension();
-                $fileNameToStore = $fileName. '.' . $extension;
-                $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
-                Storage::put('public/'. $folderName . '/' . $fileNameToStore, $resizedImage);
+        $imageFiles = $request->file('images');
+        if(!is_null('images')) {
+            foreach($imageFiles as $imageFile) {
+                $fileNameToStore = ImageService::upload($imageFile, 'images');
                 $imageModal = new Image();
                 $imageModal->name = $fileNameToStore;
                 $imageModal->save();
@@ -137,7 +127,7 @@ class ArticleController extends Controller
             $article->tags()->attach($tag);
         });
 
-        if(isset($article->images)) {
+        if(!is_null($article->images)) {
             $article->images()->each(function ($image) use ($article) {
                 $filePath = 'public/images/' . $image->name;
                 if(Storage::exists($filePath)){
@@ -148,20 +138,10 @@ class ArticleController extends Controller
             });
         }
 
-        if(request('images')) {
-            $images = $request->file('images');
-            foreach($images as $image) {
-                if(is_array($image)) {
-                    $file = $image['image'];
-                } else {
-                    $file = $image;
-                }
-                $folderName = 'images';
-                $fileName = uniqid(rand().'_');
-                $extension = $file->extension();
-                $fileNameToStore = $fileName. '.' . $extension;
-                $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
-                Storage::put('public/'. $folderName . '/' . $fileNameToStore, $resizedImage);
+        $imageFiles = $request->file('images');
+        if(!is_null('images')) {
+            foreach($imageFiles as $imageFile) {
+                $fileNameToStore = ImageService::upload($imageFile, 'images');
                 $imageModal = new Image();
                 $imageModal->name = $fileNameToStore;
                 $imageModal->save();
