@@ -12,6 +12,7 @@ use App\Http\Requests\UpdatePasswordRequest;
 use App\Models\SecondaryCategory;
 use App\Models\SoundCategory;
 use Illuminate\Support\Facades\Storage;
+use App\Services\ImageService;
 
 class UserController extends Controller
 {
@@ -61,15 +62,14 @@ class UserController extends Controller
         // UserPolicyのupdateメソッドでアクセス制限
         $this->authorize('update', $user);
 
-        // 画像upload
+        $imageFile = $request->file('avatar');
         if(request('avatar')) {
-            // 画像の名前を受け取る
-            $file_name = $request->file('avatar')->getClientOriginalName();
-            // 画像の名前と保存するフォルダ名を指定してアップロード
-            Storage::disk('public')->putFileAs('avatar', $request->file('avatar'), $file_name);
-            // 画像のパスを保存
-            $fullFilePath = '/storage/avatar/'. $file_name;
-            $user->avatar = $fullFilePath;
+            $filePath = 'public/avatar/' . $user->avatar;
+            if(Storage::exists($filePath)){
+                Storage::delete($filePath);
+            }
+            $fileNameToStore = ImageService::upload($imageFile, 'avatar');
+            $user->avatar = $fileNameToStore;
         }
 
         $user->user_secondaryCategories()->detach();

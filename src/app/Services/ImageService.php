@@ -15,7 +15,15 @@ class ImageService {
         $fileName = uniqid(rand().'_');
         $extension = $file->extension();
         $fileNameToStore = $fileName. '.' . $extension;
-        $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
+        if($folderName === 'images') {
+            $resizedImage = InterventionImage::make($file)->resize(null, 1080, function($constraint) {
+                $constraint->aspectRatio();
+            })->encode();
+        } else {
+            $resizedImage = InterventionImage::make($file)->resize(50, null, function($constraint) {
+                $constraint->aspectRatio();
+            })->encode();
+        }
         Storage::put('public/'. $folderName . '/' . $fileNameToStore, $resizedImage);
 
         return $fileNameToStore;

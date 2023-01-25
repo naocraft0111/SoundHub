@@ -5,7 +5,7 @@
             @if (empty($article->user->avatar))
             <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
             @else
-            <img src="{{ $article->user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            <img src="{{ asset('storage/avatar/' . $article->user->avatar) }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
             @endif
         </a>
         <div>

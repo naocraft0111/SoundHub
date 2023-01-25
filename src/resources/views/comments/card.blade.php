@@ -5,7 +5,7 @@
             @if (empty($comment->user->avatar))
             <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
             @else
-            <img src="{{ $comment->user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            <img src="{{ asset('storage/avatar/' . $comment->user->avatar) }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
             @endif
         </a>
         <div>
