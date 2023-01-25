@@ -53,7 +53,7 @@
                             @if (empty(Auth::user()->avatar))
                             <img src="{{asset('images/user_default.png') }}" id="img" class="rounded-circle" style="object-fit: cover;" height="22" alt="Avatar" loading="lazy" />
                             @else
-                            <img src="{{ Auth::user()->avatar }}" id="img" class="rounded-circle" style="object-fit: cover;" height="22" loading="lazy" />
+                            <img src="{{ asset('storage/avatar/' . Auth::user()->avatar) }}" id="img" class="rounded-circle" style="object-fit: cover;" height="22" loading="lazy" />
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-end"

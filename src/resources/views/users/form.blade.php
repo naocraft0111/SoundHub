@@ -6,8 +6,8 @@
     <img src="{{ asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
     <input id="avatar" type="file" name="avatar" accept="image/png,image/jpeg,image/jpg">
     @else
-    <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
-    <input id="avatar" type="file" name="avatar" accept="image/png,image/jpeg,image/jpg">
+    <img src="{{ asset('storage/avatar/' . $user->avatar) }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;">
+    <input id="avatar" type="file" name="avatar" class="form-control" accept="image/png,image/jpeg,image/jpg">
     @endif
 </div>
 
