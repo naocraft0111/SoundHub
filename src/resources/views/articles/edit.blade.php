@@ -9,7 +9,7 @@
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 @include('error_card_list')
-                <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}" novalidate>
+                <form method="POST" action="{{ route('articles.update', ['article' => $article]) }}" novalidate enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
                     @include('articles.form')

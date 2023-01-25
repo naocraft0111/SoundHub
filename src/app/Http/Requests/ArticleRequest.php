@@ -27,6 +27,8 @@ class ArticleRequest extends FormRequest
             'title' => 'required|max:50|not_regex:/<\/*script>/u',
             'body' => 'required|max:500',
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
+            'images' => 'array|max:4',
+            'images.*.image' => 'required|image|mimes:jpeg,png,jpeg,gif'
         ];
     }
 
@@ -36,6 +38,7 @@ class ArticleRequest extends FormRequest
             'title' => 'タイトル',
             'body'=> '本文',
             'tags' => 'タグ',
+            'images' => '画像'
         ];
     }
 
@@ -53,5 +56,10 @@ class ArticleRequest extends FormRequest
             ->map(function ($requestTag){
                 return $requestTag->text;
             });
+    }
+
+    public function images(): array
+    {
+        return $this->file('images', []);
     }
 }

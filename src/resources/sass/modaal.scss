@@ -1,0 +1,15 @@
+.modaal-close {
+    &:after, &:before {
+        background: #ccc
+    }
+    &:focus {
+        &:after, &:before {
+            background: #666
+        }
+    }
+    &:hover {
+        &:after, &:before {
+            background: #666
+        }
+    }
+}
