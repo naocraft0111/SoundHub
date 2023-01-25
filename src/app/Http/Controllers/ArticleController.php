@@ -126,6 +126,28 @@ class ArticleController extends Controller
             $article->tags()->attach($tag);
         });
 
+        if(isset($article->images)) {
+            $article->images()->each(function ($image) use ($article) {
+                $filePath = 'public/images/' . $image->name;
+                if(Storage::exists($filePath)){
+                    Storage::delete($filePath);
+                }
+                $article->images()->detach($image->id);
+                $image->delete();
+            });
+        }
+
+        if(request('images')) {
+            $images = $request->file('images');
+            foreach($images as $image) {
+                Storage::putFile('public/images', $image);
+                $imageModal = new Image();
+                $imageModal->name = $image->hashName();
+                $imageModal->save();
+                $article->images()->attach($imageModal->id);
+            }
+        }
+
         return to_route('articles.index');
     }
 
