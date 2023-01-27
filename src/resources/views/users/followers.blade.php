@@ -9,6 +9,8 @@
         @foreach ($followers as $person)
             @include('users.person')
         @endforeach
-        {{ $followers->links('pagination::default') }}
+        <div class="pagination mt-3 justify-content-center">
+            {{ $followers->links('pagination::default') }}
+        </div>
     </div>
 @endsection
