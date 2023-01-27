@@ -9,5 +9,6 @@
         @foreach ($followings as $person)
             @include('users.person')
         @endforeach
+        {{ $followings->links('pagination::default') }}
     </div>
 @endsection

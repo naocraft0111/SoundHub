@@ -26,12 +26,8 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::with(['user', 'likes', 'tags', 'images'])->orderBy('created_at', 'desc')->simplePaginate(10);
+        $articles = Article::with(['user', 'likes', 'tags', 'images'])->orderBy('created_at', 'desc')->paginate(10);
 
-        // if($request->ajax()){
-        //     $view = view('articles.index', compact('articles'))->render();
-        //     return response()->json(['.scroll' => $view]);
-        // }
         return view('articles.index', compact('articles'));
     }
 
@@ -91,7 +87,7 @@ class ArticleController extends Controller
         $comments = $article->comments()
             ->with('user')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(5);
 
         return view('articles.show', compact('article', 'comments'));
     }

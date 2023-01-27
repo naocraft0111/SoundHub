@@ -8,12 +8,13 @@
             <div class="card-body">
                 <h2 class="card-title m-0">{{ $tag->hashtag }}</h4>
                 <div class="card-text text-end">
-                    {{ $tag->articles->count() }}件
+                    {{ $tagRecords->count() }}件
                 </div>
             </div>
         </div>
-        @foreach ($tag->articles as $article)
+        @foreach ($tagRecords as $article)
             @include('articles.card')
         @endforeach
+        @include('tags.pagination')
     </div>
 @endsection

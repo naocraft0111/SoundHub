@@ -7,5 +7,6 @@
         @include('error_card_list')
         @include('articles.card')
         @include('comments.card')
+        @include('comments.pagination')
     </div>
 @endsection

@@ -10,5 +10,6 @@
         @foreach ($articles as $article)
             @include('articles.card')
         @endforeach
+        @include('users.pagination')
     </div>
 @endsection

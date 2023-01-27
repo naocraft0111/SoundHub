@@ -11,6 +11,8 @@ class TagController extends Controller
     {
         $tag = Tag::where('name', $name)->first();
 
-        return view('tags.show', compact('tag'));
+        $tagRecords = $tag->articles()->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('tags.show', compact('tag','tagRecords'));
     }
 }
