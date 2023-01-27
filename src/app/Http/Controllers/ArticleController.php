@@ -24,9 +24,14 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'images']);
+        $articles = Article::with(['user', 'likes', 'tags', 'images'])->orderBy('created_at', 'desc')->simplePaginate(10);
+
+        // if($request->ajax()){
+        //     $view = view('articles.index', compact('articles'))->render();
+        //     return response()->json(['.scroll' => $view]);
+        // }
         return view('articles.index', compact('articles'));
     }
 

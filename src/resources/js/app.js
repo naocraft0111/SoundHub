@@ -7,11 +7,12 @@
 import './bootstrap'
 import './selectBox'
 import './modaal'
+import './infiniteScroll'
 import Vue from 'vue';
 import ExampleComponent from './components/ExampleComponent.vue';
 import ArticleLike from './components/ArticleLike.vue';
 import ArticleTagsInput from './components/ArticleTagsInput.vue';
-import FollowButton from './components/FollowButton.vue'
+import FollowButton from './components/FollowButton.vue';
 
 window.Vue = require('vue').default;
 

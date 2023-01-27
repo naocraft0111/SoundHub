@@ -23,5 +23,8 @@
         "vue": "^2.6.12",
         "vue-loader": "^15.10.1",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "vue-infinite-loading": "^2.4.5"
     }
 }
