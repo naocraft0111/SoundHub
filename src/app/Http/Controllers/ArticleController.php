@@ -67,7 +67,7 @@ class ArticleController extends Controller
         });
 
         $imageFiles = $request->file('images');
-        if(!is_null('images')) {
+        if(request('images')) {
             foreach($imageFiles as $imageFile) {
                 $fileNameToStore = ImageService::upload($imageFile, 'images');
                 $imageModal = new Image();
@@ -144,7 +144,7 @@ class ArticleController extends Controller
         }
 
         $imageFiles = $request->file('images');
-        if(!is_null('images')) {
+        if(request('images')) {
             foreach($imageFiles as $imageFile) {
                 $fileNameToStore = ImageService::upload($imageFile, 'images');
                 $imageModal = new Image();
