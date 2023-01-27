@@ -15,7 +15,7 @@ class ArticlesSeeder extends Seeder
      */
     public function run()
     {
-        Article::factory()->count(5)->create()->each(fn($tweet) =>
+        Article::factory()->count(50)->create()->each(fn($tweet) =>
             Image::factory()->count(4)->create()->each(fn($image) =>
                 $tweet->images()->attach($image->id)
             )

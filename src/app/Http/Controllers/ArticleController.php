@@ -24,9 +24,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::all()->sortByDesc('created_at')->load(['user', 'likes', 'tags', 'images']);
+        $articles = Article::with(['user', 'likes', 'tags', 'images'])->orderBy('created_at', 'desc')->paginate(10);
+
         return view('articles.index', compact('articles'));
     }
 
@@ -62,7 +63,7 @@ class ArticleController extends Controller
         });
 
         $imageFiles = $request->file('images');
-        if(!is_null('images')) {
+        if(request('images')) {
             foreach($imageFiles as $imageFile) {
                 $fileNameToStore = ImageService::upload($imageFile, 'images');
                 $imageModal = new Image();
@@ -86,7 +87,7 @@ class ArticleController extends Controller
         $comments = $article->comments()
             ->with('user')
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(5);
 
         return view('articles.show', compact('article', 'comments'));
     }
@@ -139,7 +140,7 @@ class ArticleController extends Controller
         }
 
         $imageFiles = $request->file('images');
-        if(!is_null('images')) {
+        if(request('images')) {
             foreach($imageFiles as $imageFile) {
                 $fileNameToStore = ImageService::upload($imageFile, 'images');
                 $imageModal = new Image();

@@ -38,5 +38,6 @@
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-infinitescroll/2.1.0/jquery.infinitescroll.min.js"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 </html>
