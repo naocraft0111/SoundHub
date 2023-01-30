@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\SoundCategory;
 
 class User extends Authenticatable
 {
@@ -60,9 +61,36 @@ class User extends Authenticatable
         return $this->belongsToMany(SecondaryCategory::class);
     }
 
+    // 楽器名検索
+    public function scopeSecondaryCategory($query, int $categoryId)
+    {
+        if($categoryId !== 0)
+        {
+            return $query->whereHas('user_secondaryCategories', function($query) use($categoryId) {
+                $query->where('secondary_category_id', $categoryId);
+            });
+        } else {
+            return;
+        }
+    }
+
     public function user_soundCategories()
     {
         return $this->belongsToMany(SoundCategory::class);
+    }
+
+    // 音楽性検索
+    public function scopeSoundCategoryFilter($query, int $soundCategoryId)
+    {
+
+        if($soundCategoryId !== 0)
+        {
+            return $query->whereHas('user_soundCategories', function($query) use($soundCategoryId) {
+                $query->where('sound_category_id', $soundCategoryId);
+            });
+        } else {
+            return;
+        }
     }
 
     // 都道府県名を返す
@@ -71,9 +99,48 @@ class User extends Authenticatable
         return config('pref.' .$this->pref_id);
     }
 
+    // 都道府県検索
+    public function scopePrefFilter($query, string $pref = null)
+    {
+        if (!$pref) {
+            return $query;
+        }
+
+        return $query->where('pref_id', $pref);
+    }
+
     public function getGenderNameAttribute()
     {
         return config('gender.' .$this->gender_id);
+    }
+
+    // 性別検索
+    public function scopeGenderFilter($query, string $gender = null)
+    {
+        if (!$gender) {
+            return $query;
+        }
+
+        return $query->where('gender_id', $gender);
+    }
+
+    // 年齢検索
+    public function scopeAgeFilter($query, int $age = null)
+    {
+        if(!$age) {
+            return $query;
+        }
+
+        return $query->where('age', $age);
+    }
+
+    // 名前検索
+    public function scopenameFilter($query, $name)
+    {
+        if(!$name){
+            return $query;
+        }
+        return $query->where('name', 'like', '%'.$name.'%');
     }
 
     public function sendPasswordResetNotification($token)

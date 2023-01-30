@@ -10,6 +10,6 @@
         @foreach ($articles as $article)
             @include('articles.card')
         @endforeach
-        @include('users.pagination')
+        @include('articles.pagination')
     </div>
 @endsection

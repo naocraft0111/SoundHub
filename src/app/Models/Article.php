@@ -57,4 +57,15 @@ class Article extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    // 記事検索
+    public function scopeSearchFilter($query, string $search = null)
+    {
+        if(!$search) {
+            return $query;
+        }
+
+        return $query->where('title', 'LIKE', "%{$search}%")
+        ->orWhere('body', 'LIKE', "%{$search}%");
+    }
 }

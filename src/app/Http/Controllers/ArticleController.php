@@ -195,4 +195,14 @@ class ArticleController extends Controller
             'countLikes' => $article->count_likes,
         ];
     }
+
+    public function search(Request $request)
+    {
+        $articles = Article::searchFilter($request->search)
+            ->orderBy('created_at', 'desc')
+            ->with(['user', 'likes', 'tags'])
+            ->paginate(10);
+
+        return view('articles.index', compact('articles'));
+    }
 }

@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function () {
     // 記事投稿関連(CRUD)
     Route::resource('/articles', ArticleController::class);
 
+    // 記事検索機能
+    Route::get('/search', [ArticleController::class, 'search'])->name('articles.search');
+
     // コメント投稿関連(store, destroy)
     Route::resource('/comments', CommentController::class)->only(['store', 'destroy']);
 
@@ -58,8 +61,15 @@ Route::middleware('auth')->group(function () {
 
     // ユーザーページ関連
     Route::prefix('users')->name('users.')->group(function () {
+
+        // ユーザー一覧画面
+        Route::get('/', [UserController::class, 'index'])->name('index');
+
+        // ユーザー検索
+        Route::get('/search', [UserController::class, 'search'])->name('search');
+
         // ユーザー詳細
-        Route::get('/{name}', [UserController::class, 'show'])->name('show');
+        Route::get('/{name}/show', [UserController::class, 'show'])->name('show');
 
         // プロフィール詳細
         Route::get('/{name}/detail', [UserController::class, 'detail'])->name('detail');
