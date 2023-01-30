@@ -2,9 +2,9 @@
 
     <ul class="d-flex flex-wrap justify-content-center small mb-2 p-0">
         <li class="d-block"><a href="/" class="mx-4 my-1 p-0">HOME</a></li>
-        <li class="d-block"><a href="#" class="mx-4 my-1 p-0">利用規約</a></li>
+        <li class="d-block"><a href="{{ route('terms') }}" class="mx-4 my-1 p-0">利用規約</a></li>
         <li class="d-block"><a href="#" class="mx-4 my-1 p-0">お問い合わせ</a></li>
-        <li class="d-block"><a href="#" class="mx-4 my-1 p-0">プライバシーポリシー</a></li>
+        <li class="d-block"><a href="{{ route('privacy') }}" class="mx-4 my-1 p-0">プライバシーポリシー</a></li>
     </ul>
 
     <div class="text-center small">
