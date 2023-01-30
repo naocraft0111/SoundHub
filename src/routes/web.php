@@ -25,6 +25,12 @@ Auth::routes();
 // トップページ
 Route::get('/', [HomeController::class, 'index']);
 
+// 利用規約
+Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
+
+// プライバシーポリシー
+Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
+
 // ゲストユーザーログイン
 Route::get('guest', [LoginController::class, 'guestLogin'])->name('login.guest');
 
