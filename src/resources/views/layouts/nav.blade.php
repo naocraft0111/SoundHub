@@ -29,14 +29,16 @@
 
             @auth
                 {{-- 検索フォーム --}}
+                <form method="GET" action="{{ route('articles.search') }}" class="d-flex">
+                    <input type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="記事検索..."
+                    aria-label="Search" />
+                    <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
                 <li class="nav-item">
-                    <form class="input-group w-auto">
-                        <input type="search"
-                            class="form-control"
-                            placeholder="検索..."
-                            aria-label="Search" />
-                        <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users"></i>ユーザー一覧</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i> 投稿する</a>

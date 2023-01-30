@@ -26,6 +26,43 @@ class UserController extends Controller
         return view('users.show', compact('user', 'articles'));
     }
 
+    // ユーザー一覧画面
+    public function index(Request $request)
+    {
+        $query = User::query();
+        $users = $query->orderBy('created_at', 'desc')->paginate(10);
+
+        $prefs = config('pref');
+
+        $primaryCategoryList = PrimaryCategory::pluck('name', 'id');
+        $secondaryCategoryList = SecondaryCategory::pluck('name', 'id');
+
+        $sound_categories = SoundCategory::pluck('name', 'id');
+
+        return view('users.index', compact('users', 'prefs', 'primaryCategoryList', 'secondaryCategoryList' ,'sound_categories'));
+    }
+
+    // ユーザー検索
+    public function search(Request $request)
+    {
+        $prefs = config('pref');
+
+        $primaryCategoryList = PrimaryCategory::pluck('name', 'id');
+        $secondaryCategoryList = SecondaryCategory::pluck('name', 'id');
+
+        $sound_categories = SoundCategory::pluck('name', 'id');
+
+        $users = User::nameFilter($request->name)
+            ->ageFilter($request->age)
+            ->genderFilter($request->gender)
+            ->prefFilter($request->pref)
+            ->secondaryCategory($request->secondary_category)
+            ->soundCategoryFilter($request->sound_category)
+            ->paginate(10);
+
+        return view('users.index', compact('users', 'prefs', 'primaryCategoryList', 'secondaryCategoryList' ,'sound_categories'));
+    }
+
     public function detail(string $name)
     {
         $user = User::where('name', $name)->first();
