@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,18 @@ Route::get('/terms', [HomeController::class, 'terms'])->name('terms');
 
 // プライバシーポリシー
 Route::get('/privacy', [HomeController::class, 'privacy'])->name('privacy');
+
+// お問い合わせ
+Route::prefix('contact')->name('contact.')->group(function () {
+    // 入力フォームページ
+    Route::get('/', [ContactController::class, 'index'])->name('index');
+
+    // 確認フォームページ
+    Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm');
+
+    // 送信完了ページ
+    Route::post('/thanks', [ContactController::class, 'send'])->name('send');
+});
 
 // ゲストユーザーログイン
 Route::get('guest', [LoginController::class, 'guestLogin'])->name('login.guest');

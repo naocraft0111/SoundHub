@@ -232,7 +232,7 @@
                         管理者:Naoki Seto
                     </p>
                     <p>
-                        Eメールアドレス:soundhub.official@gmail.com
+                        Eメールアドレス:soundhub1110@gmail.com
                     </p>
                 </div>
             </div>
