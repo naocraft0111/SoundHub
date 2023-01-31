@@ -37,9 +37,9 @@
                         <div class="card-text text-center mt-3">
                             <p class="text-center small">
                                 <span>会員登録には、</span>
-                                <a href="">利用規約</a>
+                                <a href="{{ route('terms') }}">利用規約</a>
                                 <span>と</span>
-                                <a href="">プライバシーポリシー</a>
+                                <a href="{{ route('privacy') }}">プライバシーポリシー</a>
                                 <span>への同意が必要です。</span>
                             </p>
                         </div>
