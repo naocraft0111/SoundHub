@@ -124,14 +124,24 @@ class User extends Authenticatable
         return $query->where('gender_id', $gender);
     }
 
-    // 年齢検索
-    public function scopeAgeFilter($query, int $age = null)
+    // 年齢〇〇歳以上
+    public function scopeAgeFromFilter($query, int $age_from = null)
     {
-        if(!$age) {
+        if(!$age_from) {
             return $query;
         }
 
-        return $query->where('age', $age);
+        return $query->where('age', '>=', $age_from);
+    }
+
+    // 年齢〇〇歳以下
+    public function scopeAgeToFilter($query, int $age_to = null)
+    {
+        if(!$age_to) {
+            return $query;
+        }
+
+        return $query->where('age', '<=', $age_to);
     }
 
     // 名前検索

@@ -45,6 +45,7 @@ class UserController extends Controller
     // ユーザー検索
     public function search(Request $request)
     {
+        $inputs = $request->all();
         $prefs = config('pref');
 
         $primaryCategoryList = PrimaryCategory::pluck('name', 'id');
@@ -53,14 +54,15 @@ class UserController extends Controller
         $sound_categories = SoundCategory::pluck('name', 'id');
 
         $users = User::nameFilter($request->name)
-            ->ageFilter($request->age)
+            ->ageFromFilter($request->age_from)
+            ->ageToFilter($request->age_to)
             ->genderFilter($request->gender)
             ->prefFilter($request->pref)
             ->secondaryCategory($request->secondary_category)
             ->soundCategoryFilter($request->sound_category)
             ->paginate(10);
 
-        return view('users.index', compact('users', 'prefs', 'primaryCategoryList', 'secondaryCategoryList' ,'sound_categories'));
+        return view('users.index', compact('users', 'prefs', 'primaryCategoryList', 'secondaryCategoryList' ,'sound_categories', 'inputs'));
     }
 
     public function detail(string $name)
