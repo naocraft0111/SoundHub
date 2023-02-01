@@ -38,8 +38,8 @@
 </div>
 
 <div class="form-group mt-3">
-    <label for="age">年齢</label>
-    <input id="age" type="text" class="form-control" name="age" value="{{ $user->age ?? old('age') }}" placeholder="年齢を入力してください">
+    <label for="birthday">生年月日</label>
+    @livewire('birthday')
 </div>
 
 <div>

@@ -8,7 +8,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Fonts -->
@@ -22,6 +21,7 @@
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -29,6 +29,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @livewireScripts
         @include('layouts.footer')
     </div>
 </body>
