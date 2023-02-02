@@ -2,6 +2,9 @@
 
 @section('title', 'SoundHub | 投稿編集')
 @section('content')
+<div class="container">
+    {{ Breadcrumbs::render('articles.edit', $article) }}
+</div>
 <div class="py-4">
     <div class="container"
         style="max-width: 540px">
