@@ -37,11 +37,6 @@
     @endif
 </div>
 
-<div class="form-group mt-3">
-    <label for="birthday">生年月日</label>
-    @livewire('birthday')
-</div>
-
 <div>
     <label for="gender" class="mt-3 me-3">性別</label>
 </div>
