@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand"
-            href="{{ route('articles.index') }}">SoundHub</a>
+        <h1 class="site-title">
+            <a href="{{ route('articles.index') }}"><img src="{{ ('images/logo.png') }}" alt="SoundHub"></a>
+        </h1>
         {{-- ハンバーガーメニュー --}}
         <button class="navbar-toggler"
             type="button"
