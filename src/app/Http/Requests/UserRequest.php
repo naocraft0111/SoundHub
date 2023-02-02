@@ -28,7 +28,6 @@ class UserRequest extends FormRequest
         // ゲストユーザーログイン時はバリデーションにかけない
         if(Auth::id() == config('user.guest_user.id')) {
             return [
-                'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
                 'self_introduction' => ['string', 'min:1', 'max:50', 'nullable'],
             ];
         }
@@ -36,7 +35,6 @@ class UserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:15', Rule::unique('users')->ignore(Auth::id())],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
-            'age' => ['numeric', 'min:1', 'max:100', 'nullable'],
             'self_introduction' => ['string', 'min:1', 'max:50', 'nullable'],
             'avatar' => ['image', 'nullable', 'mimes:jpeg,png,jpg,gif', 'max:1024'],
         ];

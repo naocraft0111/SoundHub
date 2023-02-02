@@ -117,7 +117,6 @@ class UserController extends Controller
         $user->user_soundCategories()->attach($request->sound_category);
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->age = $request->age;
         $user->gender_id = $request->gender;
         $user->pref_id = $request->pref_id;
         $user->self_introduction = $request->self_introduction;
