@@ -25,3 +25,16 @@ a:hover{
 .a_btn:hover {
     text-decoration: none;
 }
+
+// ロゴ
+.site-title {
+    width: 120px;
+    line-height: 1px;
+    margin-bottom: 0;
+    img {
+        max-width: 100%;
+    }
+    a {
+        display: block;
+    }
+}
