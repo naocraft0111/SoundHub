@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_user');
+        Schema::dropIfExists('sound_category_user');
     }
 };

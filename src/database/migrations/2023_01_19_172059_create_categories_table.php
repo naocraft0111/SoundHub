@@ -46,5 +46,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('secondary_categories');
         Schema::dropIfExists('primary_categories');
+        Schema::dropIfExists('sound_categories');
     }
 };
