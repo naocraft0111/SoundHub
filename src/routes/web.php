@@ -9,7 +9,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ContactController;
-
+use App\Http\Livewire\Chat\CreateChat;
+use App\Http\Livewire\Chat\Main;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -119,6 +120,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/{name}/follow', [UserController::class, 'follow'])->name('follow');
         Route::delete('/{name}/follow', [UserController::class, 'unfollow'])->name('unfollow');
     });
+
+    // DM機能
+    Route::get('/chats', CreateChat::class)->name('chats');
+    Route::get('/chat{key?}', Main::class)->name('chat');
 
     // 動的プルダウン機能
     Route::post('/fetch/category', [UserController::class, 'fetch'])->name('user.fetch');
