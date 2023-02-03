@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <h1 class="site-title">
-            <a href="{{ route('articles.index') }}"><img src="{{ ('images/logo.png') }}" alt="SoundHub"></a>
+            <a href="{{ route('articles.index') }}"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
         </h1>
         {{-- ハンバーガーメニュー --}}
         <button class="navbar-toggler"
