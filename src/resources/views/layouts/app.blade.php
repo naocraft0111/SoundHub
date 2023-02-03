@@ -11,6 +11,7 @@
 
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Fonts -->
@@ -21,9 +22,15 @@
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.min.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    {{-- <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+        }
+    </style> --}}
     @livewireStyles
 </head>
 <body>
@@ -32,7 +39,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @unless (Route::currentRouteName() === 'chat')
         @include('layouts.footer')
+        @endunless
     </div>
     @livewireScripts
 </body>
