@@ -31,10 +31,34 @@
     </div>
 
     <div class="chatbox_body">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde, nostrum repudiandae. Deleniti quibusdam exercitationem pariatur maxime est laboriosam ipsa qui labore cumque deserunt placeat error, debitis, dolore accusamus nihil laudantium.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi aspernatur iure nam cupiditate, necessitatibus numquam placeat! Doloremque, ad autem architecto atque, magni illum, aliquid dignissimos vero tempore consequuntur error voluptatibus.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur repellat deserunt omnis eaque ipsa ipsam similique mollitia itaque suscipit reiciendis ad laborum quo, fugit nisi non dolorum esse labore quibusdam.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat vitae a similique illum quos molestias sed vero dolore voluptates cum laudantium quis omnis nemo, eius repellat eos dolorem hic possimus.
+        <div class="msg_body msg_body_receiver">
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
+            <div class="msg_body_footer">
+                <div class="date">
+                    5 houres ago
+                </div>
+
+                <div class="read">
+                    <i class="bi bi-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="msg_body msg_body_me">
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
+            <div class="msg_body_footer">
+                <div class="date">
+                    5 houres ago
+                </div>
+
+                <div class="read">
+                    <i class="bi bi-check"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="chatbox_footer">
