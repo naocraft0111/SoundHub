@@ -59,10 +59,34 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="msg_body msg_body_me">
 
-    <div class="chatbox_footer">
-        footer
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
+            <div class="msg_body_footer">
+                <div class="date">
+                    5 houres ago
+                </div>
+
+                <div class="read">
+                    <i class="bi bi-check"></i>
+                </div>
+            </div>
+        </div>
+        <div class="msg_body msg_body_me">
+
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
+            <div class="msg_body_footer">
+                <div class="date">
+                    5 houres ago
+                </div>
+
+                <div class="read">
+                    <i class="bi bi-check"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
