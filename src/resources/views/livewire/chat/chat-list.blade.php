@@ -6,7 +6,7 @@
             Chat
         </div>
 
-        <div class="img-container">
+        <div class="img_container">
             <img src="https://picsum.photos/id/237/200/300" alt="">
         </div>
     </div>
