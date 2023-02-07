@@ -226,6 +226,10 @@ img {
             font-size: 21px;
             padding: 7px 11px;
             cursor: pointer;
+            display: block;
+            @include media('>tablet') {
+                display: none;
+            }
         }
 
         .name {

@@ -8,6 +8,6 @@ class Main extends Component
 {
     public function render()
     {
-        return view('livewire.chat.main');
+        return view('livewire.chat.main')->extends('layouts.app')->section('content');
     }
 }

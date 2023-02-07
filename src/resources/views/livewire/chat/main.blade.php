@@ -1,19 +1,37 @@
-@extends('layouts.app')
-
 @section('title', 'チャットルーム | SoundHub')
+<div>
 
-@section('content')
-<div class="chat_container">
-    {{-- <h3 class="text-center">チャットルーム</h3> --}}
+    <div class="chat_container">
 
-    <div class="chat_list_container">
-        @livewire('chat.chat-list')
+        <div class="chat_list_container">
+            @livewire('chat.chat-list')
+        </div>
+        <div class="chat_box_container">
+
+            @livewire('chat.chatbox')
+
+            @livewire('chat.send-message')
+        </div>
     </div>
-    <div class="chat_box_container">
 
-        @livewire('chat.chatbox')
+    <script type="application/javascript">
+        window.addEventListener('chatSelected', event=>{
+            if( window.innerWidth < 768 ){
+                $('.chat_list_container').hide();
+                $('.chat_box_container').show();
+            }
+        });
 
-        @livewire('chat.send-message')
-    </div>
+        window.addEventListener('resize', event=>{
+            if (window.innerWidth > 768) {
+                $('.chat_list_container').show();
+                $('.chat_box_container').show();
+            }
+        });
+
+        function clickEvent() {
+            $('.chat_list_container').show();
+            $('.chat_box_container').toggle();
+        }
+    </script>
 </div>
-@endsection

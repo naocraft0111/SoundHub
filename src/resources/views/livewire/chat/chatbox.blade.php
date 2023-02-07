@@ -1,17 +1,18 @@
 <div>
     {{-- The best athlete wants his opponent at his best. --}}
 
+    @if ($selectedConversation)
     <div class="chatbox_header">
-        <div class="return">
+        <div class="return" onclick="clickEvent()">
             <i class="bi bi-arrow-left"></i>
         </div>
 
         <div class="img_container">
-            <img src="https://picsum.photos/id/231/200/300" alt="">
+            <img src="https://picsum.photos/id/{{ $receiverInstance->id }}/200/300" alt="">
         </div>
 
         <div class="name">
-            john
+            {{ $receiverInstance->name }}
         </div>
 
         <div class="info">
@@ -31,13 +32,13 @@
     </div>
 
     <div class="chatbox_body">
+        @foreach ($messages as $message)
         <div class="msg_body msg_body_receiver">
 
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
+            {{ $message->body }}
             <div class="msg_body_footer">
                 <div class="date">
-                    5 houres ago
+                    {{ $message->created_at->format('m: i a') }}
                 </div>
 
                 <div class="read">
@@ -45,48 +46,14 @@
                 </div>
             </div>
         </div>
-        <div class="msg_body msg_body_me">
-
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
-            <div class="msg_body_footer">
-                <div class="date">
-                    5 houres ago
-                </div>
-
-                <div class="read">
-                    <i class="bi bi-check"></i>
-                </div>
-            </div>
-        </div>
-        <div class="msg_body msg_body_me">
-
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
-            <div class="msg_body_footer">
-                <div class="date">
-                    5 houres ago
-                </div>
-
-                <div class="read">
-                    <i class="bi bi-check"></i>
-                </div>
-            </div>
-        </div>
-        <div class="msg_body msg_body_me">
-
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cumque provident corrupti cupiditate numquam, illo mollitia perspiciatis, minus reprehenderit maiores ad quae eligendi! Doloribus cum debitis consectetur nostrum fugiat recusandae voluptatem.
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum libero, recusandae corporis ratione esse in illum iure qui hic quia perspiciatis harum, consequatur aliquid dolorem doloribus maxime beatae, dicta voluptate?
-            <div class="msg_body_footer">
-                <div class="date">
-                    5 houres ago
-                </div>
-
-                <div class="read">
-                    <i class="bi bi-check"></i>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
+
+    @else
+    <div class="fs-4 text-center text-primary mt-5">
+        no conversation selected
+    </div>
+
+    @endif
 
 </div>
