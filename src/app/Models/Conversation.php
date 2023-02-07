@@ -16,7 +16,7 @@ class Conversation extends Model
         'last_time_message'
     ];
 
-    public function message()
+    public function messages()
     {
         return $this->hasMany(Message::class);
     }

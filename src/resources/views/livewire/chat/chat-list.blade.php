@@ -12,27 +12,34 @@
     </div>
 
     <div class="chatlist_body">
-        <div class="chatlist_item">
-            <div class="chatlist_img_container">
-                <img src="https://picsum.photos/id/200/200/300" alt="">
-            </div>
-            <div class="chatlist_info">
-                <div class="top_row">
-                    <div class="list_username">John</div>
-                    <span class="date">2d</span>
+            @if (count($conversations) > 0)
+            @foreach ($conversations as $conversation)
+            <div class="chatlist_item" wire:click="$emit('chatUserSelected', {{ $conversation }}, {{ $this->getChatUserInstance($conversation, $name='id') }})">
+                <div class="chatlist_img_container">
+                    <img src="https://picsum.photos/id/{{ $this->getChatUserInstance($conversation, $name='id') }}/200/300" alt="">
                 </div>
-
-                <div class="bottom_row">
-
-                    <div class="message_body text-truncate">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores pariatur quibusdam provident accusantium temporibus sed tempora alias fugit natus sit, optio facilis molestiae consequuntur repudiandae ex porro repellendus quae aliquid.
+                <div class="chatlist_info">
+                    <div class="top_row">
+                        <div class="list_username">{{ $this->getChatUserInstance($conversation, $name='name') }}</div>
+                        <span class="date">{{$conversation->messages->last()->created_at->shortAbsoluteDiffForHumans()}}</span>
                     </div>
 
-                    <div class="unread_count">
-                        56
+                    <div class="bottom_row">
+
+                        <div class="message_body text-truncate">
+                            {{$conversation->messages->last()->body}}
+                        </div>
+
+                        <div class="unread_count">
+                            56
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            @endforeach
+
+            @else
+            you have no conversations
+            @endif
     </div>
 </div>
