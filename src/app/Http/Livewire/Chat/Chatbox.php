@@ -14,7 +14,14 @@ class Chatbox extends Component
     public $receiver;
     public $messages;
     public $paginateVar = 10;
-    protected $listeners = ['loadConversation'];
+    protected $listeners = ['loadConversation', 'pushMessage'];
+
+    // メッセージを動的に送信
+    public function pushMessage($messageId)
+    {
+        $newMessage = Message::find($messageId);
+        $this->messages->push($newMessage);
+    }
 
     public function loadConversation(Conversation $conversation, User $receiver)
     {
