@@ -25,11 +25,27 @@ class Chatbox extends Component
             "echo-private:chat.{$auth_id},MessageSent" => 'broadcastedMessageReceived','loadConversation', 'pushMessage', 'loadMore', 'updateHeight'
         ];
     }
-    
+
     // broadcastWith()から取得したデータを受信する
     function broadcastedMessageReceived($event)
     {
-        dd($event);
+
+        $broadcastedMessage = Message::find($event['message']);
+
+        // 送信されたユーザーが会話を選択しているかどうか
+        if($this->selectedConversation)
+        {
+            // 選択された会話のターゲットと実際に送られた会話のターゲットが一致しているかどうか
+            if ((int) $this->selectedConversation->id === (int)$event['conversation_id'])
+            {
+                // dd($event);
+
+                $broadcastedMessage->read = 1;
+                $broadcastedMessage->save();
+
+                $this->pushMessage($broadcastedMessage->id);
+            }
+        }
     }
 
     // メッセージを動的に送信
