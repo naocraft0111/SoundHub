@@ -25,7 +25,7 @@ class ChatList extends Component
 
         $this->emitTo('chat.chatbox','loadConversation', $this->selectedConversation,$receiverInstance);
 
-        $this->emitTo('chat.send-message', 'updateSendMessage' ,$this->selectedConversation, $this->receiverInstance);
+        $this->emitTo('chat.send-message', 'updateSendMessage' ,$this->selectedConversation, $receiverInstance);
     }
 
     public function getChatUserInstance(Conversation $conversation, $request)
