@@ -29,6 +29,8 @@ class Chatbox extends Component
     // broadcastWith()から取得したデータを受信する
     function broadcastedMessageReceived($event)
     {
+        // チャットリストを更新する
+        $this->emitTo('chat.chat-list', 'refresh');
 
         $broadcastedMessage = Message::find($event['message']);
 

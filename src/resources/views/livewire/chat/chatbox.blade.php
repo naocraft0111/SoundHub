@@ -81,4 +81,12 @@
             $('.chatbox_body').scrollTop($('.chatbox_body')[0].scrollHeight);
         });
     </script>
+
+    <script type="application/javascript">
+        document.addEventListener('click', function(e) {
+            if(e.target.className === 'return') {
+                window.livewire.emit('resetComponent');
+            }
+        }, false);
+    </script>
 </div>

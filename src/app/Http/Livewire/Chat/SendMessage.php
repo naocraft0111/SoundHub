@@ -17,7 +17,13 @@ class SendMessage extends Component
     public $body;
     public $createdMessage;
 
-    protected $listeners = ['updateSendMessage', 'dispatchMessageSent'];
+    protected $listeners = ['updateSendMessage', 'dispatchMessageSent', 'resetComponent'];
+
+    public function resetComponent()
+    {
+        $this->selectedConversation = null;
+        $this->receiverInstance = null;
+    }
 
     function updateSendMessage(Conversation $conversation, User $receiver)
     {

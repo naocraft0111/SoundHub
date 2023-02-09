@@ -37,7 +37,7 @@
 
         function clickEvent() {
             $('.chat_list_container').show();
-            $('.chat_box_container').toggle();
+            $('.chat_box_container').hide();
         }
     </script>
 </div>
