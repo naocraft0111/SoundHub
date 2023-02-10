@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Conversation;
 use App\Models\Message;
 use App\Events\MessageSent;
+use App\Events\MessageRead;
 use Livewire\Component;
 
 class Chatbox extends Component
@@ -22,8 +23,25 @@ class Chatbox extends Component
     {
         $auth_id = auth()->user()->id;
         return [
-            "echo-private:chat.{$auth_id},MessageSent" => 'broadcastedMessageReceived','loadConversation', 'pushMessage', 'loadMore', 'updateHeight'
+            "echo-private:chat.{$auth_id},MessageSent" => 'broadcastedMessageReceived',
+            "echo-private:chat.{$auth_id},MessageRead" => 'broadcastedMessageRead','loadConversation', 'pushMessage', 'loadMore', 'updateHeight', 'broadcastMessageRead', 'resetComponent'
         ];
+    }
+
+    public function resetComponent()
+    {
+        $this->selectedConversation = null;
+        $this->receiverInstance = null;
+    }
+
+    public function broadcastedMessageRead($event){
+
+        if($this->selectedConversation){
+
+            if((int) $this->selectedConversation->id === (int) $event['conversation_id']){
+                $this->dispatchBrowserEvent('markMessageAsRead');
+            }
+        }
     }
 
     // broadcastWith()から取得したデータを受信する
@@ -46,8 +64,15 @@ class Chatbox extends Component
                 $broadcastedMessage->save();
 
                 $this->pushMessage($broadcastedMessage->id);
+
+                $this->emitSelf('broadcastMessageRead');
             }
         }
+    }
+
+    public function broadcastMessageRead()
+    {
+        broadcast(new MessageRead($this->selectedConversation->id, $this->receiverInstance->id));
     }
 
     // メッセージを動的に送信
@@ -96,6 +121,11 @@ class Chatbox extends Component
                 ->get();
 
         $this->dispatchBrowserEvent('chatSelected');
+
+        Message::where('conversation_id', $this->selectedConversation->id)
+            ->where('receiver_id', auth()->user()->id)->update(['read' => 1]);
+
+        $this->emitSelf('broadcastMessageRead');
     }
 
     public function render()

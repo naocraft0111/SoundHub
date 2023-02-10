@@ -42,7 +42,19 @@
                 </div>
 
                 <div class="read">
-                    <i class="bi bi-check"></i>
+                    @php
+
+                    if($message->user->id === auth()->id()){
+
+                        if($message->read == 0){
+                            echo '<i class="bi bi-check2 status_tick"></i>';
+                        }
+                        else {
+                            echo '<i class="bi bi-check2-all text-primary"></i>';
+                        }
+                    }
+
+                    @endphp
                 </div>
             </div>
         </div>
@@ -88,5 +100,16 @@
                 window.livewire.emit('resetComponent');
             }
         }, false);
+    </script>
+
+    <script type="application/javascript">
+        window.addEventListener('markMessageAsRead', event=>{
+            var value = document.querySelectorAll('.status_tick');
+
+            value.array.forEach(element, index => {
+                element.classList.remove('bi bi-check2');
+                elememt.classList.add('bi bi-check2-all', 'text-primary');
+            });
+        });
     </script>
 </div>
