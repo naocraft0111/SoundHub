@@ -9,11 +9,14 @@
                 @endif
             </a>
             @if (Auth::id() !== $user->id)
-                <follow-button class="ms-auto"
-                    :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
-                    :authorized='@json(Auth::check())'
-                    endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
-                </follow-button>
+                <div class="ms-auto d-inline-flex align-items-center">
+                    <livewire:chat.create-chat :user="$user">
+                    <follow-button
+                        :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
+                        :authorized='@json(Auth::check())'
+                        endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
+                    </follow-button>
+                </div>
             @else
                 <a href="{{ route('users.edit', ['name' => $user->name]) }}" class="btn btn-light border text-dark fw-bold ms-auto text-center text-decoraiton-none a_btn" role="button">プロフィール編集</a>
             @endif

@@ -1,5 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+// Breakpoints
+@import 'breakpoints';
 
 // Variables
 @import 'variables';
@@ -15,6 +17,19 @@
 
 @import 'chat';
 // 共通レイアウト
+body {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 120px;
+    box-sizing: border-box;
+}
+footer {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    padding: 30px 0;
+}
+
 a {
     text-decoration: none;
     cursor: pointer;
@@ -38,5 +53,39 @@ a:hover{
     }
     a {
         display: block;
+    }
+}
+
+// メッセージアイコン
+.message-icon {
+    cursor: pointer;
+    transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+    &:hover {
+        background-color: rgb(222, 222, 222);
+    }
+}
+
+// 通知バッジ
+.notification {
+    position: relative;
+    cursor: pointer;
+    i {
+        font-size: 1rem;
+    }
+    &-badge {
+        position: absolute;
+        top: 0rem;
+        left: 0.5rem;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #E93F33;
+        color: white;
+        text-align: center;
+        font-size: 8px;
+        line-height: 17px;
+        @include media('>ipad') {
+            left: 1rem;
+        }
     }
 }

@@ -8,7 +8,7 @@
                 <div class="custom_form_group">
 
                     <input wire:model='body' type="text" class="control" placeholder="メッセージを作成">
-                    <button type="submit" class="submit">送信</button>
+                    <button type="submit" class="submit" title="送信"><i class="bi bi-send-fill"></i></button>
                 </div>
 
             </div>

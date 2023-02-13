@@ -1,6 +1,3 @@
-// imports
-@import 'breakpoints';
-
 // variables
 $header_height: 60px;
 $footer_height: 60px;
@@ -10,20 +7,18 @@ $base_color: #0484f3;
     background-color: rgb(243, 243, 243);
     margin-left: auto;
     border-bottom-right-radius: 0 !important;
-    .read {
-        // font-size: 16px;
-        color: rgb(27, 27, 27);
 
+    .read {
+        color: rgb(27, 27, 27);
     }
 }
 
 .msg_body_receiver {
     background-color: $base_color;
     color: white;
-
     border-bottom-left-radius: 0 !important;
+
     .read {
-        // font-size: 16px;
         color: rgb(204, 204, 204);
     }
 }
@@ -37,35 +32,22 @@ img {
 
 .chat_container {
     position: fixed;
-    width: 100%;
-    left: 0;
-    height: 100%;
+    width: 95%;
+    left: 2.5%;
+    height: 70%;
     border: 1px solid rgb(230, 230, 230);
     border-radius: 0;
-    margin-top: 0;
     display: flex;
     flex-wrap: wrap;
     padding: 5px 6px;
-
     z-index: 10;
     background-color: #fff;
-    @include media('>tablet') {
-        top: unset;
-        height: 90%;
-    }
     @include media('>desktop') {
-        position: fixed;
-        width: 95%;
-        left: 2.5%;
-        height: 85%;
-        border: 1px solid gray;
+        width: 80%;
+        left: 9.3%;
+        height: 76%;
         border-radius: 11px;
-        margin-top: 15px;
     }
-
-    // @media only screen and (min-width: 1024px){
-    //     border: 3px solid red;
-    // }
 }
 
 // chatlist
@@ -86,6 +68,7 @@ img {
         height: 60px;
         display: flex;
         flex-wrap: nowrap;
+
         .title {
             font-size: 19px;
             display: flex;
@@ -106,7 +89,6 @@ img {
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
-                border: 1px solid gray;
             }
         }
     }
@@ -118,7 +100,6 @@ img {
             display: flex;
             flex-wrap: nowrap;
             width: 97%;
-
             margin: 9px 4px;
             border-radius: 14px;
             background-color: rgb(241, 241, 241);
@@ -126,6 +107,7 @@ img {
             &:hover {
                 background-color: darken($color: rgb(231, 231, 231), $amount: 4%);
             }
+
             .chatlist_img_container {
                 height: 47px;
                 width: 47px;
@@ -142,13 +124,12 @@ img {
                 padding: 2px 5px;
                 width: 80%;
                 display: block;
-                // flex-wrap: nowrap;
-
 
                 .top_row {
                     margin: 3px 0px;
                     width: 100%;
                     display: flex;
+
                     .list_username {
                         font-size: 16px;
                         width: 78%;
@@ -165,15 +146,16 @@ img {
                     display: flex;
                     flex-wrap: nowrap;
                     width: 100%;
+
                     .message_body {
                         width: 80%;
                         font-weight: lighter;
                         font-family: 'Roboto';
                     }
+
                     .unread_count {
                         margin-left: auto;
                         font-size: 13px;
-                        // background-color: gainsboro;
                         padding: 2px 7px;
                         margin-top: 6px;
                         border-radius: 50%;
@@ -192,7 +174,6 @@ img {
     position: relative;
     width: 100%;
     height: 100%;
-
     @include media('>tablet') {
         width: calc(100% - 296px);
     }
@@ -203,12 +184,10 @@ img {
         top: 0;
         border-bottom: 1px solid gray;
         height: 60px;
-
         display: flex;
         flex-wrap: nowrap;
 
         .img_container {
-
             height: 45px;
             width: 45px;
             margin: auto 0;
@@ -241,7 +220,6 @@ img {
             display: flex;
             flex-wrap: nowrap;
             text-align: center;
-
             margin: auto 0 auto auto;
             color: #0182f4;
             font-size: 19px;
@@ -256,6 +234,7 @@ img {
             }
         }
     }
+
     .chatbox_body {
         overflow: hidden;
         overflow-y: scroll;
@@ -271,8 +250,14 @@ img {
             border-radius: 9px;
             display: block;
             max-width: 80%;
-            margin-top: 11px;
+            margin-top: 25px;
+            margin-bottom: 25px;
             padding: 4px 7px;
+            @include media('>tablet') {
+                margin-top: 11px;
+                margin-bottom: 0;
+            }
+
             .msg_body_footer {
                 width: 100%;
                 display: flex;
@@ -285,9 +270,6 @@ img {
             }
 
             .read {
-                // font-size: 16px;
-                // color: rgb(102, 102, 102);
-
                 i {
                     font-size: 21px;
                     margin: 2px;
@@ -295,6 +277,7 @@ img {
             }
         }
     }
+
     .chatbox_footer {
         height: 60px;
         width: 100%;
@@ -320,14 +303,13 @@ img {
                 box-shadow: 0;
                 background-color: rgb(226, 226, 226);
                 border-radius: 11px;
-
                 &:focus {
                     box-shadow: none;
                     outline: none;
                     border-style: 0;
                 }
             }
-
+            
             .submit {
                 appearance: none;
                 border: 0;
@@ -338,6 +320,9 @@ img {
                 padding: 4px 5px;
                 color: $base_color;
                 width: 10%;
+                &:hover {
+                    color: lighten($color: $base_color, $amount: 18%);
+                }
             }
         }
     }

@@ -10,7 +10,7 @@ use Livewire\Component;
 class CreateChat extends Component
 {
     public $user;
-    public $message = 'hello how are you';
+    public $message = 'はじめまして';
 
     public function mount($user)
     {
