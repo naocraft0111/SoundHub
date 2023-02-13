@@ -39,7 +39,13 @@
                     <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('chat') }}"><i class="fa fa-envelope me-1"></i>メッセージ</a>
+                    <a class="nav-link notification" href="{{ route('chat') }}">
+                        <i class="fa fa-envelope me-1">
+                            @if($count !== 0)
+                            <span class="notification-badge">{{ $count }}</span>
+                            @endif
+                        </i>
+                        メッセージ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
