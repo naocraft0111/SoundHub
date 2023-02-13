@@ -3,11 +3,15 @@
     <div class="chatlist_header">
 
         <div class="title">
-            Chat
+            メッセージ
         </div>
 
         <div class="img_container">
-            <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={{ auth()->user()->name }}" alt="">
+            @if (isset(Auth()->user()->avatar))
+            <img src="{{ asset('storage/avatar/' . Auth()->user()->avatar) }}" alt="">
+            @else
+            <img src="{{ asset('images/user_default.png') }}">
+            @endif
         </div>
     </div>
 
@@ -16,7 +20,11 @@
             @foreach ($conversations as $conversation)
             <div class="chatlist_item" wire:key='{{$conversation->id}}' wire:click="$emit('chatUserSelected', {{$conversation}},{{$this->getChatUserInstance($conversation, $name = 'id') }})">
                 <div class="chatlist_img_container">
-                    <img src="https://ui-avatars.com/api/?name={{ $this->getChatUserInstance($conversation, $name = 'name') }}" alt="">
+                    @if (null ==($this->getChatUserInstance($conversation, $name = 'avatar')))
+                    <img src="{{ asset('images/user_default.png') }}">
+                    @else
+                    <img src="{{ asset('storage/avatar/' . $this->getChatUserInstance($conversation, $name = 'avatar')) }}" alt="">
+                    @endif
                 </div>
                 <div class="chatlist_info">
                     <div class="top_row">
@@ -40,7 +48,7 @@
             @endforeach
 
             @else
-            you have no conversations
+            メッセージへようこそ
             @endif
     </div>
 </div>

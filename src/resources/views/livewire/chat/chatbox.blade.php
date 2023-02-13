@@ -3,12 +3,16 @@
 
     @if ($selectedConversation)
     <div class="chatbox_header">
-        <div class="return" onclick="clickEvent()">
+        <div class="return" onclick="clickEvent()" title="閉じる">
             <i class="bi bi-arrow-left"></i>
         </div>
 
         <div class="img_container">
-            <img src="https://ui-avatars.com/api/?name={{ $receiverInstance->name }}" alt="">
+            @if (isset($receiverInstance->avatar))
+            <img src="{{ asset('storage/avatar/' . $receiverInstance->avatar) }}" alt="">
+            @else
+            <img src="{{ asset('images/user_default.png') }}">
+            @endif
         </div>
 
         <div class="name">
@@ -16,17 +20,8 @@
         </div>
 
         <div class="info">
-
             <div class="info_item">
-                <i class="bi bi-telephone-fill"></i>
-            </div>
-
-            <div class="info_item">
-                <i class="bi bi-image"></i>
-            </div>
-
-            <div class="info_item">
-                <i class="bi bi-info-circle-fill"></i>
+                <a href="{{ route('users.detail', ['name' => $receiverInstance->name])}}" title="ユーザーページ"><i class="bi bi-info-circle-fill"></i></a>
             </div>
         </div>
     </div>
@@ -83,7 +78,6 @@
     </script>
     @else
     <div class="fs-4 text-center text-primary mt-5">
-        no conversation selected
     </div>
 
     @endif
