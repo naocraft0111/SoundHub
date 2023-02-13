@@ -9,18 +9,21 @@ use Livewire\Component;
 
 class CreateChat extends Component
 {
-    public $users;
+    public $user;
     public $message = 'hello how are you';
+
+    public function mount($user)
+    {
+        $this->id = $user->id;
+    }
 
     public function checkConversation($receiverId)
     {
-        // dd($receiverId);
 
         $checkedConversation = Conversation::where('receiver_id', Auth()->user()->id)->where('sender_id', $receiverId)->orWhere('receiver_id', $receiverId)->where('sender_id', Auth()->user()->id)->get();
 
         // すでに会話テーブルに登録されているかチャック
         if(count($checkedConversation) == 0) {
-            // dd('no conversation');
 
             // ユーザー間の会話を作成
             $createdConversation= Conversation::create(['receiver_id'=>$receiverId,'sender_id'=>auth()->user()->id,'last_time_message'=>0]);
@@ -32,16 +35,16 @@ class CreateChat extends Component
             $createdConversation->last_time_message = $createdMessage->created_at;
             $createdConversation->save();
 
-            // dd($createdMessage);
-            dd('saved');
+            session()->flash('flash_message', 'チャットリストに追加されました');
+            return redirect()->to('chat');
         } else if((count($checkedConversation) >= 1)) {
-            dd('conversation exists');
+            session()->flash('flash_message', 'チャットリストに存在しています');
+            return redirect()->to('chat');
         }
     }
 
     public function render()
     {
-        $this->users = User::where('id', '!=', auth()->user()->id)->get();
         return view('livewire.chat.create-chat')->extends('layouts.app')->section('content');
     }
 }

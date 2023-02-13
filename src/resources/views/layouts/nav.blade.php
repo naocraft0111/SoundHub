@@ -42,9 +42,6 @@
                     <a class="nav-link" href="{{ route('chat') }}"><i class="fa fa-envelope me-1"></i>メッセージ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('chats') }}"><i class="fa fa-envelope me-1"></i>チャット一覧</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
                 </li>
                 <li class="nav-item">

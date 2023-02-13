@@ -122,7 +122,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // DM機能
-    Route::get('/chats', CreateChat::class)->name('chats');
+    Route::get('/chats/{id}', CreateChat::class)->name('chats');
     Route::get('/chat{key?}', Main::class)->name('chat');
 
     // 動的プルダウン機能
