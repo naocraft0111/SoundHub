@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('primary_category_user');
+        Schema::dropIfExists('secondary_category_user');
     }
 };

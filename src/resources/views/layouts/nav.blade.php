@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <h1 class="site-title">
-            <a href="{{ route('articles.index') }}"><img src="{{ ('images/logo.png') }}" alt="SoundHub"></a>
+            <a href="{{ route('articles.index') }}"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
         </h1>
         {{-- ハンバーガーメニュー --}}
         <button class="navbar-toggler"
@@ -39,10 +39,19 @@
                     <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users"></i>ユーザー一覧</a>
+                    <a class="nav-link notification" href="{{ route('chat') }}">
+                        <i class="fa fa-envelope me-1">
+                            @if($count !== 0)
+                            <span class="notification-badge">{{ $count }}</span>
+                            @endif
+                        </i>
+                        メッセージ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i> 投稿する</a>
+                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen me-1"></i>投稿する</a>
                 </li>
                 <div class="d-none d-lg-block">
                     {{-- ドロップダウンメニュー --}}
@@ -78,10 +87,12 @@
 
                 {{-- sp --}}
                 <div class="d-block d-lg-none">
-                    <li class="nav-item mt-2"><a class="nav-link" href="{{ route("users.detail", ["name" => Auth::user()->name])}}"><i class="fas fa-user mr-1"></i>マイページ</a></li>
+                    <li class="nav-item mt-2">
+                        <a class="nav-link" href="{{ route("users.detail", ["name" => Auth::user()->name])}}"><i class="fas fa-user me-1"></i>マイページ</a>
+                    </li>
                     <li class="nav-item mt-2">
                         <a class="nav-link" href="{{ route('logout') }}"onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt mr-1"></i>ログアウト</a>
+                            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt me-1"></i>ログアウト</a>
                         <form name="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                         </form>
