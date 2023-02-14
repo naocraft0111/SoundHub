@@ -89,3 +89,9 @@ a:hover{
         }
     }
 }
+
+.video {
+    @include media('>ipad') {
+        width: 50%;
+    }
+}
