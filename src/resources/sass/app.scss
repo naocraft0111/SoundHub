@@ -90,8 +90,34 @@ a:hover{
     }
 }
 
+// アピール動画
 .video {
     @include media('>ipad') {
         width: 50%;
+    }
+}
+
+// 投稿画像
+.article_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin: auto;
+    @include media('>ipad') {
+        width: 55%;
+    }
+    &-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    img {
+        margin: 0;
+        width: 100%;
     }
 }
