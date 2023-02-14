@@ -19,7 +19,7 @@ class CommentController extends Controller
     {
         $comments->fill($request->all());
         $comments->save();
-
+        toastr()->success('コメントを投稿しました');
         return back();
     }
 
@@ -32,6 +32,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         $comment->delete();
+        toastr()->success('コメントを削除しました');
         return back();
     }
 }

@@ -1,6 +1,5 @@
 @section('title', 'チャットルーム | SoundHub')
 <div>
-    {{-- @include('flash_message') --}}
     <div class="chat_container">
 
         <div class="chat_list_container">
@@ -38,11 +37,5 @@
             $('.chat_list_container').show();
             $('.chat_box_container').hide();
         }
-        // フラッシュメッセージ
-        @if (session('flash_message'))
-            $(function () {
-                toastr.success('{{ session("flash_message") }}');
-            });
-        @endif
     </script>
 </div>

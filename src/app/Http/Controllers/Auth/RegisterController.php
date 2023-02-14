@@ -59,6 +59,13 @@ class RegisterController extends Controller
         ]);
     }
 
+    // ユーザー登録後の処理
+    protected function registered(Request $request)
+    {
+        toastr()->success('ユーザー登録が完了しました');
+        return redirect($this->redirectTo);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -107,7 +114,6 @@ class RegisterController extends Controller
         ]);
 
         $this->guard()->login($user, true);
-
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
