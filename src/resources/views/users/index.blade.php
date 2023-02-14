@@ -25,12 +25,12 @@
 
                             <div class="form-group mt-3">
                                 <label for="age">年齢</label>
-                                <div class="row g-2">
-                                    <div class="col-auto"><input id="age_from" type="text" class="form-control" name="age_from" placeholder="指定なし" value=@if(isset($inputs['age_from'])) {{ $inputs['age_from'] }} @endif></div>
-                                    <div class="col-auto"><span class="form-control-plaintext">歳</span></div>
-                                    <div class="col-auto"><span class="form-control-plaintext">〜</span></div>
-                                    <div class="col-auto"><input id="age_to" type="text" class="form-control" name="age_to"placeholder="指定なし" value=@if(isset($inputs['age_to'])) {{ $inputs['age_to'] }} @endif></div>
-                                    <div class="col-auto"><span class="form-control-plaintext">歳</span></div>
+                                <div class="row g-2 flex-nowrap">
+                                    <div class="col-4"><input id="age_from" type="text" class="form-control" name="age_from" placeholder="指定なし" value=@if(isset($inputs['age_from'])) {{ $inputs['age_from'] }} @endif></div>
+                                    <div class="col-1 text-center"><span class="form-control-plaintext">歳</span></div>
+                                    <div class="col-2 text-center"><span class="form-control-plaintext">〜</span></div>
+                                    <div class="col-4"><input id="age_to" type="text" class="form-control" name="age_to"placeholder="指定なし" value=@if(isset($inputs['age_to'])) {{ $inputs['age_to'] }} @endif></div>
+                                    <div class="col-1 text-center"><span class="form-control-plaintext">歳</span></div>
                                 </div>
                             </div>
 
