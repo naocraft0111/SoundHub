@@ -33,7 +33,7 @@
             {{ $message->body }}
             <div class="msg_body_footer">
                 <div class="date">
-                    {{ $message->created_at->format('m: i a') }}
+                    {{ $message->created_at->format('Y/m/d G:i') }}
                 </div>
 
                 <div class="read">
