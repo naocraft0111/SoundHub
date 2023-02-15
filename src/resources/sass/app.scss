@@ -22,12 +22,15 @@ body {
     position: relative;
     padding-bottom: 120px;
     box-sizing: border-box;
+    background-color: $body-bg;
+}
+nav {
+    background-color: $nav-bg;
 }
 footer {
     width: 100%;
     position: absolute;
     padding: 30px 0;
-    position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
@@ -124,4 +127,9 @@ a:hover{
         margin: 0;
         width: 100%;
     }
+}
+
+// 検索アイコン色
+.icon_color {
+    color: #d5a447;
 }

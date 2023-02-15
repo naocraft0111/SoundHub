@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <h1 class="site-title">
             <a href="{{ route('articles.index') }}"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
@@ -31,12 +31,17 @@
             @auth
                 {{-- 検索フォーム --}}
                 <form method="GET" action="{{ route('articles.search') }}" class="d-flex">
-                    <input type="text"
-                    name="search"
-                    class="form-control d-none d-lg-block"
-                    placeholder="記事検索..."
-                    aria-label="Search" />
-                    <button class="input-group-text border-0 d-none d-lg-block" type="submit"><i class="fas fa-search"></i></button>
+                    @csrf
+                    <div class="input-group">
+                        <input type="search"
+                        name="search"
+                        class="form-control d-none d-lg-block bg-white"
+                        placeholder="記事検索..."
+                        aria-label="Search" />
+                        <div class="input-group-append">
+                            <button class="input-group-text border-0 d-none d-lg-block bg-white" type="submit"><i class="fas fa-search icon_color"></i></button>
+                        </div>
+                    </div>
                 </form>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link notification" href="{{ route('chat') }}">
@@ -88,12 +93,17 @@
                 {{-- sp --}}
                 <div class="d-block d-lg-none">
                     <form method="GET" action="{{ route('articles.search') }}" class="d-flex mt-2">
-                        <input type="text"
-                        name="search"
-                        class="form-control"
-                        placeholder="記事検索..."
-                        aria-label="Search" />
-                        <button class="input-group-text border-0" type="submit"><i class="fas fa-search"></i></button>
+                        @csrf
+                        <div class="input-group">
+                            <input type="search"
+                            name="search"
+                            class="form-control bg-white"
+                            placeholder="記事検索..."
+                            aria-label="Search" />
+                            <div class="input-group-append">
+                                <button class="input-group-text border-0 bg-white" type="submit"><i class="fas fa-search icon_color"></i></button>
+                            </div>
+                        </div>
                     </form>
                     <li class="nav-item">
                         <a class="nav-link notification" href="{{ route('chat') }}">
