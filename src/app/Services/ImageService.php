@@ -16,8 +16,9 @@ class ImageService {
         $extension = $file->extension();
         $fileNameToStore = $fileName. '.' . $extension;
         if($folderName === 'images') {
-            $resizedImage = InterventionImage::make($file)->resize(null, 1080, function($constraint) {
+            $resizedImage = InterventionImage::make($file)->resize(null, 810, function($constraint) {
                 $constraint->aspectRatio();
+                $constraint->upsize();
             })->encode();
         } else {
             $resizedImage = InterventionImage::make($file)->resize(50, null, function($constraint) {
