@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user->name)
+@section('title', $user->name. ' | SoundHub')
 
 @section('content')
     <div class="container">

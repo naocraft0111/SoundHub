@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user->name. 'いいねした記事')
+@section('title', $user->name. 'いいねした記事 | SoundHub')
 
 @section('content')
     <div class="container">

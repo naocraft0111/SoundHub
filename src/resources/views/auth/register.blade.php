@@ -67,13 +67,6 @@
                             <i class="fa-brands fa-google me-2"></i><b>Googleで登録</b>
                         </a>
                     </div>
-                    <div class="d-grid gap-2 mt-3">
-                        <a href="#"
-                            class="btn btn-block text-white"
-                            style="background-color: #4BBEFF; text-transform: none;">
-                            <i class="fa-brands fa-twitter me-2"></i><b>Twitterで登録</b>
-                        </a>
-                    </div>
 
                     <h4 class="text-center mt-3">とりあえず機能を試してみたい方はこちら</h4>
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '記事詳細')
+@section('title', '記事詳細 | SoundHub')
 
 @section('content')
     <div class="container">

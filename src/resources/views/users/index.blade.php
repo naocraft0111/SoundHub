@@ -91,9 +91,15 @@
                 </div>
             </div>
         </div>
-        @foreach ($users as $person)
-            @include('users.person')
-        @endforeach
+        @if (count($users) > 0)
+            @foreach ($users as $person)
+                @include('users.person')
+            @endforeach
+        @else
+            <div class="fs-4 text-center text-primary mt-5">
+                一致する結果はありませんでした。
+            </div>
+        @endif
         @include('users.pagination')
     </div>
 @endsection
