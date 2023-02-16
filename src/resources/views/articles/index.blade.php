@@ -15,4 +15,6 @@
         </div>
     @endif
     @include('articles.pagination')
+    @include('new_post_button')
+</div>
 @endsection

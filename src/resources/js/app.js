@@ -7,7 +7,6 @@
 import './bootstrap'
 import './selectBox'
 import './modaal'
-import './pageTop'
 // import './infiniteScroll'
 import Vue from 'vue';
 import ExampleComponent from './components/ExampleComponent.vue';

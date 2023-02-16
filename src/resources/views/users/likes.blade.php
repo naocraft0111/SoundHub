@@ -10,5 +10,6 @@
             @include('articles.card')
         @endforeach
         @include('articles.pagination')
+        @include('new_post_button')
     </div>
 @endsection

@@ -13,7 +13,7 @@
 
 @import 'infiniteScroll';
 
-@import 'pageTop';
+@import 'newPost';
 
 @import 'chat';
 // 共通レイアウト
@@ -22,10 +22,10 @@ body {
     position: relative;
     padding-bottom: 120px;
     box-sizing: border-box;
-    background-color: $body-bg;
+    background-color: #ffffe0;
 }
-nav {
-    background-color: $nav-bg;
+.nav_color {
+    background-color: #f5deb3;
 }
 footer {
     width: 100%;
