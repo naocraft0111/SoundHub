@@ -44,6 +44,6 @@ class CreateChat extends Component
 
     public function render()
     {
-        return view('livewire.chat.create-chat')->extends('layouts.app')->section('content');
+        return view('livewire.chat.create-chat');
     }
 }
