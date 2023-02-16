@@ -100,7 +100,7 @@
         window.addEventListener('markMessageAsRead', event=>{
             var value = document.querySelectorAll('.status_tick');
 
-            value.array.forEach(element, index => {
+            value.array?.forEach(element, index => {
                 element.classList.remove('bi bi-check2');
                 elememt.classList.add('bi bi-check2-all', 'text-primary');
             });
