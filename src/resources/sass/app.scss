@@ -64,7 +64,7 @@ a:hover{
 }
 
 // メッセージアイコン
-.message-icon {
+.chat-icon {
     cursor: pointer;
     transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
     &:hover {
@@ -79,10 +79,10 @@ a:hover{
     i {
         font-size: 1rem;
     }
-    &-badge {
+    &__badge {
         position: absolute;
         top: 0rem;
-        left: 0.5rem;
+        left: 0.6rem;
         width: 16px;
         height: 16px;
         border-radius: 50%;
@@ -92,7 +92,7 @@ a:hover{
         font-size: 8px;
         line-height: 17px;
         @include media('>ipad') {
-            left: 1rem;
+            left: 1.1rem;
         }
     }
 }
@@ -105,7 +105,7 @@ a:hover{
 }
 
 // 投稿画像
-.article_img {
+.article-img {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +117,7 @@ a:hover{
     @include media('>ipad') {
         width: 55%;
     }
-    &-list {
+    &__list {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -130,6 +130,6 @@ a:hover{
 }
 
 // 検索アイコン色
-.icon_color {
+.icon-color {
     color: #d5a447;
 }

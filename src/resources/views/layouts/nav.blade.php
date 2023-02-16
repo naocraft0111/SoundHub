@@ -39,18 +39,18 @@
                         placeholder="記事検索..."
                         aria-label="Search" />
                         <div class="input-group-append">
-                            <button class="input-group-text border-0 d-none d-lg-block bg-white" type="submit"><i class="fas fa-search icon_color"></i></button>
+                            <button class="input-group-text border-0 d-none d-lg-block bg-white" type="submit"><i class="fas fa-search icon-color"></i></button>
                         </div>
                     </div>
                 </form>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link notification" href="{{ route('chat') }}">
-                        <i class="fa fa-envelope me-1">
+                        <i class="fa fa-comments me-1">
                             @if($count !== 0)
-                            <span class="notification-badge">{{ $count }}</span>
+                            <span class="notification__badge">{{ $count }}</span>
                             @endif
                         </i>
-                        メッセージ</a>
+                        チャット</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
@@ -101,18 +101,18 @@
                             placeholder="記事検索..."
                             aria-label="Search" />
                             <div class="input-group-append">
-                                <button class="input-group-text border-0 bg-white" type="submit"><i class="fas fa-search icon_color"></i></button>
+                                <button class="input-group-text border-0 bg-white" type="submit"><i class="fas fa-search icon-color"></i></button>
                             </div>
                         </div>
                     </form>
                     <li class="nav-item">
                         <a class="nav-link notification" href="{{ route('chat') }}">
-                            <i class="fa fa-envelope me-1">
+                            <i class="fa fa-comments me-1">
                                 @if($count !== 0)
-                                <span class="notification-badge">{{ $count }}</span>
+                                <span class="notification__badge">{{ $count }}</span>
                                 @endif
                             </i>
-                            メッセージ</a>
+                            チャット</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>

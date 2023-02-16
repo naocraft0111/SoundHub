@@ -73,9 +73,9 @@
             <div class="gallery-list">
                 @foreach ($article->images as $image)
                 @if ($loop->first)
-                <div class="article_img">
+                <div class="article-img">
                 @endif
-                    <div class="article_img-list">
+                    <div class="article-img__list">
                         <a href="{{ asset('storage/images/' . $image->name) }}" class="gallery" data-group="gallery{{ $article->id }}">
                             <img src="{{ asset('storage/images/' . $image->name) }}" class="" style="object-fit: cover;" alt="{{ $image->name }}">
                         </a>
