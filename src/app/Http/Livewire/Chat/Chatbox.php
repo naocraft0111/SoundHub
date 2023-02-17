@@ -17,7 +17,6 @@ class Chatbox extends Component
     public $messages;
     public $paginateVar = 10;
     public $height;
-    // protected $listeners = ['loadConversation', 'pushMessage', 'loadMore', 'updateHeight'];
 
     public function getListeners()
     {
@@ -58,7 +57,6 @@ class Chatbox extends Component
             // 選択された会話のターゲットと実際に送られた会話のターゲットが一致しているかどうか
             if ((int) $this->selectedConversation->id === (int)$event['conversation_id'])
             {
-                // dd($event);
 
                 $broadcastedMessage->read = 1;
                 $broadcastedMessage->save();
@@ -87,7 +85,6 @@ class Chatbox extends Component
     // スクロールを上に移動した時、メッセージを読み込む
     function loadMore()
     {
-        // dd('top reached');
         $this->paginateVar = $this->paginateVar + 10;
         $this->messages_count = Message::where('conversation_id', $this->selectedConversation->id)->count();
 
@@ -101,15 +98,12 @@ class Chatbox extends Component
 
     function updateHeight($height)
     {
-        // dd($height);
         $this->height = $height;
-
     }
 
     public function loadConversation(Conversation $conversation, User $receiver)
     {
 
-        // dd($conversation, $receiver);
         $this->selectedConversation = $conversation;
         $this->receiverInstance = $receiver;
 
