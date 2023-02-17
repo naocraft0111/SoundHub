@@ -79,7 +79,7 @@
     <select name="secondary_category[]" id="secondary" class="form-control" multiple>
         <option value="" hidden>&#9660;全て</option>
         @foreach ($secondaryCategoryList as $index => $name)
-        <option value="{{ $index }}">{{ $name }}</option>
+        <option value="{{ $index }}" @selected(old('secondary_category', $user->user_secondaryCategories->contains('id', $index) ?? ''))>{{ $name }}</option>
         @endforeach
     </select>
 </div>
@@ -99,12 +99,12 @@
 
 <div class="form-group mt-3">
     <label for="self_introduction">自己紹介</label>
-    <textarea name="self_introduction" class="form-control" rows="3" placeholder="50字以内で入力してください">{{ $user->self_introduction ?? old('self_introduction') }}</textarea>
+    <textarea name="self_introduction" class="form-control" rows="3" placeholder="300字以内で入力してください">{{ $user->self_introduction ?? old('self_introduction') }}</textarea>
 </div>
 
 <div class="form-group mt-3">
     <label for="prof_video_path">アピール動画</label>
-    <div>例）登録したいYouTube動画のURLが <span>https://www.youtube.com/watch?v=-bNMq1Nxn5o なら"v="の直後にある "
+    <div>例）登録したいYouTube動画のURLが <span>https://www.youtube.com/watch?v=-bNMq1Nxn5o なら"v="の直後にある"
         <span class="text-success">-bNMq1Nxn5o</span>"
         を入力
     </div>

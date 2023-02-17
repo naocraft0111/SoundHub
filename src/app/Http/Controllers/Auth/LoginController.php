@@ -42,6 +42,13 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // ログイン後の処理
+    protected function authenticated(Request $request)
+    {
+        // フラッシュメッセージを表示
+        toastr()->success('ログインしました');
+        return redirect($this->redirectTo);
+    }
 
     // ゲストユーザー用のユーザーIDを定数として定義
     private const GUEST_USER_ID = 1;
@@ -51,9 +58,10 @@ class LoginController extends Controller
     {
         // id=1 のゲストユーザー情報がDBに存在すれば、ゲストログインする
         if (Auth::loginUsingId(self::GUEST_USER_ID)) {
-            return redirect('/articles');
+            toastr()->success('ゲストユーザーでログインしました');
+            return redirect($this->redirectTo);
         }
-
+        toastr()->error('ゲストログインに失敗しました');
         return redirect('/');
     }
 
@@ -82,6 +90,7 @@ class LoginController extends Controller
 
     public function loggedOut()
     {
+        toastr()->success('ログアウトしました');
         return redirect('/');
     }
 }

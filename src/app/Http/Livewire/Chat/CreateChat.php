@@ -35,16 +35,15 @@ class CreateChat extends Component
             $createdConversation->last_time_message = $createdMessage->created_at;
             $createdConversation->save();
 
-            session()->flash('flash_message', 'チャットリストに追加されました');
+            toastr()->success('チャットリストに追加されました');
             return redirect()->to('chat');
         } else if((count($checkedConversation) >= 1)) {
-            session()->flash('flash_message', 'チャットリストに存在しています');
             return redirect()->to('chat');
         }
     }
 
     public function render()
     {
-        return view('livewire.chat.create-chat')->extends('layouts.app')->section('content');
+        return view('livewire.chat.create-chat');
     }
 }

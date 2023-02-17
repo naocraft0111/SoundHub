@@ -2,12 +2,12 @@
     {{-- The best athlete wants his opponent at his best. --}}
 
     @if ($selectedConversation)
-    <div class="chatbox_header">
+    <div class="chat-box-container__header">
         <div class="return" onclick="clickEvent()" title="閉じる">
             <i class="bi bi-arrow-left"></i>
         </div>
 
-        <div class="img_container">
+        <div class="chat-box-container__header__img-container">
             @if (isset($receiverInstance->avatar))
             <img src="{{ asset('storage/avatar/' . $receiverInstance->avatar) }}" alt="">
             @else
@@ -20,20 +20,20 @@
         </div>
 
         <div class="info">
-            <div class="info_item">
+            <div class="info-item">
                 <a href="{{ route('users.detail', ['name' => $receiverInstance->name])}}" title="ユーザーページ"><i class="bi bi-info-circle-fill"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="chatbox_body">
+    <div class="chat-box-container__body">
         @foreach ($messages as $message)
-        <div class="msg_body {{ auth()->id() == $message->sender_id ? 'msg_body_me' : 'msg_body_receiver' }}" style="width:80%; max-width:80%; max-width:max-content;">
+        <div class="msg-body {{ auth()->id() == $message->sender_id ? 'msg-body-me' : 'msg-body-receiver' }}" style="width:80%; max-width:80%; max-width:max-content;">
 
             {{ $message->body }}
-            <div class="msg_body_footer">
+            <div class="msg-body__footer">
                 <div class="date">
-                    {{ $message->created_at->format('m: i a') }}
+                    {{ $message->created_at->format('Y/m/d G:i') }}
                 </div>
 
                 <div class="read">
@@ -57,8 +57,8 @@
     </div>
 
     <script type="application/javascript">
-        $('.chatbox_body').scroll(function(){
-            var top = $('.chatbox_body').scrollTop();
+        $('.chat-box-container__body').scroll(function(){
+            var top = $('.chat-box-container__body').scrollTop();
             if(top == 0){
                 window.livewire.emit('loadMore');
             }
@@ -68,8 +68,8 @@
     <script type="application/javascript">
         window.addEventListener('updatedHeight', event=>{
             let old = event.detail.height;
-            let newHeight = $('.chatbox_body')[0].scrollHeight;
-            let height = $('.chatbox_body').scrollTop(newHeight - old);
+            let newHeight = $('.chat-box-container__body')[0].scrollHeight;
+            let height = $('.chat-box-container__body').scrollTop(newHeight - old);
 
             window.livewire.emit('updateHeight',{
                 height:height,
@@ -77,14 +77,12 @@
         });
     </script>
     @else
-    <div class="fs-4 text-center text-primary mt-5">
-    </div>
 
     @endif
 
     <script type="application/javascript">
         window.addEventListener('rowChatToBottom', event =>{
-            $('.chatbox_body').scrollTop($('.chatbox_body')[0].scrollHeight);
+            $('.chat-box-container__body').scrollTop($('.chat-box-container__body')[0].scrollHeight);
         });
     </script>
 
@@ -100,7 +98,7 @@
         window.addEventListener('markMessageAsRead', event=>{
             var value = document.querySelectorAll('.status_tick');
 
-            value.array.forEach(element, index => {
+            value.array?.forEach(element, index => {
                 element.classList.remove('bi bi-check2');
                 elememt.classList.add('bi bi-check2-all', 'text-primary');
             });

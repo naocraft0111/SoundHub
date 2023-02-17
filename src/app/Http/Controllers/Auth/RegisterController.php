@@ -59,6 +59,13 @@ class RegisterController extends Controller
         ]);
     }
 
+    // ユーザー登録後の処理
+    protected function registered(Request $request)
+    {
+        toastr()->success('ユーザー登録が完了しました');
+        return redirect($this->redirectTo);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -94,6 +101,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:15', 'unique:users'],
             'token' => ['required', 'string'],
             'password' => ['required', 'string', 'regex:/\A([a-zA-Z0-9]{8,})+\z/u', 'min:8', 'confirmed'],
+            'age' => ['required','numeric', 'min:1', 'max:200']
         ]);
 
         $token = $request->token;
@@ -104,10 +112,10 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $providerUser->getEmail(),
             'password' => Hash::make($request['password']),
+            'age' => $request->age
         ]);
 
         $this->guard()->login($user, true);
-
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }

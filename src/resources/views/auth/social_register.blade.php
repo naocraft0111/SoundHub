@@ -34,6 +34,11 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="確認のために再度ご入力ください。" required>
                         </div>
 
+                        <div class="form-group mt-3">
+                            <label for="birthday">生年月日<span class="text-danger">【必須】※登録後変更できません</span></label>
+                            @livewire('birthday')
+                        </div>
+
                         <div class="card-text text-center mt-3">
                             <p class="text-center small">
                                 <span>会員登録には、</span>

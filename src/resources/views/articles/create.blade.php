@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'SoundHub | 新規投稿')
+@section('title', '新規投稿 | SoundHub')
 @section('content')
 <div class="container">
     {{ Breadcrumbs::render('articles.create') }}

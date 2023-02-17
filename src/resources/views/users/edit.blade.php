@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール編集画面 | SoundHub')
+@section('title', 'プロフィール編集 | SoundHub')
 
 @section('content')
 <div class="py-4">

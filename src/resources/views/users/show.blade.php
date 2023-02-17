@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user->name)
+@section('title', $user->name. ' | SoundHub')
 
 @section('content')
     <div class="container">
@@ -11,5 +11,6 @@
             @include('articles.card')
         @endforeach
         @include('articles.pagination')
+        @include('new_post_button')
     </div>
 @endsection

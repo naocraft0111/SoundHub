@@ -72,7 +72,7 @@ class ArticleController extends Controller
                 $article->images()->attach($imageModal->id);
             }
         }
-
+        toastr()->success('投稿が完了しました');
         return to_route('articles.index');
     }
 
@@ -149,7 +149,7 @@ class ArticleController extends Controller
                 $article->images()->attach($imageModal->id);
             }
         }
-
+        toastr()->success('投稿を更新しました');
         return to_route('articles.index');
     }
 
@@ -172,6 +172,7 @@ class ArticleController extends Controller
         });
 
         $article->delete();
+        toastr()->success('投稿を削除しました');
         return to_route('articles.index');
     }
 

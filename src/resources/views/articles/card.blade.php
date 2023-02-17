@@ -70,13 +70,19 @@
             {!! nl2br(e( $article->body )) !!}
         </div>
         <div class="px-2">
-            <div class="gallery-list d-flex justify-content-center mx-n2">
+            <div class="gallery-list">
                 @foreach ($article->images as $image)
-                <div class="px-2 mt-5" style="width: 16.666667%;">
-                    <a href="{{ asset('storage/images/' . $image->name) }}" class="gallery" data-group="gallery{{ $article->id }}">
-                        <img src="{{ asset('storage/images/' . $image->name) }}" class="mw-100" style="object-fit: cover;" alt="{{ $image->name }}">
-                    </a>
+                @if ($loop->first)
+                <div class="article-img">
+                @endif
+                    <div class="article-img__list">
+                        <a href="{{ asset('storage/images/' . $image->name) }}" class="gallery" data-group="gallery{{ $article->id }}">
+                            <img src="{{ asset('storage/images/' . $image->name) }}" class="" style="object-fit: cover;" alt="{{ $image->name }}">
+                        </a>
+                    </div>
+                @if($loop->last)
                 </div>
+                @endif
                 @endforeach
             </div>
         </div>

@@ -123,6 +123,7 @@ class UserController extends Controller
         $user->prof_video_path = $request->prof_video_path;
         $user->save();
 
+        toastr()->success('プロフィールを更新しました');
         return to_route('users.detail', ['name' => $user->name]);
     }
 
@@ -160,7 +161,8 @@ class UserController extends Controller
         $user->password = Hash::make($request['password']);
         $user->save();
 
-        return to_route('users.edit', ['name' => $user->name])->with('status', 'パスワードを変更しました。');
+        toastr()->success('パスワードを更新しました');
+        return to_route('users.detail', ['name' => $user->name]);
     }
 
     // 退会
@@ -173,7 +175,7 @@ class UserController extends Controller
 
         $user->delete();
         Auth::logout();
-
+        toastr()->success('退会処理が完了しました');
         return redirect('/');
     }
 

@@ -27,7 +27,6 @@ class SendMessage extends Component
 
     function updateSendMessage(Conversation $conversation, User $receiver)
     {
-        // dd($conversation, $receiver);
         $this->selectedConversation = $conversation;
         $this->receiverInstance = $receiver;
     }
@@ -57,7 +56,6 @@ class SendMessage extends Component
 
         // イベントが発生した時だけ発火
         $this->emitSelf('dispatchMessageSent');
-        // dd($this->body);
     }
 
     // イベントにメッセージ情報を送信する

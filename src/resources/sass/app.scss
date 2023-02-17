@@ -13,7 +13,7 @@
 
 @import 'infiniteScroll';
 
-@import 'pageTop';
+@import 'newPost';
 
 @import 'chat';
 // 共通レイアウト
@@ -22,12 +22,19 @@ body {
     position: relative;
     padding-bottom: 120px;
     box-sizing: border-box;
+    background-color: #ffffe0;
+}
+.nav_color {
+    background-color: #f5deb3;
 }
 footer {
     width: 100%;
-    bottom: 0;
     position: absolute;
     padding: 30px 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
 }
 
 a {
@@ -57,7 +64,7 @@ a:hover{
 }
 
 // メッセージアイコン
-.message-icon {
+.chat-icon {
     cursor: pointer;
     transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
     &:hover {
@@ -72,10 +79,10 @@ a:hover{
     i {
         font-size: 1rem;
     }
-    &-badge {
+    &__badge {
         position: absolute;
         top: 0rem;
-        left: 0.5rem;
+        left: 0.6rem;
         width: 16px;
         height: 16px;
         border-radius: 50%;
@@ -85,7 +92,44 @@ a:hover{
         font-size: 8px;
         line-height: 17px;
         @include media('>ipad') {
-            left: 1rem;
+            left: 1.1rem;
         }
     }
+}
+
+// アピール動画
+.video {
+    @include media('>ipad') {
+        width: 50%;
+    }
+}
+
+// 投稿画像
+.article-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin: auto;
+    @include media('>ipad') {
+        width: 55%;
+    }
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    img {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+// 検索アイコン色
+.icon-color {
+    color: #d5a447;
 }
