@@ -1,0 +1,70 @@
+.main-visual {
+    margin-top: -1.5rem;
+    margin-bottom: 80px;
+    position: relative;
+    @include media('>ipad') {
+        margin-bottom: 120px;
+    }
+    img {
+        width: 100%;
+        height: calc(100vh - 80px);
+        object-fit: cover;
+    }
+    &__layer {
+        position: absolute;
+        width: 85%;
+        color: #fff;
+        top: 24%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(0, 0, 0, 0.4);
+        padding: 10px 10px;
+        @include media('>ipad') {
+            width: auto;
+            padding: 10px 50px;
+        }
+        &__logo {
+            // position: absolute;
+            // top: 0;
+            // left: 50%;
+            img {
+                // margin: 10px;
+                // max-width: 18vw;
+                height: auto;
+                max-width: 300px;
+                @include media('>ipad') {
+                    // max-width: 100px;
+                }
+            }
+        }
+        &__register {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            &--btn {
+                background: #bbf13d;
+                border-radius: 50px;
+                padding: 10px 30px;
+                color: #313131;
+                transition: 0.3s ease-in-out;
+                position: relative;
+                .fa-position-right {
+                    position: absolute;
+                    top: calc(50% - .5em);
+                    right: 0.5rem;
+                }
+                &:hover {
+                    background: #78aa04;
+                    color: #fff;
+                }
+                &:last-child {
+                    background: #fff;
+                    &:hover {
+                        background: #3d6af1;
+                    }
+                }
+            }
+        }
+    }
+}
