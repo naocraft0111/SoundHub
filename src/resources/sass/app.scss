@@ -9,6 +9,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import 'TopPage';
+
 @import 'modaal';
 
 @import 'infiniteScroll';
@@ -115,7 +117,7 @@ a:hover{
     border-radius: 20px;
     margin: auto;
     @include media('>ipad') {
-        width: 55%;
+        width: 35%;
     }
     &__list {
         display: flex;

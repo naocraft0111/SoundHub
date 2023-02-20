@@ -69,7 +69,7 @@
         <div class="card-text">
             {!! nl2br(e( $article->body )) !!}
         </div>
-        <div class="px-2">
+        <div class="p-3">
             <div class="gallery-list">
                 @foreach ($article->images as $image)
                 @if ($loop->first)
