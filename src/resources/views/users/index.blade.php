@@ -47,8 +47,8 @@
                             <div class="form-group mt-3">
                                 <label for="pref">所在地</label>
                                 <select name="pref" id="pref" class="form-control">
+                                    <option value="">&#9660;所在地を選択</option>
                                     @foreach ($prefs as $pref_id => $name)
-                                    <option value="" hidden>&#9660;選択してください</option>
                                     <option value="{{ $pref_id }}" @if(isset($inputs['pref'])) @selected(old('pref', $inputs['pref']) == $pref_id) @endif>{{ $name }}</option>
                                     @endforeach
                                 </select>
@@ -67,7 +67,7 @@
                             <div class="form-group mt-3">
                                 <label for="category">楽器ジャンル</label>
                                 <select name="primary_category_id" id="primary" class="form-control">
-                                    <option value="0" hidden>&#9660;全て</option>
+                                    <option value="">&#9660;全て</option>
                                     @foreach ($primaryCategoryList as $index => $name)
                                     <option value="{{ $index }}" @if(isset($inputs['primary_category_id'])) @selected(old('primary_category_id', $inputs['primary_category_id']) == $index) @endif>{{ $name }}</option>
                                     @endforeach
@@ -77,7 +77,6 @@
                             <div class="form-group mt-3">
                                 <label for="category">楽器名</label>
                                 <select name="secondary_category" id="secondary" class="form-control">
-                                    <option value="0" hidden>&#9660;全て</option>
                                     @foreach ($secondaryCategoryList as $index => $name)
                                     <option value="{{ $index }}" @if(isset($inputs['secondary_category'])) @selected(old('secondary_category', $inputs['secondary_category']) == $index) @endif>{{ $name }}</option>
                                     @endforeach

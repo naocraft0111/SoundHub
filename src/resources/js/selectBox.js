@@ -15,32 +15,39 @@ function keyInvalid() {
 $(function() {
 
     keyInvalid();
-
+    // #secondaryの最初の状態を保存
+    var noValue = $("#secondary").html();
     $("#primary").on('change', function () {
         var cate_val = $(this).val();
-        $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            url: "/fetch/category",
-            type: "POST",
-            data: {'category_val' : cate_val},
-            datatype: "JSON",
-        })
-        .done(function (data) {
-            // 子カテゴリのoptionを一旦削除
-            $('#secondary option').remove();
+        // #primaryで楽器名を選んでいる場合
+        if(cate_val) {
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                url: "/fetch/category",
+                type: "POST",
+                data: {'category_val' : cate_val},
+                datatype: "JSON",
+            })
+            .done(function (data) {
+                // 子カテゴリのoptionを一旦削除
+                $('#secondary option').remove();
 
-            // DBから受け取ったデータを子カテゴリのoptionにセット
-            $.each(data, function (key, value) {
-                $("#secondary").append(
-                    $('<option>').val(value.id).text(value.name));
+                // DBから受け取ったデータを子カテゴリのoptionにセット
+                $.each(data, function (key, value) {
+                    $("#secondary").append(
+                        $('<option>').val(value.id).text(value.name));
+                });
+
+                keyInvalid();
+            })
+            .fail(function () {
+                console.log("失敗");
             });
-            
+        } else { // #primaryで全てを選んでいる場合
+            $('#secondary').html(noValue);
             keyInvalid();
-        })
-        .fail(function () {
-            console.log("失敗");
-        });
+        }
     });
 });
