@@ -57,8 +57,8 @@
 <div class="form-group mt-3">
     <label for="pref_id">所在地</label>
     <select name="pref_id" id="pref_id" class="form-control">
+        <option value="">&#9660;所在地を選択</option>
         @foreach ($prefs as $pref_id => $name)
-        <option value="" hidden>&#9660;選択してください</option>
         <option value="{{ $pref_id }}" @selected(old('pref_id', $user->pref_id) == $pref_id)>{{ $name }}</option>
         @endforeach
     </select>
@@ -67,7 +67,7 @@
 <div class="form-group mt-3">
     <label for="category">楽器ジャンル</label>
     <select name="primary_category_id" id="primary" class="form-control">
-        <option value="0" hidden>&#9660;全て</option>
+        <option value="">&#9660;全て</option>
         @foreach ($primaryCategoryList as $index => $name)
         <option value="{{ $index }}">{{ $name }}</option>
         @endforeach
@@ -77,7 +77,6 @@
 <div class="form-group mt-3">
     <label for="category">楽器名</label>
     <select name="secondary_category[]" id="secondary" class="form-control" multiple>
-        <option value="" hidden>&#9660;全て</option>
         @foreach ($secondaryCategoryList as $index => $name)
         <option value="{{ $index }}" @selected(old('secondary_category', $user->user_secondaryCategories->contains('id', $index) ?? ''))>{{ $name }}</option>
         @endforeach
