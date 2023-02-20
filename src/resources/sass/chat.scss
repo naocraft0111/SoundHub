@@ -34,7 +34,7 @@ img {
     position: fixed;
     width: 95%;
     left: 2.5%;
-    height: 70%;
+    height: calc(100vh - 210px);
     border: 1px solid rgb(230, 230, 230);
     border-radius: 0;
     display: flex;
