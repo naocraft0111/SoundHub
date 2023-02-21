@@ -19,6 +19,9 @@
     <h2 class="fw-bold h1 mb-0 text-center">SoundHubでできること</h1>
     <div class="align-items-center mt-5 row">
         <div class="col-12 col-sm-5">
+            <div class="badge rounded-3 icon--background">
+                <i class="fas fa-pen icon--font-size"></i>
+            </div>
             <h3 class="fw-bold h2 mt-3">記事を投稿できる</h3>
             <p>
                 演奏会の告知や、普段の練習風景を投稿することができます。
@@ -30,6 +33,9 @@
     </div>
     <div class="align-items-center mt-5 row">
         <div class="col-12 col-sm-5">
+            <div class="badge rounded-3 icon--background">
+                <i class="fa fa-users icon--font-size"></i>
+            </div>
             <h3 class="fw-bold h2 mt-3">的確なアンサンブルの相手を探すことができる</h3>
             <p>
                 様々な検索条件により、登録者様にマッチングした演奏相手を探すことができます。
@@ -41,6 +47,9 @@
     </div>
     <div class="align-items-center mt-5 row">
         <div class="col-12 col-sm-5">
+            <div class="badge rounded-3 icon--background">
+                <i class="fa fa-info-circle icon--font-size"></i>
+            </div>
             <h3 class="fw-bold h2 mt-3">詳細なプロフィール欄</h3>
             <p>
                 Youtube埋め込み動画や音楽性、楽器等を複数登録できます。
@@ -52,6 +61,9 @@
     </div>
     <div class="align-items-center mt-5 row">
         <div class="col-12 col-sm-5">
+            <div class="badge rounded-3 icon--background">
+                <i class="fa fa-comments icon--font-size"></i>
+            </div>
             <h3 class="fw-bold h2 mt-3">チャット機能</h3>
             <p>
                 プライベートな事などを気軽に話せます。
