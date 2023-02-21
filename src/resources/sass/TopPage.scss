@@ -25,17 +25,9 @@
             padding: 10px 50px;
         }
         &__logo {
-            // position: absolute;
-            // top: 0;
-            // left: 50%;
             img {
-                // margin: 10px;
-                // max-width: 18vw;
                 height: auto;
                 max-width: 300px;
-                @include media('>ipad') {
-                    // max-width: 100px;
-                }
             }
         }
         &__register {
@@ -66,5 +58,13 @@
                 }
             }
         }
+    }
+}
+.icon {
+    &--background {
+        background-color: #daa520;
+    }
+    &--font-size {
+        font-size: 3em;
     }
 }
