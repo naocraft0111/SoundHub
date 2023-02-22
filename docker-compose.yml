@@ -21,13 +21,13 @@ services:
     ports:
       - 3000:3306
 
-  mailhog:
-    image: mailhog/mailhog
+  # テスト用コンテナ
+  db-test:
+    build: ./infra/mysql-test
+    volumes:
+      - db-store:/db-test/var/lib/mysql
     ports:
-      - target: 8025
-        published: ${MAILHOG_PUBLISHED_PORT:-8025}
-        protocol: tcp
-        mode: host
+      - 3100:3306
 
 volumes:
   db-store:
