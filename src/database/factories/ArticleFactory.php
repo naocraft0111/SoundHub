@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 /**
@@ -17,10 +17,12 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 2,
             'title' => $this->faker->realText(50),
             'body' => $this->faker->realText(100),
-            'created_at' => Carbon::now()->yesterday()
+            'created_at' => Carbon::now()->yesterday(),
+            'user_id' => function() {
+                return User::factory()->create()->id;
+            }
         ];
     }
 }
