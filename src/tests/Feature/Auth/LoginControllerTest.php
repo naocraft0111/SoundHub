@@ -72,9 +72,29 @@ class LoginControllerTest extends TestCase
     }
 
     /**
+     * ゲストログインテスト
+     */
+    public function test_guest_login()
+    {
+        // ゲストログイン用のユーザーを作成
+        $guestUser = User::factory()->create([
+            'id' => config('user.guest_user.id'),
+            'name' => config('user.guest_user.name'),
+            'email' => config('user.guest_user.email'),
+            'password' => Hash::make(config('user.guest_user.password'))
+        ]);
+
+        // ゲストログイン処理
+        $response = $this->actingAs($guestUser)->get(route('login.guest'));
+
+        // リダイレクト先が指定されたURLであることを確認
+        $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    /**
      * ログインテスト
      */
-    public function test_Login()
+    public function test_login()
     {
         $postData = [
             'email' => 'aaa@example.com',
@@ -90,34 +110,12 @@ class LoginControllerTest extends TestCase
 
         // ログインに成功したら、ホーム画面に遷移する
         $this->post($this->loginUrl, $postData)
-            ->assertRedirect(RouteServiceProvider::HOME);
+            ->assertRedirect(route('articles.index'));
 
         // 指定したユーザーが認証されているかチェック
         $this->assertAuthenticatedAs($user);
 
         // ログイン後にログイン画面にアクセスしようとすると、ホーム画面にリダイレクトされるかチェック
-        $this->get($this->loginUrl)
-            ->assertRedirect(RouteServiceProvider::HOME);
-    }
-
-    /**
-     * ゲストログインテスト
-     */
-    public function test_GuestLogin()
-    {
-        // ゲストログイン用のユーザーを作成
-        User::factory()->create([
-            'id' => config('user.guest_user.id'),
-            'name' => config('user.guest_user.name'),
-            'email' => config('user.guest_user.email'),
-            'password' => Hash::make(config('user.guest_user.password'))
-        ]);
-
-        // ゲストログインに成功したら、ホーム画面に遷移するかチェック
-        $this->get(route('login.guest'))
-            ->assertRedirect(RouteServiceProvider::HOME);
-
-        // ログイン後にログイン画面にアクセスするとき。ホーム画面にリダイレクトされるかチェック
         $this->get($this->loginUrl)
             ->assertRedirect(RouteServiceProvider::HOME);
     }
