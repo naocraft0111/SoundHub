@@ -40,13 +40,41 @@ class UserControllerTest extends TestCase
                 route('users.update', ['name' => $this->user->name]), [
                     'name' => $this->user->name,
                     'email' => $this->user->email,
+                    'gender' => 1,
+                    'pref_id' => 3,
+                    'prof_video_path' => '-bNMq1Nxn5o',
                     'self_introduction' => 'aaa',
                 ]);
         $response->assertRedirect(route('users.detail', ['name' => $this->user->name]));
         $this->assertDatabaseHas('users', [
             'name' => $this->user->name,
             'email' => $this->user->email,
+            'gender_id' => 1,
+            'pref_id' => 3,
+            'prof_video_path' => '-bNMq1Nxn5o',
             'self_introduction' => 'aaa',
+        ]);
+    }
+
+    /**
+     * カテゴリー関連更新テスト
+     */
+    public function test_UpdateCategories()
+    {
+        $secondaryCategory = [1, 2, 3];
+        $soundCategory = [1, 2, 3];
+        $user = User::factory()->create();
+        $this->seed('categorySeeder');
+
+        $user->user_secondaryCategories()->attach($secondaryCategory);
+        $user->user_soundCategories()->attach($soundCategory);
+
+        // Assert
+        $this->assertDatabaseHas('secondary_category_user', [
+            'secondary_category_id' => $secondaryCategory
+        ]);
+        $this->assertDatabaseHas('sound_category_user', [
+            'sound_category_id' => $soundCategory
         ]);
     }
 
