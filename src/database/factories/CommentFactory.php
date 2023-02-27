@@ -1,13 +1,15 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
+use App\Models\User;
+use App\Models\Article;
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class ArticleFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +19,13 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->realText(50),
-            'body' => $this->faker->realText(100),
-            'created_at' => Carbon::now()->yesterday(),
+            'comment' => $this->faker->realText(50),
             'user_id' => function() {
                 return User::factory()->create()->id;
+            },
+            'article_id' =>
+            function() {
+                return Article::factory()->create()->id;
             }
         ];
     }
