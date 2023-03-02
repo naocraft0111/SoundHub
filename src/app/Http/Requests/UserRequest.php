@@ -36,7 +36,7 @@ class UserRequest extends FormRequest
             'name' => ['required', 'string', 'max:15', Rule::unique('users')->ignore(Auth::id())],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
             'self_introduction' => ['string', 'min:1', 'max:300', 'nullable'],
-            'avatar' => ['image', 'nullable', 'mimes:jpeg,png,jpg,gif', 'max:1024'],
+            'avatar' => ['image', 'nullable', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ];
     }
 
@@ -45,15 +45,15 @@ class UserRequest extends FormRequest
         return [
             'age' => '年齢',
             'self_introduction' => '自己紹介',
-            'avatar' => 'アバター'
+            'avatar' => 'プロフィール画像'
         ];
     }
 
     public function messages()
     {
         return [
-            'mines' => '指定された拡張子（PNG/JPG/GIF）ではありません。',
-            'max' => '1Mを超えています。'
+            'mimes' => '指定された拡張子（PNG/JPG/GIF）ではありません。',
+            'avatar.max' => ':attributeは2MB以下で登録してください。'
         ];
     }
 
