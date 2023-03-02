@@ -13,6 +13,7 @@ use App\Models\SecondaryCategory;
 use App\Models\SoundCategory;
 use Illuminate\Support\Facades\Storage;
 use App\Services\ImageService;
+use InterventionImage;
 
 class UserController extends Controller
 {
@@ -103,12 +104,20 @@ class UserController extends Controller
 
         $imageFile = $request->file('avatar');
         if(request('avatar')) {
-            $filePath = 'public/avatar/' . $user->avatar;
-            if(Storage::exists($filePath)){
-                Storage::delete($filePath);
+            $s3AvatarUrl = $user->avatar;
+            $existsAvatarImg = basename($s3AvatarUrl);
+            if (Storage::disk('s3')->exists('avatar/' . $existsAvatarImg)) {
+                Storage::disk('s3')->delete('avatar/' . $existsAvatarImg);
             }
-            $fileNameToStore = ImageService::upload($imageFile, 'avatar');
-            $user->avatar = $fileNameToStore;
+            $extension = $imageFile->getClientOriginalExtension();
+            $filename = uniqid(rand().'_') . '.' . $extension;
+            $resizeImg = InterventionImage::make($imageFile)->resize(null, 50, function($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode($extension);
+
+            Storage::disk('s3')->put('avatar/'.$filename, $resizeImg, 'public');
+            $user->avatar = Storage::disk('s3')->url('avatar/'.$filename);
         }
 
         $user->user_secondaryCategories()->detach();
@@ -166,12 +175,34 @@ class UserController extends Controller
     }
 
     // 退会
-    public function destroy(Request $request, string $name)
+    public function destroy(string $name)
     {
         $user = User::where('name', $name)->first();
+        $articles = $user->articles()->get();
 
         // UserPolicyのdeleteメソッドでアクセス制限
         $this->authorize('delete', $user);
+
+        // ユーザーに紐づいている画像を削除
+        foreach ($articles as $article) {
+            $article->images()->each(function ($image) use ($article) {
+                $s3ImageUrl = $image->name;
+                $existsArticlesImg = basename($s3ImageUrl);
+                if (Storage::disk('s3')->exists('image/' . $existsArticlesImg)) {
+                    Storage::disk('s3')->delete('image/' . $existsArticlesImg);
+                }
+                $article->images()->detach($image->id);
+                $image->delete();
+            });
+            $article->delete();
+        }
+
+        // ユーザーに紐づいているアバターを削除
+        $s3AvatarUrl = $user->avatar;
+        $existsAvatarImg = basename($s3AvatarUrl);
+        if (Storage::disk('s3')->exists('avatar/' . $existsAvatarImg)) {
+            Storage::disk('s3')->delete('avatar/' . $existsAvatarImg);
+        }
 
         $user->delete();
         Auth::logout();

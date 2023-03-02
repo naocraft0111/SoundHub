@@ -5,7 +5,7 @@
                 @if (empty($person->avatar))
                 <img src="{{ asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
                 @else
-                <img src="{{ asset('storage/avatar/' . $person->avatar) }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                <img src="{{ $person->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
                 @endif
             </a>
             @if (Auth::id() !== $person->id)

@@ -17,5 +17,5 @@
     @if (Route::currentRouteName() === 'articles.edit')
     <p class="text-danger">※こちらに投稿されている画像が全て上書きされます。</p>
     @endif
-    <input type="file" class="form-control" id="images" name="images[][image]" accept="image/*" multiple>
+    <input type="file" class="form-control" id="images" name="images[]" accept="image/*" multiple>
 </div>

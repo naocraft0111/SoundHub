@@ -11,6 +11,7 @@ use App\Models\Image;
 use App\Http\Requests\ArticleRequest;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 class ArticleController extends Controller
 {
@@ -64,14 +65,20 @@ class ArticleController extends Controller
 
         $imageFiles = $request->file('images');
         if(request('images')) {
-            foreach($imageFiles as $imageFile) {
-                $fileNameToStore = ImageService::upload($imageFile, 'images');
-                $imageModal = new Image();
-                $imageModal->name = $fileNameToStore;
-                $imageModal->save();
-                $article->images()->attach($imageModal->id);
-            }
+        foreach($imageFiles as $imageFile) {
+            $extension = $imageFile->getClientOriginalExtension();
+            $filename = uniqid(rand().'_') . '.' . $extension;
+            $resizeImg = InterventionImage::make($imageFile)->resize(null, 810, function($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->encode($extension);
+            Storage::disk('s3')->put('image/'.$filename, $resizeImg, 'public');
+            $imageModal = new Image();
+            $imageModal->name = Storage::disk('s3')->url('image/'.$filename);
+            $imageModal->save();
+            $article->images()->attach($imageModal->id);
         }
+}
         toastr()->success('投稿が完了しました');
         return to_route('articles.index');
     }
@@ -130,9 +137,10 @@ class ArticleController extends Controller
 
         if(!is_null($article->images)) {
             $article->images()->each(function ($image) use ($article) {
-                $filePath = 'public/images/' . $image->name;
-                if(Storage::exists($filePath)){
-                    Storage::delete($filePath);
+                $s3ImageUrl = $image->name;
+                $existsArticlesImg = basename($s3ImageUrl);
+                if (Storage::disk('s3')->exists('image/' . $existsArticlesImg)) {
+                    Storage::disk('s3')->delete('image/' . $existsArticlesImg);
                 }
                 $article->images()->detach($image->id);
                 $image->delete();
@@ -142,9 +150,15 @@ class ArticleController extends Controller
         $imageFiles = $request->file('images');
         if(request('images')) {
             foreach($imageFiles as $imageFile) {
-                $fileNameToStore = ImageService::upload($imageFile, 'images');
+                $extension = $imageFile->getClientOriginalExtension();
+                $filename = uniqid(rand().'_') . '.' . $extension;
+                $resizeImg = InterventionImage::make($imageFile)->resize(null, 810, function($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->encode($extension);
+                Storage::disk('s3')->put('image/'.$filename, $resizeImg, 'public');
                 $imageModal = new Image();
-                $imageModal->name = $fileNameToStore;
+                $imageModal->name = Storage::disk('s3')->url('image/'.$filename);
                 $imageModal->save();
                 $article->images()->attach($imageModal->id);
             }
@@ -163,9 +177,10 @@ class ArticleController extends Controller
     {
         // 記事と紐づいている画像を削除
         $article->images()->each(function ($image) use ($article) {
-            $filePath = 'public/images/' . $image->name;
-            if(Storage::exists($filePath)){
-                Storage::delete($filePath);
+            $s3ImageUrl = $image->name;
+            $existsArticlesImg= basename($s3ImageUrl);
+            if (Storage::disk('s3')->exists('image/' . $existsArticlesImg)) {
+                Storage::disk('s3')->delete('image/' . $existsArticlesImg);
             }
             $article->images()->detach($image->id);
             $image->delete();
