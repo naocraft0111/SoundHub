@@ -9,7 +9,7 @@
 
         <div class="chat-box-container__header__img-container">
             @if (isset($receiverInstance->avatar))
-            <img src="{{ asset('storage/avatar/' . $receiverInstance->avatar) }}" alt="">
+            <img src="{{ $receiverInstance->avatar }}" alt="">
             @else
             <img src="{{ asset('images/user_default.png') }}">
             @endif

@@ -8,7 +8,7 @@
 
         <div class="chat-list-container__header__img-container">
             @if (isset(Auth()->user()->avatar))
-            <img src="{{ asset('storage/avatar/' . Auth()->user()->avatar) }}" alt="">
+            <img src="{{ Auth()->user()->avatar }}" alt="">
             @else
             <img src="{{ asset('images/user_default.png') }}">
             @endif
@@ -23,7 +23,7 @@
                     @if (null ==($this->getChatUserInstance($conversation, $name = 'avatar')))
                     <img src="{{ asset('images/user_default.png') }}">
                     @else
-                    <img src="{{ asset('storage/avatar/' . $this->getChatUserInstance($conversation, $name = 'avatar')) }}" alt="">
+                    <img src="{{ $this->getChatUserInstance($conversation, $name = 'avatar') }}" alt="">
                     @endif
                 </div>
                 <div class="chat-list-container__body__item__info">

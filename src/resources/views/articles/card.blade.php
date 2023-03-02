@@ -5,7 +5,7 @@
             @if (empty($article->user->avatar))
             <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
             @else
-            <img src="{{ asset('storage/avatar/' . $article->user->avatar) }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+            <img src="{{ $article->user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
             @endif
         </a>
         <div>
@@ -76,8 +76,8 @@
                 <div class="article-img">
                 @endif
                     <div class="article-img__list">
-                        <a href="{{ asset('storage/images/' . $image->name) }}" class="gallery" data-group="gallery{{ $article->id }}">
-                            <img src="{{ asset('storage/images/' . $image->name) }}" class="" style="object-fit: cover;" alt="{{ $image->name }}">
+                        <a href="{{ $image->name }}" class="gallery" data-group="gallery{{ $article->id }}">
+                            <img src="{{ $image->name }}" class="" style="object-fit: cover;" alt="{{ $image->name }}">
                         </a>
                     </div>
                 @if($loop->last)

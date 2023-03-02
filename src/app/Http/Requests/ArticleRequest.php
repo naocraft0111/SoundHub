@@ -28,13 +28,13 @@ class ArticleRequest extends FormRequest
             'body' => 'required|max:500',
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
             'images' => 'array|max:4',
-            'images.*.image' => 'required|image|mimes:jpeg,png,jpeg,gif'
+            'images.*' => 'required|image|mimes:jpg,png,jpeg,gif|max:10240',
         ];
     }
 
     public function attributes()
     {
-        return[
+        return [
             'title' => 'タイトル',
             'body'=> '本文',
             'tags' => 'タグ',
@@ -45,7 +45,10 @@ class ArticleRequest extends FormRequest
     public function messages()
     {
         return [
-            'tags.regex' => ':attributeに「/」と半角スペースは使用できません。'
+            'mimes' => '指定された拡張子（PNG/JPG/GIF）ではありません。',
+            'tags.regex' => ':attributeに「/」と半角スペースは使用できません。',
+            'images' => ':attributeは4枚以下で投稿してください。',
+            'images.*.max' => '画像は10MB以下で投稿してください。'
         ];
     }
 

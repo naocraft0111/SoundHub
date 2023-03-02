@@ -1,12 +1,12 @@
 <div class="form-group">
-    <label class="form-label d-block text-dark" for="avatar">プロフィール画像（サイズは1024Kbyteまで）</label>
+    <label class="form-label d-block text-dark" for="avatar">プロフィール画像</label>
     @if (Auth::id() == config('user.guest_user.id'))
     <img src="{{ asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
     @elseif(empty($user->avatar))
     <img src="{{ asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
     <input id="avatar" type="file" name="avatar" accept="image/png,image/jpeg,image/jpg">
     @else
-    <img src="{{ asset('storage/avatar/' . $user->avatar) }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;">
+    <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;">
     <input id="avatar" type="file" name="avatar" class="form-control" accept="image/png,image/jpeg,image/jpg">
     @endif
 </div>

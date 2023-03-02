@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -83,12 +84,25 @@ class UserControllerTest extends TestCase
      */
     public function test_delete()
     {
-        $response = $this->actingAs($this->user)
-            ->from(route('users.edit', ['name' => $this->user->name]))
-            ->delete(route('users.destroy', ['name' => $this->user->name]));
+        // テストに必要なデータを用意する
+        $user = User::factory()->create();
 
-        $response->assertRedirect('/');
+        //
+        Storage::fake('s3');
+        $imageFile = UploadedFile::fake()->image('avatar.jpg');
+        Storage::disk('s3')->putFileAs('avatar', $imageFile, 'avatar.jpg');
+        $user->avatar = Storage::disk('s3')->url('avatar/avatar.jpg');
 
-        $this->assertDatabaseEmpty(User::class);
+        // 退会処理のリクエストを作成する
+        $response = $this->actingAs($user)->delete(route('users.destroy', ['name' => $user->name]));
+
+        // レスポンスを検証する
+        $response->assertStatus(302); // リダイレクトが返されることを確認する
+        $response->assertRedirect('/'); // リダイレクト先が正しいことを確認する
+
+        // ユーザーが削除されたことを確認する
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id,
+        ]);
     }
 }
