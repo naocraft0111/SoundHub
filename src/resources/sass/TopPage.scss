@@ -18,7 +18,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.6);
         padding: 10px 10px;
         @include media('>ipad') {
             width: auto;
@@ -32,7 +32,8 @@
         }
         &__register {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 3em;
             margin-top: 8px;
             &--btn {
                 background: #bbf13d;
