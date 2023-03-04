@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'SoundHub | SoundHub')
+@section('title', 'SoundHub')
 @section('content')
 <div class="main-visual">
     <img src="{{ asset('images/top_page.jpg') }}" alt="TopPage.jpg" loading="lazy">

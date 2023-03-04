@@ -29,7 +29,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="{{ route('articles.edit', ['article' => $article]) }}">
-                            <i class="fas fa-pen me-1"></i>記事を更新する
+                            <i class="fas fa-pen me-1"></i>記事を編集する
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $article->id }}">

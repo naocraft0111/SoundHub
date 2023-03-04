@@ -14,16 +14,6 @@
         </div>
         @endif
 
-        @if (Auth::id() == config('user.guest_user.id'))
-        <div class="card-body text-center">
-            <p class="text-danger">
-                <b>※ゲストユーザーは、以下の項目を変更できません。</b><br>
-                    ・プロフィール画像<br>
-                    ・ユーザー名<br>
-                    ・メールアドレス<br>
-            </p>
-        </div>
-        @endif
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 @include('error_card_list')

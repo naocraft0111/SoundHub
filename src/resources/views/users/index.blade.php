@@ -26,10 +26,12 @@
                             <div class="form-group mt-3">
                                 <label for="age">年齢</label>
                                 <div class="row g-2 flex-nowrap">
-                                    <div class="col-4"><input id="age_from" type="text" class="form-control" name="age_from" placeholder="指定なし" value=@if(isset($inputs['age_from'])) {{ $inputs['age_from'] }} @endif></div>
+                                    <div class="col-4"><input id="age_from" type="text"
+                                        max-length = "3" oninput="value = value.replace(/[^0-9]+/i,'');" class="form-control" name="age_from" placeholder="指定なし" value=@if(isset($inputs['age_from'])) {{ $inputs['age_from'] }} @endif></div>
                                     <div class="col-1 text-center"><span class="form-control-plaintext">歳</span></div>
                                     <div class="col-2 text-center"><span class="form-control-plaintext">〜</span></div>
-                                    <div class="col-4"><input id="age_to" type="text" class="form-control" name="age_to"placeholder="指定なし" value=@if(isset($inputs['age_to'])) {{ $inputs['age_to'] }} @endif></div>
+                                    <div class="col-4"><input id="age_to" type="text"
+                                        max-length = "3" oninput="value = value.replace(/[^0-9]+/i,'');" class="form-control" name="age_to" placeholder="指定なし" value=@if(isset($inputs['age_to'])) {{ $inputs['age_to'] }} @endif></div>
                                     <div class="col-1 text-center"><span class="form-control-plaintext">歳</span></div>
                                 </div>
                             </div>
@@ -77,6 +79,7 @@
                             <div class="form-group mt-3">
                                 <label for="category">楽器名</label>
                                 <select name="secondary_category" id="secondary" class="form-control">
+                                    <option value="0">-------</option>
                                     @foreach ($secondaryCategoryList as $index => $name)
                                     <option value="{{ $index }}" @if(isset($inputs['secondary_category'])) @selected(old('secondary_category', $inputs['secondary_category']) == $index) @endif>{{ $name }}</option>
                                     @endforeach

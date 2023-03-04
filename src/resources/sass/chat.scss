@@ -3,6 +3,10 @@ $header_height: 60px;
 $footer_height: 60px;
 $base_color: #0484f3;
 
+.chat-add {
+    padding: 5px 10px 5px 5px;
+}
+
 .msg-body-me {
     background-color: rgb(243, 243, 243);
     margin-left: auto;
@@ -68,8 +72,10 @@ img {
         height: 60px;
         display: flex;
         flex-wrap: nowrap;
+        justify-content: space-between;
 
         .title {
+            color: #8a590b;
             font-size: 19px;
             display: flex;
             padding: 5px 6px;

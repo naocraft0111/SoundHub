@@ -3,6 +3,7 @@
     <input id="title" type="text" class="form-control" name="title" value="{{ $article->title ?? old('title') }}" required placeholder="50字以内で入力してください">
 </div>
 <div class="form-group mt-3">
+    <label for="tag">タグ</label>
     <article-tags-input
         :initial-tags='@json($tagNames ?? [])'
         :autocomplete-items='@json($allTagNames ?? [])'>

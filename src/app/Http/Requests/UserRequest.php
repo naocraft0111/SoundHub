@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
         // ゲストユーザーログイン時はバリデーションにかけない
         if(Auth::id() == config('user.guest_user.id')) {
             return [
-                'self_introduction' => ['string', 'min:1', 'max:50', 'nullable'],
+                'self_introduction' => ['string', 'min:1', 'max:300', 'nullable'],
             ];
         }
 

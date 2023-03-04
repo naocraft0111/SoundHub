@@ -1,3 +1,3 @@
-<div class="paginate justify-content-center">
+<div class="pagination mt-3 justify-content-center">
     {{ $users->appends(request()->input())->links() }}
 </div>

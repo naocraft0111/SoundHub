@@ -125,7 +125,7 @@ class User extends Authenticatable
     }
 
     // 年齢〇〇歳以上
-    public function scopeAgeFromFilter($query, int $age_from = null)
+    public function scopeAgeFromFilter($query, $age_from = null)
     {
         if(!$age_from) {
             return $query;
@@ -135,7 +135,7 @@ class User extends Authenticatable
     }
 
     // 年齢〇〇歳以下
-    public function scopeAgeToFilter($query, int $age_to = null)
+    public function scopeAgeToFilter($query, $age_to = null)
     {
         if(!$age_to) {
             return $query;

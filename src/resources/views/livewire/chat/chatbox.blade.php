@@ -7,23 +7,18 @@
             <i class="bi bi-arrow-left"></i>
         </div>
 
-        <div class="chat-box-container__header__img-container">
-            @if (isset($receiverInstance->avatar))
-            <img src="{{ $receiverInstance->avatar }}" alt="">
-            @else
-            <img src="{{ asset('images/user_default.png') }}">
-            @endif
-        </div>
-
-        <div class="name">
-            {{ $receiverInstance->name }}
-        </div>
-
-        <div class="info">
-            <div class="info-item">
-                <a href="{{ route('users.detail', ['name' => $receiverInstance->name])}}" title="ユーザーページ"><i class="bi bi-info-circle-fill"></i></a>
+        <a href="{{ route('users.detail', ['name' => $receiverInstance->name])}}" class="d-flex" title="ユーザーページ">
+            <div class="chat-box-container__header__img-container">
+                @if (isset($receiverInstance->avatar))
+                <img src="{{ $receiverInstance->avatar }}" alt="">
+                @else
+                <img src="{{ asset('images/user_default.png') }}">
+                @endif
             </div>
-        </div>
+            <div class="name">
+                {{ $receiverInstance->name }}
+            </div>
+        </a>
     </div>
 
     <div class="chat-box-container__body">

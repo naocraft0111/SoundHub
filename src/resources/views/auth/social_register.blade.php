@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title', 'ユーザー登録 | SoundHub')
+@section('title', '会員登録 | SoundHub')
 @section('content')
 <div class="py-4">
     <div class="container"
         style="max-width: 540px">
-        <h3 class="text-center">ユーザー登録</h3>
+        <h1 class="text-center">SoundHubに会員登録</h1>
         <div class="card shadow-sm mb-4">
                 <div class="card-body">
 
