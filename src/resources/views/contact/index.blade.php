@@ -6,7 +6,7 @@
     <div class="py-4">
         <div class="container"
             style="max-width: 540px">
-            <h3 class="text-center">お問い合わせ</h3>
+            <h1 class="text-center">お問い合わせ</h1>
             <p>
                 SoundHubに対するご意見・お問い合わせなどございましたらお聞かせください。<br>
                 お送りいただいた内容は全て確認しておりますが、ご返信を差し上げることができない場合がございますので、ご了承ください。

@@ -1,45 +1,47 @@
+@if (Auth::id() == config('user.guest_user.id'))
+@elseif(empty($user->avatar))
 <div class="form-group">
     <label class="form-label d-block text-dark" for="avatar">プロフィール画像</label>
-    @if (Auth::id() == config('user.guest_user.id'))
-    <img src="{{ asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
-    @elseif(empty($user->avatar))
     <img src="{{ asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
     <input id="avatar" type="file" name="avatar" accept="image/png,image/jpeg,image/jpg">
-    @else
+</div>
+@else
+<div class="form-group">
+    <label class="form-label d-block text-dark" for="avatar">プロフィール画像</label>
     <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;">
     <input id="avatar" type="file" name="avatar" class="form-control" accept="image/png,image/jpeg,image/jpg">
-    @endif
 </div>
+@endif
 
+@if (Auth::id() == config('user.guest_user.id'))
+@else
 <div class="form-group mt-3">
-    @if (Auth::id() == config('user.guest_user.id'))
-    <label for="name">ユーザー名</label>
-    <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" readonly>
-    @else
     <label for="name">ユーザー名</label><span class="text-danger">【必須】</span>
     <input id="name" type="text" class="form-control" name="name" value="{{ $user->name ?? old('name') }}" required placeholder="15文字以内で入力してください。">
-    @endif
 </div>
+@endif
 
+@if (Auth::id() == config('user.guest_user.id'))
+@elseif (strpos($user->email, 'gmail.com') !== false)
 <div class="form-group mt-3">
-    @if (Auth::id() == config('user.guest_user.id'))
-    <label for="email">メールアドレス</label>
-    <input id="email" type="text" class="form-control" name="email" value="{{ $user->email }}" readonly>
-    @elseif (strpos($user->email, 'gmail.com') !== false)
     <label for="email">メールアドレス<span class="text-danger">【必須】</span></label>
         <p class="text-danger text-center mt-3">
             <b>ドメイン名を「@google.com」以外を登録した場合、<br>googleログインから認証できなくなります。</b>
         </p>
     <input id="email" type="text" class="form-control" name="email" value="{{ $user->email ?? old('email') }}" required placeholder="メールアドレスを入力しださい。">
-    @else
+</div>
+@else
+<div class="form-group mt-3">
     <label for="email">メールアドレス<span class="text-danger">【必須】</span></label>
     <input id="email" type="text" class="form-control" name="email" value="{{ $user->email ?? old('email') }}" required placeholder="メールアドレスを入力しださい。">
-    @endif
 </div>
+@endif
 
-<div>
-    <label for="gender" class="mt-3 me-3">性別</label>
-</div>
+@if (Auth::id() == config('user.guest_user.id'))
+<label for="gender" class="me-3 d-block">性別</label>
+@else
+<label for="gender" class="mt-3 me-3 d-block">性別</label>
+@endif
 <div class="form-check form-check-inline">
     <input type="radio" class="form-check-input" name="gender" value="1" id="genderRadio1" @if($user->gender_id == 1) checked @endif>
     <label class="form-check-label" for="genderRadio1">男性</label>
