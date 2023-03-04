@@ -34,7 +34,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @unless (Route::currentRouteName() === 'chat')
         @include('layouts.footer')
+        @endunless
     </div>
     @livewireScripts
 </body>

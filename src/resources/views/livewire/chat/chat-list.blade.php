@@ -6,13 +6,15 @@
             チャット
         </div>
 
-        <div class="chat-list-container__header__img-container">
-            @if (isset(Auth()->user()->avatar))
-            <img src="{{ Auth()->user()->avatar }}" alt="">
-            @else
-            <img src="{{ asset('images/user_default.png') }}">
-            @endif
-        </div>
+        <a href="{{ route("users.detail", ["name" => Auth::user()->name]) }}" class="d-flex">
+            <div class="chat-list-container__header__img-container">
+                @if (isset(Auth()->user()->avatar))
+                <img src="{{ Auth()->user()->avatar }}" alt="">
+                @else
+                <img src="{{ asset('images/user_default.png') }}">
+                @endif
+            </div>
+        </a>
     </div>
 
     <div class="chat-list-container__body">
@@ -49,7 +51,7 @@
 
             @else
             <div class="fs-4 text-center text-primary mt-5">
-                チャットへようこそ
+                相手とのチャットを開始したい場合は、その相手のアカウントのメッセージアイコンをクリックしてください。
             </div>
             @endif
     </div>
