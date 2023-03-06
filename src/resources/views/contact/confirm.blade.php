@@ -6,7 +6,7 @@
     <div class="py-4">
         <div class="container"
             style="max-width: 540px">
-            <h3 class="text-center">お問い合わせ内容の確認</h3>
+            <h1 class="text-center">お問い合わせ内容の確認</h1>
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <form method="post"

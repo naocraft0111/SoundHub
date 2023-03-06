@@ -4,7 +4,7 @@
 <div class="py-4">
     <div class="container"
         style="max-width: 540px">
-        <h3 class="text-center">パスワードを変更</h3>
+        <h1 class="text-center">パスワードを変更</h1>
         @if (session('status'))
         <div class="card-text alert alert-success">
             {{ session('status') }}

@@ -1,6 +1,6 @@
 // ctrlとshiftキーを無効にして、mousedownによって複数選択可能にする
 function keyInvalid() {
-    $('#secondary option').on('mousedown', function(e) {
+    $('#secondary option, #sound_category option').on('mousedown', function(e) {
         if (!e.ctrlKey && !e.shiftKey) {
             var selected = $(this).prop('selected');
             $(this).prop('selected', (!selected) ? true : false);

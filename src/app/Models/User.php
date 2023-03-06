@@ -62,12 +62,16 @@ class User extends Authenticatable
     }
 
     // 楽器名検索
-    public function scopeSecondaryCategory($query, int $categoryId)
+    public function scopeSecondaryCategory($query, ?array $categoryIds)
     {
-        if($categoryId !== 0)
+        if (is_null($categoryIds)) {
+            return;
+        }
+
+        if(count($categoryIds) !== 0)
         {
-            return $query->whereHas('user_secondaryCategories', function($query) use($categoryId) {
-                $query->where('secondary_category_id', $categoryId);
+            return $query->whereHas('user_secondaryCategories', function($query) use($categoryIds) {
+                $query->whereIn('secondary_category_id', $categoryIds);
             });
         } else {
             return;
@@ -80,13 +84,16 @@ class User extends Authenticatable
     }
 
     // 音楽性検索
-    public function scopeSoundCategoryFilter($query, int $soundCategoryId)
+    public function scopeSoundCategoryFilter($query, ?array $soundCategoryIds)
     {
-
-        if($soundCategoryId !== 0)
+        if (is_null($soundCategoryIds)) {
+            return;
+        }
+        
+        if(count($soundCategoryIds) !== 0)
         {
-            return $query->whereHas('user_soundCategories', function($query) use($soundCategoryId) {
-                $query->where('sound_category_id', $soundCategoryId);
+            return $query->whereHas('user_soundCategories', function($query) use($soundCategoryIds) {
+                $query->whereIn('sound_category_id', $soundCategoryIds);
             });
         } else {
             return;

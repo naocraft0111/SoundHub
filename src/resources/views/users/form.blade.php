@@ -67,7 +67,7 @@
 </div>
 
 <div class="form-group mt-3">
-    <label for="category">楽器ジャンル</label>
+    <label for="category">楽器ジャンル<br>（&#9660;全てを選択時は他ジャンルの楽器名も登録できます）</label>
     <select name="primary_category_id" id="primary" class="form-control">
         <option value="">&#9660;全て</option>
         @foreach ($primaryCategoryList as $index => $name)
@@ -77,7 +77,7 @@
 </div>
 
 <div class="form-group mt-3">
-    <label for="category">楽器名</label>
+    <label for="category">楽器名（複数選択可）</label>
     <select name="secondary_category[]" id="secondary" class="form-control" multiple>
         @foreach ($secondaryCategoryList as $index => $name)
         <option value="{{ $index }}" @selected(old('secondary_category', $user->user_secondaryCategories->contains('id', $index) ?? ''))>{{ $name }}</option>
@@ -85,7 +85,7 @@
     </select>
 </div>
 
-<label class="mt-3">音楽性</label>
+<label class="mt-3">音楽性（複数選択可）</label>
 <div>
     @foreach ($sound_categories as $category)
     <div class="form-check-inline">
