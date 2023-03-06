@@ -4,7 +4,7 @@
 <div class="py-4">
     <div class="container"
         style="max-width: 540px">
-        <h3 class="text-center">パスワード再設定</h3>
+        <h1 class="text-center">パスワード再設定</h1>
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 @if (session('status'))
