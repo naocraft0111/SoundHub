@@ -21,7 +21,7 @@
             @if(isset($user->self_introduction))
             <div class="mt-3">
                 <h4 class="fw-bold border-bottom">自己紹介</h4>
-                <p>{{ $user->self_introduction }}</p>
+                <p>{!! nl2br(e($user->self_introduction)) !!}</p>
             </div>
             @endif
 
