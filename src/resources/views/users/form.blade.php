@@ -8,7 +8,7 @@
 @else
 <div class="form-group">
     <label class="form-label d-block text-dark" for="avatar">プロフィール画像</label>
-    <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;">
+    <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
     <input id="avatar" type="file" name="avatar" class="form-control" accept="image/png,image/jpeg,image/jpg">
 </div>
 @endif
