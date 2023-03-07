@@ -36,7 +36,7 @@ class ContactSendmail extends Mailable
         return $this
             ->from('
             soundhub1110@gmail.com')
-            ->subject('自動返信メール')
+            ->subject('お問い合わせ頂いた内容に関して')
             ->view('contact.mail')
             ->with([
                 'name' => $this->name,
