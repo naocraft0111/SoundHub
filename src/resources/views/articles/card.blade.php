@@ -1,4 +1,5 @@
-<div class="card mt-3">
+<div class="card mt-3 article__card-content">
+    <a href="{{ route('articles.show', ['article' => $article]) }}" class="article__card-content__show-a"></a>
     <div class="card-body d-flex flex-row">
         <a href="{{ route('users.detail', ['name' => $article->user->name]) }}"
             class="text-dark">
@@ -23,7 +24,7 @@
             <div class="ms-auto card-text">
                 <div class="dropdown">
                     <a data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <button type="button" class="btn btn-link text-muted m-0 p-2" id="dropdownMenuButton">
+                        <button type="button" class="btn btn-link m-0 article__dropdown-button" id="dropdownMenuButton">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
                     </a>
@@ -62,9 +63,7 @@
 
     <div class="card-body pt-0 pb-2">
         <h4 class="card-title">
-            <a href="{{ route('articles.show', ['article' => $article]) }}">
-                {{ $article->title }}
-            </a>
+            {{ $article->title }}
         </h4>
         <div class="card-text">
             {!! nl2br(e( $article->body )) !!}
@@ -73,9 +72,9 @@
             <div class="gallery-list">
                 @foreach ($article->images as $image)
                 @if ($loop->first)
-                <div class="article-img">
+                <div class="article__img">
                 @endif
-                    <div class="article-img__list">
+                    <div class="article__img__list">
                         <a href="{{ $image->name }}" class="gallery" data-group="gallery{{ $article->id }}">
                             <img src="{{ $image->name }}" class="" style="object-fit: cover;" alt="{{ $image->name }}">
                         </a>
@@ -89,18 +88,24 @@
     </div>
     <div class="card-body pt-0 pb-2 ps-3">
         <div class="card-text d-flex align-items-center">
-            <div class="d-flex align-items-center">
-                <a class="pe-1" data-bs-toggle="modal" data-bs-target="#commentModal">
-                    <i class="far fa-comment text-secondary"></i>
-                </a>
-                <p class="mb-0 pe-1 ps-1 text-secondary" style="padding-bottom: 2.0px;">
-                    {{ count($article->comments) }}
-                </p>
+            <div class="d-flex align-items-center" style="gap: 1rem;">
+                <div class="d-flex article__comment">
+                    <a class="article__comment__a" data-bs-toggle="modal" data-bs-target="#comment-modal-{{ $article->id }}">
+                        <span>
+                            <i class="far fa-comment"></i>
+                        </span>
+                    </a>
+                    <p class="d-flex m-0">
+                        {{ count($article->comments) }}
+                    </p>
+                </div>
                 <article-like
                     :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
                     :initial-count-likes='@json($article->count_likes)'
                     :authorized='@json(Auth::check())'
                     endpoint="{{ route('articles.like', ['article' => $article]) }}"
+                    class="d-flex align-items-center"
+                    style="z-index: 100;"
                 >
                 </article-like>
             </div>
@@ -114,9 +119,9 @@
             <div class="card-body pt-0 pb-4 ps-3">
                 <div class="card-text line-height">
         @endif
-                    <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 me-1 mt-1 text-muted">
-                        {{ $tag->hashtag }}
-                    </a>
+                <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border p-1 me-1 mt-1">
+                    {{ $tag->hashtag }}
+                </a>
         @if($loop->last)
                 </div>
             </div>
