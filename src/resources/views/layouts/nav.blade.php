@@ -44,13 +44,16 @@
                     </div>
                 </form>
                 <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="{{ route('articles.index') }}"><i class="fa-solid fa-house me-1"></i>ホーム</a>
+                </li>
+                <li class="nav-item d-none d-lg-block">
                     <a class="nav-link notification" href="{{ route('chat') }}">
                         <i class="fa fa-comments me-1">
                             @if($count !== 0)
                             <span class="notification__badge">{{ $count }}</span>
                             @endif
-                        </i>
-                        チャット</a>
+                        </i>チャット
+                    </a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
@@ -106,13 +109,16 @@
                         </div>
                     </form>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('articles.index') }}"><i class="fa-solid fa-house me-1"></i>ホーム</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link notification" href="{{ route('chat') }}">
                             <i class="fa fa-comments me-1">
                                 @if($count !== 0)
                                 <span class="notification__badge">{{ $count }}</span>
                                 @endif
-                            </i>
-                            チャット</a>
+                            </i>チャット
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
