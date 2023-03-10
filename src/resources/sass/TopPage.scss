@@ -1,3 +1,6 @@
+section {
+    scroll-margin-top: 50px;
+}
 .main-visual {
     margin-top: -1.5rem;
     margin-bottom: 80px;
@@ -30,6 +33,26 @@
                 max-width: 300px;
             }
         }
+        &__description {
+            margin: 24px 0;
+            &--btn {
+                background: #f6c364;
+                border-radius: 50px;
+                padding: 10px 30px;
+                color: #000;
+                transition: 0.3s ease-in-out;
+                position: relative;
+                .fa-position-right {
+                    position: absolute;
+                    top: calc(50% - .5em);
+                    right: 0.5rem;
+                }
+                &:hover {
+                    background: #db9e2e;
+                    color: #000;
+                }
+            }
+        }
         &__register {
             display: flex;
             justify-content: center;
@@ -58,6 +81,15 @@
                     }
                 }
             }
+        }
+    }
+}
+.SoundHub-what {
+    margin-bottom: 80px;
+    & h4 {
+        line-height: 2rem;
+        @include media('>ipad') {
+            line-height: 3rem;
         }
     }
 }
