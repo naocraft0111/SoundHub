@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
+                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>演奏相手を探す</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen me-1"></i>投稿する</a>
@@ -121,7 +121,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
+                        <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>演奏相手を探す</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen me-1"></i>投稿する</a>
