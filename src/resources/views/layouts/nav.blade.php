@@ -1,7 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light nav_color">
     <div class="container">
         <h1 class="site-title">
+            @guest
+            <a href="/"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
+            @endguest
+            @auth
             <a href="{{ route('articles.index') }}"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
+            @endauth
         </h1>
         {{-- ハンバーガーメニュー --}}
         <button class="navbar-toggler"
