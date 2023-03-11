@@ -1,7 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light nav_color">
     <div class="container">
         <h1 class="site-title">
+            @guest
+            <a href="/"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
+            @endguest
+            @auth
             <a href="{{ route('articles.index') }}"><img src="{{ asset('images/logo.png') }}" alt="SoundHub"></a>
+            @endauth
         </h1>
         {{-- ハンバーガーメニュー --}}
         <button class="navbar-toggler"
@@ -44,16 +49,19 @@
                     </div>
                 </form>
                 <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="{{ route('articles.index') }}"><i class="fa-solid fa-house me-1"></i>ホーム</a>
+                </li>
+                <li class="nav-item d-none d-lg-block">
                     <a class="nav-link notification" href="{{ route('chat') }}">
                         <i class="fa fa-comments me-1">
                             @if($count !== 0)
                             <span class="notification__badge">{{ $count }}</span>
                             @endif
-                        </i>
-                        チャット</a>
+                        </i>チャット
+                    </a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
+                    <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>演奏相手を探す</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen me-1"></i>投稿する</a>
@@ -106,16 +114,19 @@
                         </div>
                     </form>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('articles.index') }}"><i class="fa-solid fa-house me-1"></i>ホーム</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link notification" href="{{ route('chat') }}">
                             <i class="fa fa-comments me-1">
                                 @if($count !== 0)
                                 <span class="notification__badge">{{ $count }}</span>
                                 @endif
-                            </i>
-                            チャット</a>
+                            </i>チャット
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>ユーザー一覧</a>
+                        <a class="nav-link" href="{{ route('users.index') }}"><i class="fa fa-users me-1"></i>演奏相手を探す</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen me-1"></i>投稿する</a>

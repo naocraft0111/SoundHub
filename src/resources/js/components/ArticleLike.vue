@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <button type="button" class="btn m-0 p-1 shadow-none border-0">
-            <span class="text-secondary">
-                <i class="fas fa-heart"
-                    :class="{'text-danger':this.isLikedBy, 'Heart1':this.gotToLike}"
+    <div class="article__like">
+        <button type="button" class="btn shadow-none border-0 article__like__button">
+            <span class="article__like__button__span">
+                <i class="fa-regular fa-heart article__like__button__span__tap-area" aria-hidden="true"
+                    :class="{'text-danger':this.isLikedBy, 'fa-solid fa-heart':this.isLikedBy,'Heart1':this.gotToLike}"
                     @click="clickLike"
                 />
             </span>
         </button>
-        <span class="text-secondary">
+        <p class="m-0" :class="{'text-danger':this.isLikedBy}">
             {{ countLikes }}
-        </span>
+        </p>
     </div>
 </template>
 

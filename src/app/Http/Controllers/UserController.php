@@ -111,7 +111,7 @@ class UserController extends Controller
             }
             $extension = $imageFile->getClientOriginalExtension();
             $filename = uniqid(rand().'_') . '.' . $extension;
-            $resizeImg = InterventionImage::make($imageFile)->resize(null, 50, function($constraint) {
+            $resizeImg = InterventionImage::make($imageFile)->resize(null, 810, function($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             })->encode($extension);

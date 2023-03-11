@@ -1,13 +1,15 @@
 <div class="card mt-3">
     <div class="card-body">
         <div class="d-flex flex-row align-items-center">
-            <a href="{{ route('users.detail', ['name' => $user->name])}}" class="text-dark">
-                @if (empty($user->avatar))
-                <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
-                @else
-                <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
-                @endif
-            </a>
+            @if (empty($user->avatar))
+                <a href="{{asset('images/user_default.png') }}" class="gallery">
+                    <img src="{{asset('images/user_default.png') }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                </a>
+            @else
+                <a href="{{ $user->avatar }}" class="gallery">
+                    <img src="{{ $user->avatar }}" id="img" class="img-fuild rounded-circle" style="object-fit: cover;" width="50" height="50">
+                </a>
+            @endif
             @if (Auth::id() !== $user->id)
                 <div class="ms-auto d-inline-flex align-items-center">
                     <livewire:chat.create-chat :user="$user">

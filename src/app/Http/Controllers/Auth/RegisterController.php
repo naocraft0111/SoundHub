@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:15', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'regex:/\A([a-zA-Z0-9]{8,})+\z/u', 'min:8', 'confirmed'],
-            'age' => ['required','numeric', 'min:1', 'max:200']
+            'age' => ['nullable', 'sometimes', 'numeric', 'min:1', 'max:200']
         ]);
     }
 
@@ -74,11 +74,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $age = isset($data['age']) ? $data['age'] : null;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'age' => $data['age']
+            'age' => $age
         ]);
     }
 
@@ -101,18 +102,19 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:15', 'unique:users'],
             'token' => ['required', 'string'],
             'password' => ['required', 'string', 'regex:/\A([a-zA-Z0-9]{8,})+\z/u', 'min:8', 'confirmed'],
-            'age' => ['required','numeric', 'min:1', 'max:200']
+            'age' => ['nullable', 'sometimes', 'numeric', 'min:1', 'max:200']
         ]);
 
         $token = $request->token;
 
         $providerUser = Socialite::driver($provider)->userFromToken($token);
 
+        $age = isset($request->age) ? $request->age : null;
         $user = User::create([
             'name' => $request->name,
             'email' => $providerUser->getEmail(),
             'password' => Hash::make($request['password']),
-            'age' => $request->age
+            'age' => $age
         ]);
 
         $this->guard()->login($user, true);

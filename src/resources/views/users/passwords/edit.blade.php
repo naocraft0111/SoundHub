@@ -1,10 +1,13 @@
 @extends('layouts.app')
 @section('title', 'パスワード変更 | SoundHub')
 @section('content')
+<div class="container">
+    {{ Breadcrumbs::render('users.password.edit', $user) }}
+</div>
 <div class="py-4">
     <div class="container"
         style="max-width: 540px">
-        <h1 class="text-center">パスワードを変更</h1>
+        <h1 class="text-center">パスワード変更</h1>
         @if (session('status'))
         <div class="card-text alert alert-success">
             {{ session('status') }}

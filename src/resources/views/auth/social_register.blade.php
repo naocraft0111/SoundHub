@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group mt-3">
-                            <label for="birthday">生年月日<span class="text-danger">【必須】※登録後変更できません</span></label>
+                            <label for="birthday">生年月日（任意）<br><span class="text-danger">※会員登録後、生年月日を保存、変更できません。</span></label>
                             @livewire('birthday')
                         </div>
 

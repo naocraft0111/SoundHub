@@ -3,6 +3,9 @@
 @section('title', 'プロフィール編集 | SoundHub')
 
 @section('content')
+<div class="container">
+    {{ Breadcrumbs::render('users.edit', $user) }}
+</div>
 <div class="py-4">
     <div class="container"
         style="max-width: 540px">

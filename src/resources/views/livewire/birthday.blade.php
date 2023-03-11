@@ -2,7 +2,7 @@
     {{-- 年 --}}
     <select name="birth-year" wire:model="year" wire:change="onChange">
         <option>----</option>
-        @for($i = 1900; $i <= date('Y'); $i++)
+        @for($i = date('Y'); $i >= 1900; $i--)
         <option value="{{ $i }}">{{ $i }}</option>
         @endfor
     </select>
