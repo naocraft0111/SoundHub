@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\Chat;
 
 use App\Events\MessageSent;
+use App\Mail\NewChatMessageNotification;
 use App\Models\User;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
 
 class SendMessage extends Component
 {
@@ -50,12 +52,17 @@ class SendMessage extends Component
 
         $this->emitTo('chat.chatbox', 'pushMessage', $this->createdMessage->id);
 
+        // メール通知
+        $receiverEmail = $this->receiverInstance->email;
+        $notificationTitle = auth()->user()->name .'さんから新しいメッセージが届きました';
+
+        Mail::to($receiverEmail)
+        ->send(new NewChatMessageNotification(auth()->user()->name, $notificationTitle, $this->body));
+
         // チャットリストを更新する
         $this->emitTo('chat.chat-list', 'refresh');
         $this->reset('body');
 
-        // イベントが発生した時だけ発火
-        $this->emitSelf('dispatchMessageSent');
     }
 
     // イベントにメッセージ情報を送信する
