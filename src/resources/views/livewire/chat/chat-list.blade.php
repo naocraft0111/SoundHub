@@ -31,13 +31,18 @@
                 <div class="chat-list-container__body__item__info">
                     <div class="top-row">
                         <div class="list-username">{{ $this->getChatUserInstance($conversation, $name='name') }}</div>
+                        @if (count($conversation->messages) > 0)
                         <span class="date">{{$conversation->messages->last()->created_at->shortAbsoluteDiffForHumans()}}</span>
+                        @else
+                        @endif
                     </div>
 
                     <div class="bottom-row">
-
                         <div class="message-body text-truncate">
+                        @if (count($conversation->messages) > 0)
                             {{$conversation->messages->last()->body}}
+                        @else
+                        @endif
                         </div>
                         @php
                             if(count($conversation->messages->where('read',0)->where('receiver_id', Auth()->user()->id))){
