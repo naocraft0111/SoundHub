@@ -38,7 +38,7 @@ class CommentNotification extends Mailable
      */
     public function build()
     {
-        return $this->subject('コメントが投稿されました')
+        return $this->subject($this->user->name .'さんからコメントが投稿されました')
                     ->view('emails.comment_notification');
     }
 }
