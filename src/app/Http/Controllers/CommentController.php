@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\CommentRequest;
-
-
+use App\Mail\CommentNotification;
+use Illuminate\Support\Facades\Mail;
 class CommentController extends Controller
 {
     /**
@@ -19,6 +19,22 @@ class CommentController extends Controller
     {
         $comments->fill($request->all());
         $comments->save();
+
+        // コメントを投稿したユーザー
+        $user = $request->user();
+
+        // コメントを受け取ったユーザー
+        $recipient = $comments->article->user;
+
+        // ユーザーIDが自分自身でない場合にのみメール通知を送信する
+        if($user->id !== $recipient->id) {
+            // メールクラスをインスタンス化して、メールの内容を設定する
+            $mail = new CommentNotification($user, $recipient, $comments);
+
+            // メールを送信する
+            Mail::to($recipient->email)->send($mail);
+        }
+
         toastr()->success('コメントを投稿しました');
         return back();
     }
