@@ -14,6 +14,8 @@ use App\Models\SoundCategory;
 use Illuminate\Support\Facades\Storage;
 use App\Services\ImageService;
 use InterventionImage;
+use App\Mail\FollowNotification;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -252,6 +254,9 @@ class UserController extends Controller
 
         $request->user()->followings()->detach($user);
         $request->user()->followings()->attach($user);
+
+        // フォローされた側に通知メールを送信
+        Mail::to($user->email)->send(new FollowNotification($user, $request->user()));
 
         return ['name' => $name];
     }
