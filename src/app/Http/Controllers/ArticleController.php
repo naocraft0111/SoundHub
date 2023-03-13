@@ -12,6 +12,8 @@ use App\Http\Requests\ArticleRequest;
 use App\Services\ImageService;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\LikeNotification;
 
 class ArticleController extends Controller
 {
@@ -196,6 +198,20 @@ class ArticleController extends Controller
         $article->likes()->detach($request->user()->id);
         $article->likes()->attach($request->user()->id);
 
+        // いいねを受け取ったユーザーの情報を取得
+        $receiver = $article->user;
+
+        // いいねを送信したユーザーの情報を取得
+        $sender = $request->user();
+
+        // 自分自身に対して、いいねをしていない場合のみメール通知を送信する
+        if($receiver->id !== $sender->id) {
+            // 受け取るメールアドレスを取得
+            $to = $receiver->email;
+
+            // メール通知を送信
+            Mail::to($to)->send(new LikeNotification($sender, $article));
+        }
         return [
             'id' => $article->id,
             'countLikes' => $article->count_likes,
